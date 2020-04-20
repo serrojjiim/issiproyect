@@ -1,10 +1,10 @@
 <?php
     require_once("gestionas/gestionBD.php");
-    require_once("gestionarCamion.php");
-    require_once("gestionarMaquina.php");
-    require_once("gestionarMaterial.php");
-    require_once("gestionarNomina.php");
-    require_once("gestionarEmpleado.php");
+    require_once("gestionas/gestionarCamion.php");
+    require_once("gestionas/gestionarMaquina.php");
+    require_once("gestionas/gestionarMaterial.php");
+    require_once("gestionas/gestionarNomina.php");
+    require_once("gestionas/gestionarEmpleado.php");
     $conexion = crearConexionBD();
     $empleados = consultarEmpleados($conexion);
     $maquinas = consultarMaquinas($conexion);
