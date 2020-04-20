@@ -33,6 +33,7 @@
 	$conexion = crearConexionBD();
 	
 	$empleados = consultarTodosEmpleados($conexion);
+
     $maquinas = consultarMaquinas($conexion);
     $materiales = consultarMateriales($conexion);
     $camiones = consultarCamiones($conexion);
@@ -40,8 +41,9 @@
 
 	// La consulta que ha de paginarse
 
-	$query = "SELECT * FROM EMPLEADO"; //consulta_paginada($conexion, $query, 3, 3);
-
+	$query = "SELECT * FROM EMPLEADO"; 
+	$paginaciones = consulta_paginada($conexion, $query, 3, 3);
+	
 	// Se comprueba que el tamaño de página, página seleccionada y total de registros son conformes.
 	// En caso de que no, se asume el tamaño de página propuesto, pero desde la página 1
 
@@ -120,7 +122,7 @@
 
 	<?php
 
-		foreach($empleados as $fila) {
+		foreach($paginaciones as $fila) {
 
 	?>
 
