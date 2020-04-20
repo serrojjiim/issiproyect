@@ -6,7 +6,7 @@
     require_once("gestionas/gestionarNomina.php");
     require_once("gestionas/gestionarEmpleado.php");
     $conexion = crearConexionBD();
-    $empleados = consultarEmpleados($conexion);
+    $empleados = consultarTodosEmpleados($conexion);
     $maquinas = consultarMaquinas($conexion);
     $materiales = consultarMateriales($conexion);
     $camiones = consultarCamiones($conexion);
