@@ -6,7 +6,7 @@
 	
 	if (isset($_POST['submit'])){
 		$dni= $_POST['dni'];
-
+		
 		$conexion = crearConexionBD();
 		$usuario = consultaBaseDatosDni($conexion,$dni);
 		$usuariop=consultaBaseDatosPass($conexion,$dni);
@@ -18,7 +18,7 @@
 		}else{
 			if ($usuariop['pass'] == null){
 			$_SESSION['dni'] = $dni;
-			Header("Location: registro.php");
+				Header("Location: registro.php");
 		
 			}
 			else {
@@ -43,7 +43,7 @@
 
 	<div align="center" class="login">
 	<form action="login.php" method="post">
-		<div><label for="dni"></label><input style="border-radius:15px" type="text" name="dni" id="dni" placeholder="      Introduce tu DNI" /></div>
+		<div><label for="dni"></label><input style="border-radius:15px" type="text" name="dni" id="dni" placeholder="Introduce tu DNI" pattern="^[0-9]{8}[A-Z]"/></div>
 		<div class="botonLogin"><input style="border-radius:15px" type="submit" name="submit" value="submit" /></div>
 	</form>
 	</div>

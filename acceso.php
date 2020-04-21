@@ -14,6 +14,7 @@
 			echo "<div class=\"error\"><p align=\"center\">Contraseña incorrecta</p></div>";
 		
 		}else{
+		$_SESSION['login'] = $usuario['DNI'];	
 		$_SESSION['nombre'] = $usuario['NOMBRE'];	
 		$_SESSION['cargo']=getCargoString($usuario['CARGO']);
 		Header("Location: index1.php");
