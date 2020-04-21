@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<p>hola</p>
+<p>Hola <?php echo $_SESSION['nombre']?> , tu cargo es <?php echo $_SESSION['cargo']?></p>
 </body>
 </html>
 

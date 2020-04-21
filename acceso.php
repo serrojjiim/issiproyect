@@ -7,16 +7,15 @@
 	if (isset($_POST['submit'])){
 		$pass= $_POST['pass'];
 		$conexion = crearConexionBD();
+		$usuario = consultaPassBD($conexion,$pass,$_SESSION['dni']);
 	
 			
-		$usuario = consultaPassBD($conexion,$pass,$_SESSION['dni']);
-		cerrarConexionBD($conexion);	
-	
-		if ($usuario['dni']==null){
+		if ($usuario['DNI']==null){
 			echo "<div class=\"error\"><p align=\"center\">Contraseña incorrecta</p></div>";
 		
 		}else{
-		
+		$_SESSION['nombre'] = $usuario['NOMBRE'];	
+		$_SESSION['cargo']=getCargoString($usuario['CARGO']);
 		Header("Location: index1.php");
 		}
 	}

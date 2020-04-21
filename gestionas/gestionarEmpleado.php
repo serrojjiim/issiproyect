@@ -97,7 +97,35 @@ function consultaPassBD($conexion,$pass,$dni){
 	$consulta = "SELECT * FROM EMPLEADO WHERE(EMPLEADO.PASS='$pass' and EMPLEADO.DNI='$dni')";
 	$stmt = $conexion->prepare($consulta);
 	$stmt->execute();
-	return $stmt->fetchColumn();
+	return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+function getCargoString($cargo){
+	if($cargo==1){
+		$res = "PRESIDENTE";
+	}else if($cargo==2){
+		$res = "VICEPRESIDENTE";
+	}else if($cargo==3){
+		$res = "SECRETARIO";
+	}else if($cargo==4){
+		$res = "TESORERO";
+	}else if($cargo==5){
+		$res = "GERENTEVENTAS";
+	}else if($cargo==6){
+		$res = "GERENTECOMPRAS";
+	}else if($cargo==7){
+		$res = "CAPATAZ";
+	}else if($cargo==8){
+		$res = "JEFEPERSONAL";
+	}else if($cargo==9){
+		$res = "JEFEMAQUINA";
+	}else if($cargo==10){
+		$res = "PEON";
+	}else if($cargo==11){
+		$res = "CAMIONERO";
+	}else{
+		$res="SIN_CARGO";
+	}
+	return $res;
 }
  
   ?>
