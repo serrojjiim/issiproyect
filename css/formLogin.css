@@ -1,0 +1,23 @@
+body {
+	background: #9D9698;
+}
+.login{
+	display: inline-block;
+	margin-top: 3%;
+	margin-left:45%;
+	
+	
+}
+.botonLogin{
+	display: inline-block;
+	margin-top: 5%;
+}
+.error{
+	color: #d9baba;	
+	border: 2px solid red;
+	margin-top:17%;
+	background: #eb262657;
+	border-color: #FF0000; 
+	border-radius: 20px;
+	height: 70px;
+}

@@ -20,7 +20,7 @@
 				Header("Location: login.php");
 				}	
 		}else{
-					echo "<p>Las contraseñas no coinciden.</p>";
+			echo "<div class=\"error\"><p align=\"center\">Las contraseñas no coinciden.</p></div>";
 
 		}
 		
@@ -31,8 +31,8 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/biblio.css" />
-  <title>Gestión de biblioteca: Login</title>
+  <link rel="stylesheet" type="text/css" href="css/formLogin.css" />
+  <title>Registro</title>
 </head>
 
 <body>
@@ -43,14 +43,13 @@
 			
 	}	
 	?>
-	
+	<div align="center" class="login">
 	<form action="registro.php" method="post">
-		<p>No estás registrado. Establece una contraseña : </p>
-		<div><label for="pass">CONTRASEÑA: </label><input type="password" name="pass" id="pass" /></div>
-		<div><label for="passC">CONFIRMAR CONTRASEÑA: </label><input type="password" name="passC" id="passC" /></div>
-		<input type="submit" name="submit" value="submit" />
+		<div><label for="pass"></label><input style="border-radius:15px" placeholder="Introduce una contraseña" type="password" name="pass" id="pass" /></div>
+		<div><label for="passC"></label><input style="margin-top: 5%;border-radius:15px" placeholder="Confirma la contraseña"type="password" name="passC" id="passC" /></div>
+		<input style="margin-top: 5%;border-radius:15px" type="submit" name="submit" value="submit" />
 	</form>
-		
+	</div>	
 
 </body>
 </html>

@@ -73,6 +73,12 @@ function getCamionero($conexion){
 }
  
 function consultaBaseDatosDni($conexion,$dni){
+	$consulta = "SELECT dni FROM EMPLEADO WHERE(EMPLEADO.DNI='$dni')";
+	$stmt = $conexion->prepare($consulta);
+	$stmt->execute();
+	return $stmt->fetchColumn();
+}
+function consultaBaseDatosPass($conexion,$dni){
 	$consulta = "SELECT pass FROM EMPLEADO WHERE(EMPLEADO.DNI='$dni')";
 	$stmt = $conexion->prepare($consulta);
 	$stmt->execute();
