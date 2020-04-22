@@ -154,7 +154,7 @@
 				<?php }	else { ?>
 
 
-						<input id="CIF" name="CIF" type="hidden" value="<?php echo $fila["NOMBRE"]; ?>"/>
+						<input id="CIF" name="CIF" type="hidden" value="<?php echo $fila["CIF"]; ?>"/>
 
 						<div class="fila"><b><?php echo $fila["NOMBRE"]." "; echo $fila["CIF"]; ?></b></div>
 						<div class="dni"><b><?php echo $fila["TELEFONO"]; ?></b></div>
