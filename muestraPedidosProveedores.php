@@ -1,4 +1,10 @@
 <?php
+	session_start();
+	if($_SESSION['cargo']!="GERENTECOMPRAS"){
+		echo "</p>No tienes permisos para acceder a esta página</p>";
+		
+	}else{
+
     require_once("gestionas/gestionBD.php");
 	require_once("gestionas/gestionarPP.php");
 	$conexion = crearConexionBD();
@@ -27,3 +33,4 @@
 </main>
 </body>
 </html>
+<?php } ?>
