@@ -2,10 +2,10 @@
 	session_start();
 	
 	if (isset($_REQUEST["OID_EMP"])){
-		$libro["OID_EMP"] = $_REQUEST["OID_EMP"];
-		$libro["NOMBRE"] = $_REQUEST["NOMBRE"];
-		$libro["APELLIDOS"] = $_REQUEST["APELLIDOS"];
-		$libro["DNI"] = $_REQUEST["NOMBRE"];
+		$empleado["OID_EMP"] = $_REQUEST["OID_EMP"];
+		$empleado["NOMBRE"] = $_REQUEST["NOMBRE"];
+		$empleado["APELLIDOS"] = $_REQUEST["APELLIDOS"];
+		$empleado["DNI"] = $_REQUEST["NOMBRE"];
 		
 		$_SESSION["empleado"] = $empleado;
 			

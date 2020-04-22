@@ -8,7 +8,10 @@
 </head>
 
 <body>
-	<script>
+	<?php
+	include_once ("header.php");
+	?>
+	<!-- <script>
 		function despligue() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
@@ -25,8 +28,8 @@ window.onclick = function(event) {
     }
   }
 	}
-	</script>
-<div class="dropdown">
+	</script> -->
+<!-- <div class="dropdown">
 	<?php if($_SESSION['cargo']=="GERENTEVENTAS"){
 		
 	?>
@@ -44,11 +47,9 @@ window.onclick = function(event) {
     <a href="#">xd</a>
   </div>
   <?php  }  ?> 
-</div>
+</div> -->
 <p>Hola <?php echo $_SESSION['nombre']?></p>
-<form action="logout.php" method="post">
-    <input type="submit" value="Logout" name="Submit" id="logout" />
-</form>
+
 </body>
 </html>
 
