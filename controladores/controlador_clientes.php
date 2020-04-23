@@ -13,7 +13,7 @@
 			
 		if (isset($_REQUEST["editar"])) Header("Location: ../modificarCliente.php"); 
 		//else if (isset($_REQUEST["grabar"])) Header("Location: accion_modificar_libro.php");
-		else Header("Location: accion_borrar_libro.php"); 
+		else Header("Location: ../accion_borrar_cliente.php"); 
 	}
 	else 
 		Header("Location: pruebaPaginacion.php");

@@ -7,25 +7,42 @@ function consultarClientes($conexion) {
 
 function actualizarDatosCliente($conexion, $oidcli , $cif, $nombre,$direccion,$telefono,$email){
 	try {
-		$stmt=$conexion->prepare('CALL ACTUALIZARDATOSPERSONALES(:oidemp,:dni,:nombre,:apellidos,:telefono,:direccion,:capitalsocial,:fechacontratacion,:diasvacaciones)');
-		$stmt->bindParam(':oidemp',$oid_emp);
-		$stmt->bindParam(':dni',$dni_emp);
-		$stmt->bindParam(':nombre',$nombren);
-		$stmt->bindParam(':apellidos',$apellidosn);
-		$stmt->bindParam(':telefono',$telefonon);
-		$stmt->bindParam(':direccion',$direccionn);
-		$stmt->bindParam(':capitalsocial',$capitalsocialn);
-		$stmt->bindParam(':fechacontratacion',$fechacontratacionn);
-		$stmt->bindParam(':diasvacaciones',$diasvacacionesn);		
+		$stmt=$conexion->prepare('CALL ACTUALIZARCLIENTE(:oidcli,:cif,:nombre,:direccion,:telefono,:email)');
+		$stmt->bindParam(':oidcli',$oidcli);
+		$stmt->bindParam(':cif',$cif);
+		$stmt->bindParam(':nombre',$nombre);
+		$stmt->bindParam(':direccion',$direccion);
+		$stmt->bindParam(':telefono',$telefono);
+		$stmt->bindParam(':email',$email);	
 		$stmt->execute();
 		return "";
 	} catch(PDOException $e) {
 		return $e->getMessage();
     }
-	
-	
-	
-	
 }
 
+function getClienteCif($conexion,$cif){
+	$consulta = "SELECT * FROM CLIENTE WHERE (CLIENTE.CIF = '$cif')";
+	$stmt = $conexion->prepare($consulta);
+	$stmt->execute();
+	return $stmt->fetch();
+}
+
+
+function getClienteOid($conexion,$oid){
+	$consulta = "SELECT * FROM CLIENTE WHERE (CLIENTE.CIF = '$oid')";
+	$stmt = $conexion->prepare($consulta);
+	$stmt->execute();
+	return $stmt->fetch();
+}
+// function eliminar_cliente($conexion,$cif){
+	// try {
+		// $consulta = "DELETE FROM CLIENTE WHERE CLIENTE.CIF='$cif'";
+		// $stmt=$conexion->prepare($consulta);
+		// $stmt->execute();
+		// return "";
+	// } catch(PDOException $e) {
+		// return $e->getMessage();
+    // }
+// }
 ?>

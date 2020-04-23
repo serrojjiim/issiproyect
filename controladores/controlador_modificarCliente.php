@@ -10,7 +10,7 @@ if (isset($_REQUEST["CIF"])){
 		$cliente["TELEFONO"] = $_REQUEST["TELEFONO"];
 		$cliente["EMAIL"] = $_REQUEST["EMAIL"];
 		
-		$_SESSION["cliente"] = $cliente;
+		$_SESSION['cliente'] = $cliente;
 		
 		if (isset($_REQUEST["guardar"])) Header("Location: ../accion_modificar_cliente.php"); 
 		
