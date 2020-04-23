@@ -53,14 +53,14 @@ END;
 
 SELECT capitalActual FROM DUAL;
 
--- RF-007: Lista de mï¿½quinas con su jefe de mï¿½quina y empleados trabajando en ella
+-- RF-007: Lista de maquinas con su jefe de maquina y empleados trabajando en ella
 SELECT maquina.nombre Maquina, cargo.rol Cargo, empleado.apellidos Apellidos, empleado.nombre Nombre FROM empleado, maquina, cargo
 WHERE maquina.oid_maq = empleado.oid_maq AND empleado.cargo = cargo.oid_cargo AND empleado.cargo = 9
         UNION
 SELECT maquina.nombre Maquina, cargo.rol Cargo, empleado.apellidos Apellidos, empleado.nombre Nombre FROM empleado, maquina, cargo
 WHERE maquina.oid_maq = empleado.oid_maq AND empleado.cargo != 9 AND empleado.cargo = cargo.oid_cargo ORDER BY maquina;
 
--- RF-008: Lista de peones sin mï¿½quina asignada
+-- RF-008: Lista de peones sin maquina asignada
 SELECT * FROM empleado WHERE oid_maq IS NULL AND cargo IN(10);
 -- RF-012: Lista de materiales con su stock
 SELECT nombre, stock FROM material;
@@ -68,7 +68,7 @@ SELECT nombre, stock FROM material;
 SELECT * FROM proveedor;
 -- RF-016: Lista de clientes
 SELECT * FROM cliente;
--- RF-018: Dï¿½as de vacaciones de un empleado dado
+-- RF-018: Dias de vacaciones de un empleado dado
 CREATE OR REPLACE FUNCTION diasVacacionesEmpleado (nom varchar2, ape varchar2)
 RETURN INTEGER IS res INTEGER;
 BEGIN
@@ -88,7 +88,7 @@ BEGIN
     UPDATE PEDIDOCLIENTE
     SET fechafinfabricacion = SYSTIMESTAMP WHERE oid_cli = w_oid_cli and fechapedido = w_fechapedido;
     COMMIT WORK;
-    DBMS_OUTPUT.PUT_LINE('Fecha de fin de fabricaciï¿½n del pedido del cliente '||w_cliente||' actualizada.');
+    DBMS_OUTPUT.PUT_LINE('Fecha de fin de fabricacion del pedido del cliente '||w_cliente||' actualizada.');
 EXCEPTION
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('No se ha podido ejecutar correctamente el proceso: "finFab".');
@@ -103,7 +103,7 @@ BEGIN
     UPDATE PEDIDOCLIENTE
     SET fechaenvio = SYSTIMESTAMP WHERE oid_cli = w_oid_cli and fechapedido = w_fechapedido;
     COMMIT WORK;
-    DBMS_OUTPUT.PUT_LINE('Fecha de envï¿½o del pedido del cliente '||w_cliente||' actualizada.');
+    DBMS_OUTPUT.PUT_LINE('Fecha de envio del pedido del cliente '||w_cliente||' actualizada.');
 EXCEPTION
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('No se ha podido ejecutar correctamente el proceso: "envioPedido".');
@@ -171,7 +171,7 @@ BEGIN
 
     SELECT count(*) INTO yaExiste FROM empleado WHERE empleado.cargo = tipo_empleado.cargo and empleado.oid_maq = w_maquina;
     IF(tipo_empleado.cargo = 9 and yaExiste <> 0 ) THEN 
-    RAISE_APPLICATION_ERROR(-20103, 'No puede haber dos jefes de mï¿½quinas en la misma mï¿½quina');
+    RAISE_APPLICATION_ERROR(-20103, 'No puede haber dos jefes de maquinas en la misma maquina');
     END IF;
     
     UPDATE EMPLEADO 
@@ -188,7 +188,7 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('La maquina asignada al empleado '||TIPO_EMPLEADO.NOMBRE||' '||TIPO_EMPLEADO.APELLIDOS||' se ha actualizado.');
 EXCEPTION
     WHEN OTHERS THEN
-    DBMS_OUTPUT.PUT_LINE('Se ha producido un error al actualizar la mï¿½quina asignada al empleado '||TIPO_EMPLEADO.NOMBRE||' '||TIPO_EMPLEADO.APELLIDOS||' ');
+    DBMS_OUTPUT.PUT_LINE('Se ha producido un error al actualizar la maquina asignada al empleado '||TIPO_EMPLEADO.NOMBRE||' '||TIPO_EMPLEADO.APELLIDOS||' ');
     
 END ACTUALIZARMAQUINA;
 /
@@ -232,7 +232,7 @@ BEGIN
     SELECT nombre into w_empleado FROM empleado where oid_emp = w_cogeca; 
     UPDATE COGECAMION
     SET FECHAFIN = SYSTIMESTAMP WHERE oid_cam = w_camion and fechainicio = w_fechainicio;
-    DBMS_OUTPUT.PUT_LINE('El camiï¿½n con matrï¿½cula '||w_matricula||' y conducido por '||w_empleado||', ha finalizado su trayecto.');
+    DBMS_OUTPUT.PUT_LINE('El camion con matricula '||w_matricula||' y conducido por '||w_empleado||', ha finalizado su trayecto.');
     COMMIT WORK;
 EXCEPTION
     WHEN OTHERS THEN
@@ -241,10 +241,10 @@ EXCEPTION
 END finCogeCamion;
 /
 
-CREATE OR REPLACE PROCEDURE muestraNominas(w_mes NUMBER, w_aï¿½o NUMBER) AS
-    cursor c is (SELECT nomina.salario, empleado.nombre, empleado.apellidos FROM nomina NATURAL JOIN empleado WHERE mes = w_mes and aï¿½o = w_aï¿½o) ORDER BY empleado.apellidos, empleado.nombre;
+CREATE OR REPLACE PROCEDURE muestraNominas(w_mes NUMBER, w_año NUMBER) AS
+    cursor c is (SELECT nomina.salario, empleado.nombre, empleado.apellidos FROM nomina NATURAL JOIN empleado WHERE mes = w_mes and año = w_año) ORDER BY empleado.apellidos, empleado.nombre;
 BEGIN
-    DBMS_OUTPUT.PUT_LINE('Las nï¿½minas son: ');
+    DBMS_OUTPUT.PUT_LINE('Las nominas son: ');
     DBMS_OUTPUT.PUT_LINE('Salario      Empleado');
         FOR fila IN c LOOP
             EXIT WHEN c%NOTFOUND;
@@ -258,13 +258,13 @@ END muestraNominas;
 /
 
 CREATE OR REPLACE PROCEDURE muestraNominasPorEmpleado(w_dni in empleado.dni%type) AS
-    cursor c is (SELECT nomina.salario,nomina.mes,nomina.aï¿½o, empleado.nombre, empleado.apellidos FROM nomina NATURAL JOIN empleado WHERE dni = w_dni) ORDER BY empleado.apellidos, empleado.nombre;
+    cursor c is (SELECT nomina.salario,nomina.mes,nomina.año, empleado.nombre, empleado.apellidos FROM nomina NATURAL JOIN empleado WHERE dni = w_dni) ORDER BY empleado.apellidos, empleado.nombre;
 BEGIN
-    DBMS_OUTPUT.PUT_LINE('Las nï¿½minas son: ');
-    DBMS_OUTPUT.PUT_LINE('Salario      Mes      Aï¿½o        Empleado');
+    DBMS_OUTPUT.PUT_LINE('Las nominas son: ');
+    DBMS_OUTPUT.PUT_LINE('Salario      Mes      Año        Empleado');
         FOR fila IN c LOOP
             EXIT WHEN c%NOTFOUND;
-                DBMS_OUTPUT.PUT_LINE(' '||fila.salario||'         '||fila.mes||'       '||fila.aï¿½o||'       '||fila.apellidos||', '||fila.nombre);
+                DBMS_OUTPUT.PUT_LINE(' '||fila.salario||'         '||fila.mes||'       '||fila.año||'       '||fila.apellidos||', '||fila.nombre);
         END LOOP;
 EXCEPTION
     WHEN OTHERS THEN
