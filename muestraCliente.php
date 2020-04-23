@@ -69,7 +69,6 @@
 	<?php
 	
 		foreach($filas as $fila) {
-			$cliente = $_SESSION["cliente"];
 
 	?>
 
@@ -87,7 +86,7 @@
 					<input id="EMAIL" name="EMAIL" type="hidden" value="<?php echo $fila["EMAIL"]; ?>"/>
 
 				<?php 
-				if ($fila["oculto"] == 1)  {?>
+				if ($fila["OCULTO"] == 1)  {?>
 					<tr>
 						<td align="center"><?php echo "Cliente eliminado" ?></td>
 					</tr>
@@ -99,13 +98,21 @@
 							<td align="center"><?php echo $fila['DIRECCION'] ?></td>
 							<td align="center"><?php echo $fila['TELEFONO'] ?></td>
 							<td align="center"><?php echo $fila['EMAIL']?></td>
-							<form action="controlador_clientes.php">
-								<input type="hidden" value="1" name="editar"/>
+							
+							<form action="controladores/controlador_clientes.php">
+								
+						<td><button id="editar" name="editar" type="submit" class="editar_fila">
+						<img src="img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
+						</button></td>
+						
+						<td><button id="borrar" name="borrar" type="submit" class="borrar fila">
+						<img src="img/papeleraBorrar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
+						</button></td>
+								<!-- <input type="hidden" value="1" name="editar"/>
 								<td><input type="image" name="lapiz" src="img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"/></td>
-							</form>
-							<form action="controlador_clientes.php">
+							
 								<input type="hidden" value="1" name="borrar"/>
-								<td><input type="image" name="papelera" src="img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td>
+								<td><input type="image" name="papelera" src="img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td> -->
 							</form>
 						</tr>
 						

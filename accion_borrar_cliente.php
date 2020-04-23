@@ -13,12 +13,12 @@
 		$excepcion = ocultar($conexion,$cliente['CIF']);
 		cerrarConexionBD($conexion);	
 		
-		if ($excepcion<>"") {
-			$_SESSION["excepcion"] = $excepcion;
-			$_SESSION["destino"] = "muestraCliente.php";
-			Header("Location: excepcion.php");
-		}
-		else Header("Location: muestraCliente.php");
+		// if ($excepcion<>"") {
+			// $_SESSION["excepcion"] = $excepcion;
+			// $_SESSION["destino"] = "muestraCliente.php";
+			// Header("Location: excepcion.php");
+		// }
+		// else Header("Location: muestraCliente.php");
 	}
 	else Header("Location: muestraCliente.php"); // Se ha tratado de acceder directamente a este PHP
 ?>
