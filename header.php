@@ -55,6 +55,7 @@
   <li class="logo"><a href="index1.php"><img border="0" alt="Logout" src="img/header/logocoenca.png" width="40" height="30"></a></li>
   <li class="letras"><a class="letras" href="muestraEmpleados.php">EMPLEADOS</a></li>
   <li class="letras"><a class="letras" href="#news">MÁQUINAS</a></li>
+  <li class="letras"><a class="letras" href="solicitudesdedias.php">SOLICITUDES DE DIAS</a></li>
    <li class="right"><a href="logout.php">
 <img border="0" alt="Logout" src="img/header/logout.png" width="22" height="22">
 </a></li>
@@ -80,6 +81,8 @@
   <li class="letras"><a class="letras" href="muestraEmpleados.php">EMPLEADOS</a></li>
   <li class="letras"><a class="letras" href="muestraCamiones.php">CAMIONES</a></li>
   <li class="letras"><a class="letras" href="muestraAlmacen.php">ALMACÉN</a></li>
+  <li class="letras"><a class="letras" href="peticiondias.php">PETICION DIAS</a></li>
+
   <li class="right"><a href="logout.php">
 <img border="0" alt="Logout" src="img/header/logout.png" width="22" height="22">
 </a></li>

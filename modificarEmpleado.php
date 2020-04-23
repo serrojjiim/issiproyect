@@ -30,7 +30,7 @@
 	<input id="OID_EMP" name="OID_EMP" type="text" value="<?php echo $empleado["OID_EMP"]; ?>"/><br />
 	<input id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $empleado["NOMBRE"]; ?>"/><br />
 	<input id="APELLIDOS" name="APELLIDOS" type="text" value="<?php echo $empleado["APELLIDOS"]; ?>"/><br />
-	<input id="DNI" name="DNI" type="text" value="<?php echo $empleado["DNI"]; ?>" disabled/><br />
+	<input id="DNI" name="DNI" type="text" value="<?php echo $empleado["DNI"]; ?>"/><br />
 	<input id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $empleado["TELEFONO"]; ?>"/><br />
 	<input id="DIRECCION" name="DIRECCION" type="text" value="<?php echo $empleado["DIRECCION"]; ?>"/><br />
 	<input id="CARGO" name="CARGO" type="text" value="<?php echo $empleado["CARGO"]; ?>"/><br />
