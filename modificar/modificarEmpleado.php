@@ -26,7 +26,7 @@
 		
 	}  
 	?>
-	<form method="post" action="controladores/controlador_modificarempleados.php">
+	<form method="post" action="../controladores/controlador_modificarempleados.php">
 	<input id="OID_EMP" name="OID_EMP" type="text" value="<?php echo $empleado["OID_EMP"]; ?>"/><br />
 	<input id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $empleado["NOMBRE"]; ?>"/><br />
 	<input id="APELLIDOS" name="APELLIDOS" type="text" value="<?php echo $empleado["APELLIDOS"]; ?>"/><br />
@@ -40,7 +40,7 @@
 	<input id="OID_MAQ" name="OID_MAQ" type="text" value="<?php echo $empleado["OID_MAQ"]; ?>"/><br />
 	
 	<button id="guardar" name="guardar" type="submit" class="editar_fila">
-			<img src="img/bag_menuito.bmp" class="editar_fila" alt="Modificar cargo empleado">
+			<img src="../img/bag_menuito.bmp" class="editar_fila" alt="Modificar cargo empleado">
 	</button>
 
 

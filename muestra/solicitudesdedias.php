@@ -5,8 +5,8 @@ if($_SESSION['cargo']!="JEFEPERSONAL"){
 		
 	}else{
 
-    require_once("gestionas/gestionBD.php");
-    require_once("consultaPaginada.php");
+    require_once("../gestionas/gestionBD.php");
+    require_once("../consultaPaginada.php");
 	
 
 	// ¿Venimos simplemente de cambiar página o de haber seleccionado un registro ?
@@ -122,7 +122,7 @@ if($_SESSION['cargo']!="JEFEPERSONAL"){
 
 	 <article class="empleado">
 
-		<form method="post" action="controladores/controlador_solicitudesdedias.php">
+		<form method="post" action="../controladores/controlador_solicitudesdedias.php">
 
 			<div class="fila_empleado">
 
@@ -180,7 +180,7 @@ if($_SESSION['cargo']!="JEFEPERSONAL"){
 
 						<button id="grabar" name="grabar" type="submit" class="editar_fila">
 
-							<img src="img/bag_menuito.bmp" class="editar_fila" alt="Guardar modificación">
+							<img src="../img/bag_menuito.bmp" class="editar_fila" alt="Guardar modificación">
 
 						</button>
 
@@ -188,14 +188,14 @@ if($_SESSION['cargo']!="JEFEPERSONAL"){
 
 						 <button id="aceptar" name="aceptar" type="submit" class="editar_fila">
 
-							<img src="img/pencil_menuito.bmp" class="editar_fila" alt="Aceptar peticion">
+							<img src="../img/pencil_menuito.bmp" class="editar_fila" alt="Aceptar peticion">
 
 						</button>
 				<?php } ?>
 
 					<button id="denegar" name="denegar" type="submit" class="editar_fila">
 
-						<img src="img/remove_menuito.bmp" class="editar_fila" alt="Denegar peticion">
+						<img src="../img/remove_menuito.bmp" class="editar_fila" alt="Denegar peticion">
 
 					</button> 
 

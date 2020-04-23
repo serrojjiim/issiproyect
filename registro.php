@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
 			$_SESSION['login'] = $usuario['DNI'];
 			$_SESSION['nombre'] = $usuario['NOMBRE'];
 			$_SESSION['cargo'] = getCargoString($usuario['CARGO']);
-			Header("Location: index1.php");
+			Header("Location: muestra/index1.php");
 
 		} else {
 			Header("Location: login.php");

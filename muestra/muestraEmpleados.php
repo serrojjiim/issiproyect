@@ -2,13 +2,13 @@
 
 	session_start();
 
-    require_once("gestionas/gestionBD.php");
-    require_once("gestionas/gestionarCamion.php");
-    require_once("gestionas/gestionarMaquina.php");
-    require_once("gestionas/gestionarMaterial.php");
-    require_once("gestionas/gestionarNomina.php");
-    require_once("gestionas/gestionarEmpleado.php");
-    require_once("consultaPaginada.php");
+    require_once("../gestionas/gestionBD.php");
+    require_once("../gestionas/gestionarCamion.php");
+    require_once("../gestionas/gestionarMaquina.php");
+    require_once("../gestionas/gestionarMaterial.php");
+    require_once("../gestionas/gestionarNomina.php");
+    require_once("../gestionas/gestionarEmpleado.php");
+    require_once("../consultaPaginada.php");
 	
 	// if (isset($_SESSION["libro"])){
 		// $libro = $_SESSION["libro"];
@@ -128,7 +128,7 @@
 
 	 <article class="empleado">
 
-		<form method="post" action="controladores/controlador_empleados.php">
+		<form method="post" action="../controladores/controlador_empleados.php">
 
 			<div class="fila_empleado">
 
@@ -215,14 +215,14 @@
 
 						 <button id="editar" name="editar" type="submit" class="editar_fila">
 
-							<img src="img/pencil_menuito.bmp" class="editar_fila" alt="Editar libro">
+							<img src="../img/pencil_menuito.bmp" class="editar_fila" alt="Editar libro">
 
 						</button>
 				<?php } ?>
 
 					<button id="borrar" name="borrar" type="submit" class="editar_fila">
 
-						<img src="img/remove_menuito.bmp" class="editar_fila" alt="Borrar empleado">
+						<img src="../img/remove_menuito.bmp" class="editar_fila" alt="Borrar empleado">
 
 					</button> 
 

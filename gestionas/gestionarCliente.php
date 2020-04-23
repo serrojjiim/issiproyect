@@ -5,7 +5,7 @@ function consultarClientes($conexion) {
 	return $conexion->query($consulta);
 }
 
-function actualizarDatosCliente($conexion, $oidcli , $cif, $nombre,$direccion,$telefono,$email){
+function actualizarDatosCliente($conexion, $oidcli,$cif,$nombre,$direccion,$telefono,$email){
 	try {
 		$stmt=$conexion->prepare('CALL ACTUALIZARCLIENTE(:oidcli,:cif,:nombre,:direccion,:telefono,:email)');
 		$stmt->bindParam(':oidcli',$oidcli);

@@ -17,7 +17,7 @@
 			$_SESSION["destino"] = "index1.php";
 			Header("Location: ../excepcion.php");
 		}
-		else Header("Location: ../index1.php");
+		else Header("Location: ../muestra/index1.php");
 	}
-	else Header("Location: ../index1.php"); // Se ha tratado de acceder directamente a este PHP
+	else Header("Location: ../muestra/index1.php"); // Se ha tratado de acceder directamente a este PHP
 ?>

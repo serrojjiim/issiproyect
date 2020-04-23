@@ -11,7 +11,7 @@
 		
 		$_SESSION["cliente"] = $cliente;
 			
-		if (isset($_REQUEST["editar"])) Header("Location: ../accions/modificarCliente.php");
+		if (isset($_REQUEST["editar"])) Header("Location: ../modificar/modificarCliente.php");
 		else if (isset($_REQUEST["borrar"])) Header("Location: ../accions/accion_borrar_cliente.php");
 		
 		//else (isset($_REQUEST["grabar"])) Header("Location: accion_modificar_libro.php");

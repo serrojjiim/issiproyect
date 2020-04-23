@@ -13,9 +13,12 @@
 </head>
 
 <body>
+	<?php
+		include_once ("header.php"); ?>
+
 	<p>DNI <?php echo $_SESSION['dni']?></p>
 
-	<form method="post" action="controladores/controlador_solicituddias.php" id="FORMULARIOPETICIONDIAS">
+	<form method="post" action="../controladores/controlador_solicituddias.php" id="FORMULARIOPETICIONDIAS">
 	<input id="DNI" name="DNI" type="hidden" value="<?php echo $_SESSION["dni"]; ?>"/>
 	<input id="DIASAPEDIR" name="DIASAPEDIR" type="text" value=""/><br />
 	<button id="PEDIR" name="PEDIR" type="submit" class="editar_fila">

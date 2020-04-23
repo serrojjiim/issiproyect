@@ -2,13 +2,13 @@
 
 	session_start();
 
-    require_once("gestionas/gestionBD.php");
-    require_once("gestionas/gestionarCamion.php");
-    require_once("gestionas/gestionarMaquina.php");
-    require_once("gestionas/gestionarMaterial.php");
-    require_once("gestionas/gestionarNomina.php");
-    require_once("gestionas/gestionarProducto.php");
-    require_once("consultaPaginada.php");
+    require_once("../gestionas/gestionBD.php");
+    require_once("../gestionas/gestionarCamion.php");
+    require_once("../gestionas/gestionarMaquina.php");
+    require_once("../gestionas/gestionarMaterial.php");
+    require_once("../gestionas/gestionarNomina.php");
+    require_once("../gestionas/gestionarProducto.php");
+    require_once("../consultaPaginada.php");
 	
 	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
 	$pagina_seleccionada = isset($_GET["PAG_NUM"])? (int)$_GET["PAG_NUM"]: (isset($paginacion)? (int)$paginacion["PAG_NUM"]: 1);
@@ -45,8 +45,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" type="text/css" href="css/muestraTabla.css" />
-  <script type="text/javascript" src="js/filtro.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
+  <script type="text/javascript" src="../js/filtro.js"></script>
   <title>Lista de productos</title>
 </head>
 
@@ -78,7 +78,7 @@
 
 	?>
 
-		<form method="post" action="controladores/controlador_productos.php">
+		<form method="post" action="../controladores/controlador_productos.php">
 
 			<div class="fila_producto">
 

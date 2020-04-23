@@ -2,10 +2,10 @@
 
 	session_start();
 
-    require_once("gestionas/gestionBD.php");
-	require_once("gestionas/gestionarEmpleado.php");
-	require_once("gestionas/gestionarCliente.php");
-    require_once("consultaPaginada.php");
+    require_once("../gestionas/gestionBD.php");
+	require_once("../gestionas/gestionarEmpleado.php");
+	require_once("../gestionas/gestionarCliente.php");
+    require_once("../consultaPaginada.php");
 	
 	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
 	$pagina_seleccionada = isset($_GET["PAG_NUM"])? (int)$_GET["PAG_NUM"]: (isset($paginacion)? (int)$paginacion["PAG_NUM"]: 1);
@@ -42,8 +42,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" type="text/css" href="css/muestraTabla.css" />
-  <script type="text/javascript" src="js/filtro.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
+  <script type="text/javascript" src="../js/filtro.js"></script>
   <title>Lista de pedidos de clientes</title>
 </head>
 
@@ -56,7 +56,7 @@
 <main>
 
 	<div style="overflow-x:auto; overflow-y:auto;">
-	 <table style="width:50%" id="tablaPedidosClientes">
+	 <table id="tablaClientes">
 	 	<caption>Listado de los pedidos de clientes</caption>
 	 	<input type="text" id="filtro" onkeyup="filtrar()" placeholder="Filtrar por acabado.." title="Escribe un acabado">
 
@@ -77,7 +77,7 @@
 
 	?>
 
-		<form method="post" action="controladores/controlador_pedidosClientes.php">
+		<form method="post" action="../controladores/controlador_pedidosClientes.php">
 
 			<div class="fila_pedidosClientes">
 
@@ -106,7 +106,7 @@
 					$cliente= getClienteOid($conexion, $fila['OID_CLI']);
 					$empleado = obtener_empleado_oid($conexion, $fila['OID_EMP']);?>
 
-						<tr>
+						<tr class="fila">
 							<td align="center"><?php echo $fila['FECHAPEDIDO'] ?></td>
 							<td align="center"><?php echo $fila['FECHAFINFABRICACION'] ?></td>
 							<td align="center"><?php echo $fila['FECHAENVIO'] ?></td>
@@ -115,8 +115,8 @@
 							<td align="center"><?php echo $fila['COSTETOTAL']."€"?></td>
 							<td align="center"><?php echo $cliente['NOMBRE']?></td>
 							<td align="center"><?php echo $empleado['NOMBRE']." ".$empleado['APELLIDOS']?></td>
-    						<td><a href="#"><img src="img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></a></td>
-							<td><a href="#"><img src="img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td>
+    						<td class="boton"><a href="#"><img src="../img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></a></td>
+							<td class="boton"><a href="#"><img src="../img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td>
 						</tr>
 						
 				<?php } ?>
