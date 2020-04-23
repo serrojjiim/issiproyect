@@ -8,14 +8,13 @@
 		require_once("gestionas/gestionBD.php");
 		require_once("gestionas/gestionarCliente.php");
 				
-		echo $cliente['CIF'];
 		
 		$conexion = crearConexionBD();		
-		$clienteB = eliminar_cliente($conexion,$cliente['CIF']);
+		$excepcion = ocultar($conexion,$cliente['CIF']);
 		cerrarConexionBD($conexion);	
 		
 		if ($excepcion<>"") {
-			$_SESSION["excepcion"] = $clienteB;
+			$_SESSION["excepcion"] = $excepcion;
 			$_SESSION["destino"] = "muestraCliente.php";
 			Header("Location: excepcion.php");
 		}
