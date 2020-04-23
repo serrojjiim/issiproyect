@@ -89,6 +89,7 @@ CREATE TABLE cliente (
     direccion   VARCHAR(50),
     telefono    NUMBER(9),
     email       VARCHAR(50),
+    oculto      INTEGER DEFAULT 0,
     PRIMARY KEY ( oid_cli )
 );
 

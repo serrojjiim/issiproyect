@@ -148,8 +148,8 @@
 
 				<?php }	else { ?>
 
-	
-					<input id="CIF" name="CIF" type="hidden" value="<?php echo $fila["CIF"]; echo "    " ;?>"/>
+						<?php if($fila['OCULTO']==0){ ?>
+							<input id="CIF" name="CIF" type="hidden" value="<?php echo $fila["CIF"]; echo "    " ;?>"/>
 				
 					<button type="button" class="collapsible"><b><?php echo $fila["NOMBRE"]." ";?></b>
 			
@@ -169,10 +169,29 @@
 					</div>
 					
 					</br>
-					<?php if($fila['hidden']==1){
-						echo "asi es";
-					} ?>
+						
+						<?php }else{ ?>
+					<input id="CIF" name="CIF" type="hidden" value="<?php echo $fila["CIF"]; echo "    " ;?>"/>
+				
+					<button style="display:none"; type="button" class="collapsible"><b><?php echo $fila["NOMBRE"]." ";?></b>
+			
+					
+						
+					</button>
+					<div style="display:none"; class="content">
+  					<p><b><?php echo $fila["CIF"]." ";?></b></p>
+  						<button id="editar" name="editar" type="submit" class="editar_fila">
+						<img src="img/pencil_menuito.bmp" class="editar_fila" alt="Editar libro" height="30px" width="30px">
+						</button>
+						 <button id="borrar" name="borrar" type="submit" class="editar_fila">
+			
+						<img src="img/remove_menuito.bmp" class="editar_fila" alt="Borrar libro">
 
+					</button> 
+					</div>
+					
+					</br>
+						<?php } ?>
 				<?php } ?>
 
 				</div>

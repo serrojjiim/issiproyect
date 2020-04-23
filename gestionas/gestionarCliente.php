@@ -30,19 +30,20 @@ function getClienteCif($conexion,$cif){
 
 
 function getClienteOid($conexion,$oid){
-	$consulta = "SELECT * FROM CLIENTE WHERE (CLIENTE.CIF = '$oid')";
+	$consulta = "SELECT * FROM CLIENTE WHERE (CLIENTE.OID_CLI = '$oid')";
 	$stmt = $conexion->prepare($consulta);
 	$stmt->execute();
 	return $stmt->fetch();
 }
-// function eliminar_cliente($conexion,$cif){
-	// try {
-		// $consulta = "DELETE FROM CLIENTE WHERE CLIENTE.CIF='$cif'";
-		// $stmt=$conexion->prepare($consulta);
-		// $stmt->execute();
-		// return "";
-	// } catch(PDOException $e) {
-		// return $e->getMessage();
-    // }
-// }
+function ocultar($conexion,$cif){
+		try{
+	$consulta = "UPDATE CLIENTE SET OCULTO=1 WHERE (CLIENTE.CIF='$cif')";
+	$stmt = $conexion->prepare($consulta);
+	$stmt->execute();
+	return "";
+		}catch(PDOException $e) {
+		return $e->getMessage();
+    }
+
+}
 ?>
