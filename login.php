@@ -6,7 +6,10 @@
 	
 	if (isset($_POST['submit'])){
 		$dni= $_POST['dni'];
-		
+		if (isset($_SESSION['login']))
+        unset($_SESSION['login']);
+    	if(isset($_SESSION['cargo']))
+   	    unset($_SESSION['cargo']);
 		$conexion = crearConexionBD();
 		$usuario = consultaBaseDatosDni($conexion,$dni);
 		$usuariop=consultaBaseDatosPass($conexion,$dni);
