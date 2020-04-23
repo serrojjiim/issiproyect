@@ -17,17 +17,18 @@ th {
   color: white;
 }
 
+
 td {
   border: 1px solid #ddd;
 }
 
 table tr:nth-child(even){background-color: #ff1c50;}
 
-table tr:hover {background-color: #ddd;}
+table tr:hover {background-color: #66e0ff;}
 
-.filtro {
-  background-image: url('/css/searchicon.png');
-  background-position: 10px 10px;
+#filtro {
+  background-image: url("../img/lupa.png");
+  background-size: contain;
   background-repeat: no-repeat;
   width: 20%;
   font-size: 16px;
