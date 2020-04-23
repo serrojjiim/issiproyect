@@ -46,10 +46,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="css/muestraTabla.css" />
+  <script type="text/javascript" src="js/filtro.js"></script>
   <title>Lista de Empleados</title>
 </head>
 
 <body>
+
 
 <?php
 	include_once ("header.php");
@@ -57,8 +59,9 @@
 <main>
 
 	<div style="overflow-x:auto; overflow-y:auto;">
-	 <table style="width:50%" class="producto">
+	 <table style="width:50%" id="tablaProducto">
 	 	<caption>Listado de los productos disponibles</caption>
+	 	<input type="text" id="filtro" onkeyup="filtrar()" placeholder="Filtrar por acabado.." title="Escribe un acabado">
 
 		<tr>
     		<th>Tipo de material</th>
@@ -125,6 +128,7 @@
 	 </table>
 	</div>
 	
+	</br>
 	<form method="get" action="muestraProducto.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
