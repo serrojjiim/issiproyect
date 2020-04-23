@@ -47,7 +47,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="css/muestraTabla.css" />
   <script type="text/javascript" src="js/filtro.js"></script>
-  <title>Lista de Empleados</title>
+  <title>Lista de productos</title>
 </head>
 
 <body>
@@ -61,7 +61,7 @@
 	<div style="overflow-x:auto; overflow-y:auto;">
 	 <table style="width:50%" id="tablaProducto">
 	 	<caption>Listado de los productos disponibles</caption>
-	 	<input type="text" id="filtro" onkeyup="filtrar()" placeholder="Filtrar por acabado.." title="Escribe un acabado">
+	 	<input type="text" id="filtro" onkeyup="filtrar(5)" placeholder="Filtrar por acabado.." title="Escribe un acabado">
 
 		<tr>
     		<th>Tipo de material</th>
