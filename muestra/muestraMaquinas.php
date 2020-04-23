@@ -55,7 +55,7 @@
 <main>
 
 	<div style="overflow-x:auto; overflow-y:auto;">
-	 <table style="width:50%" id="tablaMaquina">
+	 <table class="tabla" id="tablaMaquina">
 	 	<caption>Listado de las maquinas disponibles</caption>
 	 	<input type="text" id="filtro" onkeyup="filtrar()" placeholder="Filtrar por acabado.." title="Escribe un acabado">
 
@@ -88,10 +88,10 @@
 
 				<?php }	else { ?>
 
-						<tr>
+						<tr class="fila">
 							<td align="center"><?php echo $fila['NOMBRE'] ?></td>
-    						<td><a href="#"><img src="img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></a></td>
-							<td><a href="#"><img src="img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td>
+    						<td class="boton"><a href="#"><img src="../img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></a></td>
+							<td class="boton"><a href="#"><img src="../img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td>
 						</tr>
 						
 				<?php } ?>

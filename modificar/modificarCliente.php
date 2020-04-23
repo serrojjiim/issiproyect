@@ -26,7 +26,7 @@
 	?>
 	<form method="post" action="../controladores/controlador_modificarCliente.php">
 	<input pattern="^[0-9]{1,}" id="OID_CLI" name="OID_CLI" type="text" value="<?php echo $cliente["OID_CLI"]; ?>"/><br />
-	<input   id="CIF" name="CIF" type="text" value="<?php echo $cliente["CIF"]; ?>"/><br />
+	<input pattern="^[a-zA-Z]{1}[0-9]{7}[a-zA-Z]{1}"  id="CIF" name="CIF" type="text" value="<?php echo $cliente["CIF"]; ?>"/><br />
 	<input id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $cliente["NOMBRE"]; ?>"/><br />
 	<input id="DIRECCION" name="DIRECCION" type="text" value="<?php echo $cliente["DIRECCION"]; ?>" /><br />
 	<input pattern="^[0-9]{9}" id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $cliente["TELEFONO"]; ?>"/><br />

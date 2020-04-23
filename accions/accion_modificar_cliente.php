@@ -11,7 +11,7 @@
 	$actualizaCli = actualizarDatosCliente($conexion,$cliente['OID_CLI'],$cliente['CIF'],$cliente['NOMBRE']
 	,$cliente['DIRECCION'],$cliente['TELEFONO'],$cliente['EMAIL']);
 	
-	$_SESSION['cliente'] = getClienteCif($conexion, $cliente['CIF']);
+	$_SESSION['cliente'] = getClienteOid($conexion, $cliente['OID_CLI']);
 	cerrarConexionBD($conexion);
 	if($actualizaCli<>""){
 		$_SESSION["excepcion"] = $actualizaCli;

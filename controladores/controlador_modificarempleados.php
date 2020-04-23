@@ -19,7 +19,7 @@
 		$_SESSION["empleado"] = $empleado;
 			
 		if (isset($_REQUEST["guardar"])) Header("Location: ../accions/accion_modificar_empleado.php"); 
-		
+		else if(isset($_REQUEST['patras'])) Header("Location: ../muestra/muestraEmpleados.php");
 	}
 	else 
 		Header("Location: ../modificar/modificarEmpleado.php");
