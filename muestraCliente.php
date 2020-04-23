@@ -5,13 +5,6 @@
     require_once("gestionas/gestionBD.php");
     require_once("consultaPaginada.php");
 	
-	// if (isset($_SESSION["libro"])){
-		// $libro = $_SESSION["libro"];
-		// unset($_SESSION["libro"]);
-	// }
-
-	// ¿Venimos simplemente de cambiar página o de haber seleccionado un registro ?
-	// ¿Hay una sesión activa?
 
 	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
 	$pagina_seleccionada = isset($_GET["PAG_NUM"])? (int)$_GET["PAG_NUM"]: (isset($paginacion)? (int)$paginacion["PAG_NUM"]: 1);
@@ -21,19 +14,13 @@
 	if ($pagina_seleccionada < 1) $pagina_seleccionada = 1;
 	if ($pag_tam < 1) $pag_tam = 5;
 
-	// Antes de seguir, borramos las variables de sección para no confundirnos más adelante
 
 	unset($_SESSION["paginacion"]);
 
 	$conexion = crearConexionBD();
 
-	// La consulta que ha de paginarse
 
-	$query = "SELECT * FROM CLIENTE"; //consulta_paginada($conexion, $query, 3, 3);
-
-	
-	// Se comprueba que el tamaño de página, página seleccionada y total de registros son conformes.
-	// En caso de que no, se asume el tamaño de página propuesto, pero desde la página 1
+	$query = "SELECT * FROM CLIENTE"; 
 
 	$total_registros = total_consulta($conexion,$query);
 	$total_paginas = (int) ($total_registros / $pag_tam);
@@ -41,7 +28,6 @@
 	if ($total_registros % $pag_tam > 0) $total_paginas++;
 	if ($pagina_seleccionada > $total_paginas) $pagina_seleccionada = $total_paginas;
 
-	// Generamos los valores de sesión para página e intervalo para volver a ella después de una operación
 
 	$paginacion["PAG_NUM"] = $pagina_seleccionada;
 	$paginacion["PAG_TAM"] = $pag_tam;
@@ -57,8 +43,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <!-- <link rel="stylesheet" type="text/css" href="css/biblio.css" /> -->
-    	<!-- <script type="text/javascript" src="./js/boton.js"></script> -->
+  <link rel="stylesheet" type="text/css" href="css/collapsible.css" />
   <title>Lista de proveedores</title>
 </head>
 
@@ -68,7 +53,6 @@
 	include_once ("header.php");
 	?>
 <main>
-
 	 <nav>
 
 		<div id="enlaces">
@@ -117,8 +101,9 @@
 
 		foreach($filas as $fila) {
 
+		
 	?>
-
+	
 
 
 	 <article class="cliente">
@@ -129,22 +114,33 @@
 
 				<div class="datos_cliente">
 
-					<input id="CIF" name="CIF"
+					<input id="CIF" name="OID_CLI"
+
+						type="hidden" value="<?php echo $fila["OID_CLI"]; ?>"/>
+
+					<input id="NOMBRE" name="CIF"
 
 						type="hidden" value="<?php echo $fila["CIF"]; ?>"/>
 
-					<input id="NOMBRE" name="NOMBRE"
+					<input id="TELEFONO" name="NOMBRE"
 
 						type="hidden" value="<?php echo $fila["NOMBRE"]; ?>"/>
+					
+					<input id="TELEFONO" name="DIRECCION"
 
+						type="hidden" value="<?php echo $fila["DIRECCION"]; ?>"/>
+					
 					<input id="TELEFONO" name="TELEFONO"
 
 						type="hidden" value="<?php echo $fila["TELEFONO"]; ?>"/>
+						
+					<input id="TELEFONO" name="EMAIL"
 
+						type="hidden" value="<?php echo $fila["EMAIL"]; ?>"/>
 
 				<?php
 
-					if (isset($proveedor) and ($proveedor["OID_CLI"] == $fila["OID_CLI"])) { ?>
+					if (isset($cliente) and ($cliente["OID_CLI"] == $fila["OID_CLI"])) { ?>
 
 
 						<h3><input id="CIF" name="CIF" type="text" value="<?php echo $fila["CIF"]; ?>"/>	</h3>
@@ -154,10 +150,25 @@
 				<?php }	else { ?>
 
 
-						<input id="CIF" name="CIF" type="hidden" value="<?php echo $fila["CIF"]; ?>"/>
+					<input id="CIF" name="CIF" type="hidden" value="<?php echo $fila["CIF"]; echo "    " ;?>"/>
+				
+					<button type="button" class="collapsible"><b><?php echo $fila["NOMBRE"]." ";?></b>
+			
+					
+						
+					</button>
+					<div class="content">
+  					<p><b><?php echo $fila["CIF"]." ";?></b></p>
+  						<button id="editar" name="editar" type="submit" class="editar_fila">
+						<img src="img/pencil_menuito.bmp" class="editar_fila" alt="Editar libro" height="30px" width="30px">
+						</button>
+						 <button id="borrar" name="borrar" type="submit" class="editar_fila">
 
-						<div class="fila"><b><?php echo $fila["NOMBRE"]." "; echo $fila["CIF"]; ?></b></div>
-						<div class="dni"><b><?php echo $fila["TELEFONO"]; ?></b></div>
+						<img src="img/remove_menuito.bmp" class="editar_fila" alt="Borrar libro">
+
+					</button> 
+					</div>
+					
 					</br>
 
 				<?php } ?>
@@ -204,5 +215,7 @@
 	<?php } ?>
 
 </main>
+<script type="text/javascript" src="js/collapsible.js"></script>
+
 </body>
 </html>
