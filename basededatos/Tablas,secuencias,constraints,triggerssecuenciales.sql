@@ -53,6 +53,8 @@ CREATE TABLE empleado (
     fechacontratacion   DATE,
     diasvacaciones      INTEGER,
     oid_maq             INTEGER,
+    pass              VARCHAR(70),
+
     PRIMARY KEY ( oid_emp ),
     FOREIGN KEY ( oid_maq ) REFERENCES maquina
 );
