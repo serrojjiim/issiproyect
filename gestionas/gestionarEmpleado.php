@@ -4,6 +4,7 @@ function consultarTodosEmpleados($conexion) {
 		
     return $conexion->query($consulta);
 }
+
 function obtener_empleado_dni($conexion, $dniemp){
 	$consulta = "SELECT * FROM EMPLEADO WHERE (EMPLEADO.DNI = '$dniemp')";
 	  $stmt = $conexion->prepare($consulta);
@@ -11,6 +12,14 @@ function obtener_empleado_dni($conexion, $dniemp){
 	return $stmt->fetch();
 	
 }
+
+function obtener_empleado_oid($conexion, $oidemp){
+	$consulta = "SELECT * FROM EMPLEADO WHERE (EMPLEADO.OID_EMP = '$oidemp')";
+	  $stmt = $conexion->prepare($consulta);
+	$stmt->execute();
+	return $stmt->fetch();
+}
+
 function quitar_empleado($conexion,$dniemp) {
 	try {
 		$stmt=$conexion->prepare('CALL QUITAR_EMPLEADO(:dni)');
@@ -21,6 +30,7 @@ function quitar_empleado($conexion,$dniemp) {
 		return $e->getMessage();
     }
 }
+
 function modificar_cargo($conexion,$dniemp,$cargonuevo) {
 	try {
 		$stmt=$conexion->prepare('CALL ACTUALIZARCARGO(:dni,:cargo)');
@@ -63,6 +73,7 @@ function modificar_maquina($conexion,$dniemp,$maquinanueva) {
 		return $e->getMessage();
     }
 }
+
 function getPresidente($conexion){
 	$consulta = "SELECT * FROM EMPLEADO WHERE(EMPLEADO.CARGO=1)";
 	
@@ -80,7 +91,6 @@ function getSecretario($conexion){
 	
 	return $conexion->query($consulta);
 }
-
 
 function getTesorero($conexion){
 	$consulta = "SELECT * FROM EMPLEADO WHERE(EMPLEADO.CARGO=4)";
@@ -136,12 +146,14 @@ function consultaBaseDatosDni($conexion,$dni){
 	$stmt->execute();
 	return $stmt->fetchColumn();
 }
+
 function consultaBaseDatosPass($conexion,$dni){
 	$consulta = "SELECT pass FROM EMPLEADO WHERE(EMPLEADO.DNI='$dni')";
 	$stmt = $conexion->prepare($consulta);
 	$stmt->execute();
 	return $stmt->fetchColumn();
 }
+
 function establecePassBD($conexion,$dni,$pass){
 	$consulta = "UPDATE EMPLEADO SET pass = '$pass' WHERE dni='$dni'";
 	try{
@@ -151,12 +163,14 @@ function establecePassBD($conexion,$dni,$pass){
 		return false;
 	}
 }
+
 function consultaPassBD($conexion,$pass,$dni){
 	$consulta = "SELECT * FROM EMPLEADO WHERE(EMPLEADO.PASS='$pass' and EMPLEADO.DNI='$dni')";
 	$stmt = $conexion->prepare($consulta);
 	$stmt->execute();
 	return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
 function getCargoString($cargo){
 	if($cargo==1){
 		$res = "PRESIDENTE";

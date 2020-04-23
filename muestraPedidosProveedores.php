@@ -3,6 +3,8 @@
 	session_start();
 
     require_once("gestionas/gestionBD.php");
+	require_once("gestionas/gestionarEmpleado.php");
+	require_once("gestionas/gestionarProveedor.php");
     require_once("consultaPaginada.php");
 	
 	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
@@ -93,14 +95,18 @@
 							<td align="center"<?php echo $fila['FECHAPEDIDO'] ?></td>
 						</tr>
 
-				<?php }	else { ?>
+				<?php }	else { 
+					
+					$proveedor = obtener_proveedor_oid($conexion, $fila['OID_PROV']);
+					$empleado = obtener_empleado_oid($conexion, $fila['OID_EMP']);?>
+					
 
 						<tr>
 							<td align="center"><?php echo $fila['FECHAPEDIDO'] ?></td>
 							<td align="center"><?php echo $fila['FECHAPAGO'] ?></td>
 							<td align="center"><?php echo $fila['COSTETOTAL']."€" ?></td>
-							<td align="center"><?php echo $fila['OID_PROV']?></td>
-							<td align="center"><?php echo $fila['OID_EMP']?></td>
+							<td align="center"><?php echo $proveedor["NOMBRE"]?></td>
+							<td align="center"><?php echo $empleado['NOMBRE']." ".$empleado['APELLIDOS']?></td>
     						<td><a href="#"><img src="img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></a></td>
 							<td><a href="#"><img src="img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td>
 						</tr>
