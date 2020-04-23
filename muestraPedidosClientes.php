@@ -103,7 +103,7 @@
 
 				<?php }	else {
 											
-					$cliente= obtener_cliente_oid($conexion, $fila['OID_CLI']);
+					$cliente= getClienteOid($conexion, $fila['OID_CLI']);
 					$empleado = obtener_empleado_oid($conexion, $fila['OID_EMP']);?>
 
 						<tr>
