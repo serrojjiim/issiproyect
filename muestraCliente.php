@@ -88,7 +88,7 @@
 				<?php 
 				if ($fila["OCULTO"] == 1)  {?>
 					<tr>
-						<td align="center"><?php echo "Cliente eliminado" ?></td>
+						<td align="center" colspan="5"><?php echo "Cliente eliminado" ?></td>
 					</tr>
 				<?php } else { ?>
 
@@ -101,18 +101,13 @@
 							
 							<form action="controladores/controlador_clientes.php">
 								
-						<td><button id="editar" name="editar" type="submit" class="editar_fila">
-						<img src="img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
-						</button></td>
+								<td><button id="editar" name="editar" type="submit" class="editar_fila">
+									<img src="img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
+								</button></td>
 						
-						<td><button id="borrar" name="borrar" type="submit" class="borrar fila">
-						<img src="img/papeleraBorrar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
-						</button></td>
-								<!-- <input type="hidden" value="1" name="editar"/>
-								<td><input type="image" name="lapiz" src="img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"/></td>
-							
-								<input type="hidden" value="1" name="borrar"/>
-								<td><input type="image" name="papelera" src="img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td> -->
+								<td><button id="borrar" name="borrar" type="submit" class="borrar fila">
+									<img src="img/papeleraBorrar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
+								</button></td>
 							</form>
 						</tr>
 						
