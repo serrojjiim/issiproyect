@@ -548,3 +548,4 @@ insert into camion (matricula) values ('6005SWY');
 insert into camion (matricula) values ('3954AYM');
 insert into camion (matricula) values ('1520YAU');
 insert into camion (matricula) values ('6324MMS');
+

@@ -22,6 +22,6 @@
 		
 	}
 	else 
-		Header("Location: ../muestraempleados.php");
+		Header("Location: ../modificarEmpleado.php");
 
 ?>

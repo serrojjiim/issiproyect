@@ -1,9 +1,9 @@
 <?php	
 	session_start();	
 	
-	if (isset($_SESSION["empleado"])) {
-		$empleado = $_SESSION["empleado"];
-		unset($_SESSION["empleado"]);
+	if (isset($_SESSION["cliente"])) {
+		$empleado = $_SESSION["cliente"];
+		unset($_SESSION["cliente"]);
 		
 		require_once("gestionas/gestionBD.php");
 		require_once("gestionas/gestionarEmpleado.php");
@@ -18,6 +18,8 @@
 		
 	
 		$_SESSION["empleado"] = obtener_empleado_dni($conexion, $empleado["DNI"]);
+		
+		
 		cerrarConexionBD($conexion);
 		if ($excepcion<>"") {
 			$_SESSION["excepcion"] = $excepcion;

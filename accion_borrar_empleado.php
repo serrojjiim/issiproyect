@@ -12,6 +12,7 @@
 		$excepcion = quitar_empleado($conexion,$empleado["DNI"]);
 		cerrarConexionBD($conexion);
 			
+		
 		if ($excepcion<>"") {
 			$_SESSION["excepcion"] = $excepcion;
 			$_SESSION["destino"] = "muestraEmpleados.php";
