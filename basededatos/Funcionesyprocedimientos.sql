@@ -53,14 +53,14 @@ END;
 
 SELECT capitalActual FROM DUAL;
 
--- RF-007: Lista de maquinas con su jefe de maquina y empleados trabajando en ella
+-- RF-007: Lista de máquinas con su jefe de máquina y empleados trabajando en ella
 SELECT maquina.nombre Maquina, cargo.rol Cargo, empleado.apellidos Apellidos, empleado.nombre Nombre FROM empleado, maquina, cargo
 WHERE maquina.oid_maq = empleado.oid_maq AND empleado.cargo = cargo.oid_cargo AND empleado.cargo = 9
         UNION
 SELECT maquina.nombre Maquina, cargo.rol Cargo, empleado.apellidos Apellidos, empleado.nombre Nombre FROM empleado, maquina, cargo
 WHERE maquina.oid_maq = empleado.oid_maq AND empleado.cargo != 9 AND empleado.cargo = cargo.oid_cargo ORDER BY maquina;
 
--- RF-008: Lista de peones sin maquina asignada
+-- RF-008: Lista de peones sin máquina asignada
 SELECT * FROM empleado WHERE oid_maq IS NULL AND cargo IN(10);
 -- RF-012: Lista de materiales con su stock
 SELECT nombre, stock FROM material;
@@ -68,7 +68,7 @@ SELECT nombre, stock FROM material;
 SELECT * FROM proveedor;
 -- RF-016: Lista de clientes
 SELECT * FROM cliente;
--- RF-018: Dias de vacaciones de un empleado dado
+-- RF-018: Días de vacaciones de un empleado dado
 CREATE OR REPLACE FUNCTION diasVacacionesEmpleado (nom varchar2, ape varchar2)
 RETURN INTEGER IS res INTEGER;
 BEGIN
@@ -88,7 +88,7 @@ BEGIN
     UPDATE PEDIDOCLIENTE
     SET fechafinfabricacion = SYSTIMESTAMP WHERE oid_cli = w_oid_cli and fechapedido = w_fechapedido;
     COMMIT WORK;
-    DBMS_OUTPUT.PUT_LINE('Fecha de fin de fabricacion del pedido del cliente '||w_cliente||' actualizada.');
+    DBMS_OUTPUT.PUT_LINE('Fecha de fin de fabricación del pedido del cliente '||w_cliente||' actualizada.');
 EXCEPTION
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('No se ha podido ejecutar correctamente el proceso: "finFab".');
@@ -103,7 +103,7 @@ BEGIN
     UPDATE PEDIDOCLIENTE
     SET fechaenvio = SYSTIMESTAMP WHERE oid_cli = w_oid_cli and fechapedido = w_fechapedido;
     COMMIT WORK;
-    DBMS_OUTPUT.PUT_LINE('Fecha de envio del pedido del cliente '||w_cliente||' actualizada.');
+    DBMS_OUTPUT.PUT_LINE('Fecha de envío del pedido del cliente '||w_cliente||' actualizada.');
 EXCEPTION
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('No se ha podido ejecutar correctamente el proceso: "envioPedido".');
@@ -126,72 +126,7 @@ EXCEPTION
 END pedidoRecibidoCliente;
 /
 
-CREATE OR REPLACE PROCEDURE ACTUALIZARCARGO (W_OID_EMP IN EMPLEADO.OID_EMP%TYPE,W_CARGO IN EMPLEADO.CARGO%TYPE)
-AS
-    SALIDA BOOLEAN :=TRUE;
-    TIPO_EMPLEADO EMPLEADO%ROWTYPE;
-    yaExiste INT := 0;
-    CARGOA EMPLEADO.CARGO%TYPE;
-    
-BEGIN
-    SELECT count(*) INTO yaExiste FROM empleado WHERE empleado.cargo = w_cargo;
-    IF((w_cargo BETWEEN 1 AND 6 OR w_cargo = 8)  AND yaExiste <> 0) THEN 
-    RAISE_APPLICATION_ERROR(-20103, 'El empleado no puede tener el cargo  '||w_cargo||'');
-    END IF;
-    SELECT CARGO INTO CARGOA FROM EMPLEADO WHERE OID_EMP=W_OID_EMP;
-    IF(w_cargo BETWEEN 1 AND 8  OR W_CARGO = 11) THEN 
-    UPDATE EMPLEADO 
-    SET OID_MAQ = NULL WHERE OID_EMP = W_OID_EMP;
-    END IF;
-    UPDATE EMPLEADO
-    SET CARGO = W_CARGO WHERE W_OID_EMP = OID_EMP;
-    IF CARGOA = 9 AND W_CARGO <> 9 THEN
-    DELETE JEFEMAQUINA WHERE W_OID_EMP = OID_EMP;
-    END IF;
-    SELECT * INTO TIPO_EMPLEADO FROM EMPLEADO WHERE W_OID_EMP = OID_EMP;
-    COMMIT WORK;
-    DBMS_OUTPUT.PUT_LINE('Cargo del empleado '||TIPO_EMPLEADO.NOMBRE||' '||TIPO_EMPLEADO.APELLIDOS||' actualizado.');
-EXCEPTION
-    WHEN OTHERS THEN
-    DBMS_OUTPUT.PUT_LINE('Se ha producido un error al actualizar el cargo del empleado '||TIPO_EMPLEADO.NOMBRE||' '||TIPO_EMPLEADO.APELLIDOS||' ');
-    
-END ACTUALIZARCARGO;
-/
---ACTUALIZAR MAQUINA EN EMPLEADO
-CREATE OR REPLACE PROCEDURE ACTUALIZARMAQUINA (W_OID_EMP IN EMPLEADO.OID_EMP%TYPE,W_MAQUINA IN EMPLEADO.OID_MAQ%TYPE)
-AS
-    SALIDA BOOLEAN :=TRUE;
-    TIPO_EMPLEADO EMPLEADO%ROWTYPE;
-    yaExiste INT := 0;
-    yaExiste1 INT := 0;
 
-    
-BEGIN
-    SELECT * INTO TIPO_EMPLEADO FROM EMPLEADO WHERE W_OID_EMP = OID_EMP;
-
-    SELECT count(*) INTO yaExiste FROM empleado WHERE empleado.cargo = tipo_empleado.cargo and empleado.oid_maq = w_maquina;
-    IF(tipo_empleado.cargo = 9 and yaExiste <> 0 ) THEN 
-    RAISE_APPLICATION_ERROR(-20103, 'No puede haber dos jefes de maquinas en la misma maquina');
-    END IF;
-    
-    UPDATE EMPLEADO 
-    SET OID_MAQ = W_MAQUINA WHERE W_OID_EMP = OID_EMP;
-    SELECT count(*) INTO yaExiste1 FROM jefemaquina WHERE jefemaquina.oid_emp = w_oid_emp;
-    IF yaExiste1 <> 0 AND TIPO_EMPLEADO.CARGO = 9  THEN
-    UPDATE JEFEMAQUINA
-    SET OID_MAQ = W_MAQUINA WHERE W_OID_EMP = OID_EMP;    
-    END IF;
-    IF yaExiste1 = 0 AND TIPO_EMPLEADO.CARGO = 9 THEN
-    INSERT INTO jefemaquina (oid_emp,oid_maq)  values (w_oid_emp,w_maquina); 
-    END IF;
-    COMMIT WORK;
-    DBMS_OUTPUT.PUT_LINE('La maquina asignada al empleado '||TIPO_EMPLEADO.NOMBRE||' '||TIPO_EMPLEADO.APELLIDOS||' se ha actualizado.');
-EXCEPTION
-    WHEN OTHERS THEN
-    DBMS_OUTPUT.PUT_LINE('Se ha producido un error al actualizar la maquina asignada al empleado '||TIPO_EMPLEADO.NOMBRE||' '||TIPO_EMPLEADO.APELLIDOS||' ');
-    
-END ACTUALIZARMAQUINA;
-/
 CREATE OR REPLACE PROCEDURE pedidoCobrado (W_FECHAPEDIDO IN PEDIDOCLIENTE.FECHAPEDIDO%TYPE, W_OID_CLI IN PEDIDOCLIENTE.OID_CLI%TYPE)
 AS w_cliente cliente.nombre%TYPE;
 BEGIN
@@ -232,7 +167,7 @@ BEGIN
     SELECT nombre into w_empleado FROM empleado where oid_emp = w_cogeca; 
     UPDATE COGECAMION
     SET FECHAFIN = SYSTIMESTAMP WHERE oid_cam = w_camion and fechainicio = w_fechainicio;
-    DBMS_OUTPUT.PUT_LINE('El camion con matricula '||w_matricula||' y conducido por '||w_empleado||', ha finalizado su trayecto.');
+    DBMS_OUTPUT.PUT_LINE('El camión con matrícula '||w_matricula||' y conducido por '||w_empleado||', ha finalizado su trayecto.');
     COMMIT WORK;
 EXCEPTION
     WHEN OTHERS THEN
@@ -244,7 +179,7 @@ END finCogeCamion;
 CREATE OR REPLACE PROCEDURE muestraNominas(w_mes NUMBER, w_año NUMBER) AS
     cursor c is (SELECT nomina.salario, empleado.nombre, empleado.apellidos FROM nomina NATURAL JOIN empleado WHERE mes = w_mes and año = w_año) ORDER BY empleado.apellidos, empleado.nombre;
 BEGIN
-    DBMS_OUTPUT.PUT_LINE('Las nominas son: ');
+    DBMS_OUTPUT.PUT_LINE('Las nóminas son: ');
     DBMS_OUTPUT.PUT_LINE('Salario      Empleado');
         FOR fila IN c LOOP
             EXIT WHEN c%NOTFOUND;
@@ -260,7 +195,7 @@ END muestraNominas;
 CREATE OR REPLACE PROCEDURE muestraNominasPorEmpleado(w_dni in empleado.dni%type) AS
     cursor c is (SELECT nomina.salario,nomina.mes,nomina.año, empleado.nombre, empleado.apellidos FROM nomina NATURAL JOIN empleado WHERE dni = w_dni) ORDER BY empleado.apellidos, empleado.nombre;
 BEGIN
-    DBMS_OUTPUT.PUT_LINE('Las nominas son: ');
+    DBMS_OUTPUT.PUT_LINE('Las nóminas son: ');
     DBMS_OUTPUT.PUT_LINE('Salario      Mes      Año        Empleado');
         FOR fila IN c LOOP
             EXIT WHEN c%NOTFOUND;
@@ -285,4 +220,114 @@ AS
 BEGIN
     INSERT INTO pedidocliente(fechapedido, fechafinfabricacion, fechaenvio, fechallegada, fechapago, costetotal,oid_cli,oid_emp) VALUES (SYSTIMESTAMP, NULL,NULL,NULL,NULL, 0, W_OID_CLI,W_OID_EMP);
 END nuevoPedidoCliente;
+/
+
+--Eliminiar empleado
+
+CREATE OR REPLACE PROCEDURE QUITAR_EMPLEADO (DNI_EMP IN EMPLEADO.DNI%TYPE) AS
+    TIPO_EMPLEADO EMPLEADO%ROWTYPE;
+BEGIN
+    SELECT * INTO TIPO_EMPLEADO FROM EMPLEADO WHERE DNI_EMP = DNI;
+  IF TIPO_EMPLEADO.CARGO =9 THEN 
+  DELETE FROM JEFEMAQUINA WHERE OID_EMP = TIPO_EMPLEADO.OID_EMP;
+  END IF;
+  --IF (NUM_PRESTAMOS <> 0) THEN
+    --RAISE_APPLICATION_ERROR(-206 00,'No se puede quitar el libro porque ya tiene pr?stamos asignados');
+ -- ELSE
+    DELETE FROM EMPLEADO WHERE DNI = DNI_EMP;
+ -- END IF;
+END;
+/
+
+--ACTUALIZAR MAQUINA EN EMPLEADO
+CREATE OR REPLACE PROCEDURE ACTUALIZARMAQUINA (W_DNI_EMP IN EMPLEADO.DNI%TYPE,W_MAQUINA IN EMPLEADO.OID_MAQ%TYPE)
+AS
+    SALIDA BOOLEAN :=TRUE;
+    TIPO_EMPLEADO EMPLEADO%ROWTYPE;
+    yaExiste INT := 0;
+    yaExiste1 INT := 0;
+    w_oid_emp EMPLEADO.OID_EMP%TYPE;
+    
+BEGIN
+    SELECT * INTO TIPO_EMPLEADO FROM EMPLEADO WHERE W_DNI_EMP = DNI;
+    SELECT OID_EMP INTO w_oid_emp FROM EMPLEADO WHERE W_DNI_EMP = DNI;
+    SELECT count(*) INTO yaExiste FROM empleado WHERE empleado.cargo = tipo_empleado.cargo and empleado.oid_maq = w_maquina;
+    IF(tipo_empleado.cargo = 9 and yaExiste <> 0 ) THEN 
+    RAISE_APPLICATION_ERROR(-20103, 'No puede haber dos jefes de máquinas en la misma máquina');
+    END IF;
+    
+    UPDATE EMPLEADO 
+    SET OID_MAQ = W_MAQUINA WHERE W_DNI_EMP = DNI;
+    SELECT count(*) INTO yaExiste1 FROM jefemaquina WHERE jefemaquina.oid_emp = w_oid_emp;
+    IF yaExiste1 <> 0 AND TIPO_EMPLEADO.CARGO = 9  THEN
+    UPDATE JEFEMAQUINA
+    SET OID_MAQ = W_MAQUINA WHERE w_oid_emp = oid_emp;    
+    END IF;
+    IF yaExiste1 = 0 AND TIPO_EMPLEADO.CARGO = 9 THEN
+    INSERT INTO jefemaquina (oid_emp,oid_maq)  values (tipo_empleado.oid_emp,w_maquina); 
+    END IF;
+    COMMIT WORK;
+    DBMS_OUTPUT.PUT_LINE('La maquina asignada al empleado '||TIPO_EMPLEADO.NOMBRE||' '||TIPO_EMPLEADO.APELLIDOS||' se ha actualizado.');
+EXCEPTION
+    WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Se ha producido un error al actualizar la máquina asignada al empleado '||TIPO_EMPLEADO.NOMBRE||' '||TIPO_EMPLEADO.APELLIDOS||' ');
+    
+END ACTUALIZARMAQUINA;
+/
+
+CREATE OR REPLACE PROCEDURE ACTUALIZARCARGO (W_DNI_EMP IN EMPLEADO.DNI%TYPE,W_CARGO IN EMPLEADO.CARGO%TYPE)
+AS
+    SALIDA BOOLEAN :=TRUE;
+    TIPO_EMPLEADO EMPLEADO%ROWTYPE;
+    yaExiste INT := 0;
+    CARGOA EMPLEADO.CARGO%TYPE;
+    w_oid_emp EMPLEADO.OID_EMP%TYPE;
+
+BEGIN
+    SELECT oid_emp INTO w_oid_emp FROM EMPLEADO WHERE DNI=W_DNI_EMP;
+    SELECT count(*) INTO yaExiste FROM empleado WHERE empleado.cargo = w_cargo;
+    IF((w_cargo BETWEEN 1 AND 6 OR w_cargo = 8)  AND yaExiste <> 0) THEN 
+    RAISE_APPLICATION_ERROR(-20103, 'El empleado no puede tener el cargo  '||w_cargo||'');
+    END IF;
+    SELECT CARGO INTO CARGOA FROM EMPLEADO WHERE DNI=W_DNI_EMP;
+    IF(w_cargo BETWEEN 1 AND 8  OR W_CARGO = 11) THEN 
+    UPDATE EMPLEADO 
+    SET OID_MAQ = NULL WHERE DNI = W_DNI_EMP;
+    END IF;
+    UPDATE EMPLEADO
+    SET CARGO = W_CARGO WHERE W_DNI_EMP = DNI;
+    IF CARGOA = 9 AND W_CARGO <> 9 THEN
+    DELETE JEFEMAQUINA WHERE w_oid_emp = OID_EMP;
+    END IF;
+    SELECT * INTO TIPO_EMPLEADO FROM EMPLEADO WHERE DNI=W_DNI_EMP;
+    COMMIT WORK;
+    DBMS_OUTPUT.PUT_LINE('Cargo del empleado '||TIPO_EMPLEADO.NOMBRE||' '||TIPO_EMPLEADO.APELLIDOS||' actualizado.');
+EXCEPTION
+    WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Se ha producido un error al actualizar el cargo del empleado '||TIPO_EMPLEADO.NOMBRE||' '||TIPO_EMPLEADO.APELLIDOS||' ');
+    
+END ACTUALIZARCARGO;
+/
+--ACTUALIZAR MAQUINA EN EMPLEADO
+CREATE OR REPLACE PROCEDURE ACTUALIZARDATOSPERSONALES (W_OID_EMP IN EMPLEADO.OID_EMP%TYPE,W_DNI_EMP IN EMPLEADO.DNI%TYPE,W_NOMBRE IN EMPLEADO.NOMBRE%TYPE,
+W_APELLIDOS IN EMPLEADO.APELLIDOS%TYPE, W_TELEFONO IN EMPLEADO.TELEFONO%TYPE,
+W_DIRECCION IN EMPLEADO.DIRECCION%TYPE,W_CAPITALSOCIAL IN EMPLEADO.CAPITALSOCIAL%TYPE, W_FECHACONTRATACION IN EMPLEADO.FECHACONTRATACION%TYPE,
+W_DIASVACACIONES IN EMPLEADO.DIASVACACIONES%TYPE)
+AS
+  
+    TIPO_EMPLEADO EMPLEADO%ROWTYPE;
+    
+BEGIN
+    SELECT * INTO TIPO_EMPLEADO FROM EMPLEADO WHERE W_OID_EMP = OID_EMP;
+  
+    
+    UPDATE EMPLEADO 
+    SET DNI = W_DNI_EMP, NOMBRE = W_NOMBRE, APELLIDOS = W_APELLIDOS, TELEFONO = W_TELEFONO, DIRECCION = W_DIRECCION, CAPITALSOCIAL = W_CAPITALSOCIAL,
+    FECHACONTRATACION = W_FECHACONTRATACION, DIASVACACIONES = W_DIASVACACIONES WHERE W_OID_EMP = OID_EMP;
+    COMMIT WORK;
+EXCEPTION
+    WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Se ha producido un error al actualizar la máquina asignada al empleado '||TIPO_EMPLEADO.NOMBRE||' '||TIPO_EMPLEADO.APELLIDOS||' ');
+    
+END ACTUALIZARDATOSPERSONALES;
 /

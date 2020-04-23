@@ -4,7 +4,65 @@ function consultarTodosEmpleados($conexion) {
 		
     return $conexion->query($consulta);
 }
+function obtener_empleado_dni($conexion, $dniemp){
+	$consulta = "SELECT * FROM EMPLEADO WHERE (EMPLEADO.DNI = '$dniemp')";
+	  $stmt = $conexion->prepare($consulta);
+	$stmt->execute();
+	return $stmt->fetch();
+	
+}
+function quitar_empleado($conexion,$dniemp) {
+	try {
+		$stmt=$conexion->prepare('CALL QUITAR_EMPLEADO(:dni)');
+		$stmt->bindParam(':dni',$dniemp);
+		$stmt->execute();
+		return "";
+	} catch(PDOException $e) {
+		return $e->getMessage();
+    }
+}
+function modificar_cargo($conexion,$dniemp,$cargonuevo) {
+	try {
+		$stmt=$conexion->prepare('CALL ACTUALIZARCARGO(:dni,:cargo)');
+		$stmt->bindParam(':dni',$dniemp);
+		$stmt->bindParam(':cargo',$cargonuevo);
+		$stmt->execute();
+		return "";
+	} catch(PDOException $e) {
+		return $e->getMessage();
+    }
+}
 
+function modificar_datospersonales($conexion,$oid_emp,$dni_emp,$nombren,$apellidosn,$telefonon,$direccionn,$capitalsocialn,$fechacontratacionn,$diasvacacionesn) {
+	try {
+		$stmt=$conexion->prepare('CALL ACTUALIZARDATOSPERSONALES(:oidemp,:dni,:nombre,:apellidos,:telefono,:direccion,:capitalsocial,:fechacontratacion,:diasvacaciones)');
+		$stmt->bindParam(':oidemp',$oid_emp);
+		$stmt->bindParam(':dni',$dni_emp);
+		$stmt->bindParam(':nombre',$nombren);
+		$stmt->bindParam(':apellidos',$apellidosn);
+		$stmt->bindParam(':telefono',$telefonon);
+		$stmt->bindParam(':direccion',$direccionn);
+		$stmt->bindParam(':capitalsocial',$capitalsocialn);
+		$stmt->bindParam(':fechacontratacion',$fechacontratacionn);
+		$stmt->bindParam(':diasvacaciones',$diasvacacionesn);		
+		$stmt->execute();
+		return "";
+	} catch(PDOException $e) {
+		return $e->getMessage();
+    }
+}
+
+function modificar_maquina($conexion,$dniemp,$maquinanueva) {
+	try {
+		$stmt=$conexion->prepare('CALL ACTUALIZARMAQUINA(:dni,:maquina)');
+		$stmt->bindParam(':dni',$dniemp);
+		$stmt->bindParam(':maquina',$maquinanueva);
+		$stmt->execute();
+		return "";
+	} catch(PDOException $e) {
+		return $e->getMessage();
+    }
+}
 function getPresidente($conexion){
 	$consulta = "SELECT * FROM EMPLEADO WHERE(EMPLEADO.CARGO=1)";
 	

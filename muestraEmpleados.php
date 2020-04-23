@@ -133,10 +133,12 @@
 			<div class="fila_empleado">
 
 				<div class="datos_empleado">
-
 					<input id="OID_EMP" name="OID_EMP"
 
 						type="hidden" value="<?php echo $fila["OID_EMP"]; ?>"/>
+					<input id="DNI" name="DNI"
+
+						type="hidden" value="<?php echo $fila["DNI"]; ?>"/>
 
 					<input id="NOMBRE" name="NOMBRE"
 
@@ -145,11 +147,39 @@
 					<input id="APELLIDOS" name="APELLIDOS"
 
 						type="hidden" value="<?php echo $fila["APELLIDOS"]; ?>"/>
+					<input id="TELEFONO" name="TELEFONO"
+
+						type="hidden" value="<?php echo $fila["TELEFONO"]; ?>"/>
+
+					<input id="DIRECCION" name="DIRECCION"
+
+						type="hidden" value="<?php echo $fila["DIRECCION"]; ?>"/>
+
+					<input id="CARGO" name="CARGO"
+
+						type="hidden" value="<?php echo $fila["CARGO"]; ?>"/>
+					<input id="CAPITALSOCIAL" name="CAPITALSOCIAL"
+
+						type="hidden" value="<?php echo $fila["CAPITALSOCIAL"]; ?>"/>
+
+					<input id="FECHACONTRATACION" name="FECHACONTRATACION"
+
+						type="hidden" value="<?php echo $fila["FECHACONTRATACION"]; ?>"/>
+
+					<input id="DIASVACACIONES" name="DIASVACACIONES"
+
+						type="hidden" value="<?php echo $fila["DIASVACACIONES"]; ?>"/>
+					<input id="OID_MAQ" name="OID_MAQ"
+
+						type="hidden" value="<?php echo $fila["OID_MAQ"]; ?>"/>
+
+
+
 
 
 				<?php
 
-					if (isset($empleado) and ($empleado["OID_EMP"] == $fila["OID_EMP"])) { ?>
+					if (isset($empleado) and ($empleado["DNI"] == $fila["DNI"])) { ?>
 
 
 						<h3><input id="DNI" name="DNI" type="text" value="<?php echo $fila["DNI"]; ?>"/>	</h3>
@@ -159,7 +189,7 @@
 				<?php }	else { ?>
 
 
-						<input id="DNI" name="DNI" type="hidden" value="<?php echo $fila["NOMBRE"]; ?>"/>
+						<input id="DNI" name="DNI" type="hidden" value="<?php echo $fila["DNI"]; ?>"/>
 
 						<div class="fila"><b><?php echo $fila["NOMBRE"]." "; echo $fila["APELLIDOS"]; ?></b></div>
 						<div class="dni"><b><?php echo $fila["DNI"]; ?></b></div>
@@ -171,13 +201,13 @@
 
 
 
-				<!--<div id="botones_fila">
+				<div id="botones_fila">
 
 				<?php if (isset($empleado) and ($empleado["OID_EMP"] == $fila["OID_EMP"])) { ?>
 
 						<button id="grabar" name="grabar" type="submit" class="editar_fila">
 
-							<img src="images/bag_menuito.bmp" class="editar_fila" alt="Guardar modificación">
+							<img src="img/bag_menuito.bmp" class="editar_fila" alt="Guardar modificación">
 
 						</button>
 
@@ -185,18 +215,18 @@
 
 						 <button id="editar" name="editar" type="submit" class="editar_fila">
 
-							<img src="images/pencil_menuito.bmp" class="editar_fila" alt="Editar libro">
+							<img src="img/pencil_menuito.bmp" class="editar_fila" alt="Editar libro">
 
 						</button>
 				<?php } ?>
 
 					<button id="borrar" name="borrar" type="submit" class="editar_fila">
 
-						<img src="images/remove_menuito.bmp" class="editar_fila" alt="Borrar libro">
+						<img src="img/remove_menuito.bmp" class="editar_fila" alt="Borrar empleado">
 
 					</button> 
 
-				</div> -->
+				</div>
 
 			</div>
 

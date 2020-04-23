@@ -161,7 +161,6 @@ insert into EMPLEADO (dni, nombre, apellidos, telefono, direccion, cargo, capita
 insert into EMPLEADO (dni, nombre, apellidos, telefono, direccion, cargo, capitalsocial, fechacontratacion, diasvacaciones, oid_maq) values ('83825774U', 'Paulie', 'Tupper', '699982870', 'Hollow Ridge', 9, 33917, '20/07/1994', 23, 7);
 insert into EMPLEADO (dni, nombre, apellidos, telefono, direccion, cargo, capitalsocial, fechacontratacion, diasvacaciones, oid_maq) values ('92484683Y', 'Lib', 'Janzen', '607408543', 'Stephen', 9, 81297, '07/01/2005', 15, 8);
 insert into EMPLEADO (dni, nombre, apellidos, telefono, direccion, cargo, capitalsocial, fechacontratacion, diasvacaciones, oid_maq) values ('58732694I', 'Carmon', 'Malcher', '676590044', 'Cascade', 9, 48223, '13/04/1995', 27, 9);
-insert into EMPLEADO (dni, nombre, apellidos, telefono, direccion, cargo, capitalsocial, fechacontratacion, diasvacaciones, oid_maq) values ('70588980W', 'Daryl', 'Kneel', '614932956', 'Rockefeller', 9, 51594, '30/10/2017', 13, 10);
 --gerentedeventas
 insert into EMPLEADO (dni, nombre, apellidos, telefono, direccion, cargo, capitalsocial, fechacontratacion, diasvacaciones, oid_maq) values ('70878980W', 'Sergio', 'Rojas Jimenez', '614932956', 'Sevilla', 5, 51594, '30/10/2010', 13, null);
 --gerentedecompras
