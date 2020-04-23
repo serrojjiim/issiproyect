@@ -76,7 +76,7 @@
   <li class="letras"><a class="letras" href="muestraCliente.php">CLIENTES</a></li>
   <li class="letras"><a class="letras" href="muestraPedidosProveedores.php">PEDIDOS A PROVEEDORES</a></li>
   <li class="letras"><a class="letras" href="muestraProveedor.php">PROVEEDORES</a></li>
-  <li class="letras"><a class="letras" href="#news">MAQUINAS</a></li>
+  <li class="letras"><a class="letras" href="muestraMaquinas.php">MAQUINAS</a></li>
   <li class="letras"><a class="letras" href="muestraEmpleados.php">EMPLEADOS</a></li>
   <li class="letras"><a class="letras" href="muestraCamiones.php">CAMIONES</a></li>
   <li class="letras"><a class="letras" href="muestraAlmacen.php">ALMACÉN</a></li>
