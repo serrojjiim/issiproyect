@@ -1,21 +1,38 @@
 table {
-	border: 5px solid red;
-	color:white;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
 }
 
-tr:hover {
-	background-color: #f5f5f5;}
-	
 caption {
 	color:black;
 	font-size: 2em;
 	font-family: "Arial Black";}
 
 th {
-		border-style: outset;
-	background-color: #ff1c50;}
-	
+  border: 1px solid black;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #ff1c50;
+  color: white;
+}
+
+
 td {
-		border-style: inset;
-	background-color: #333333;
+  border: 1px solid #ddd;
+}
+
+table tr:nth-child(even){background-color: #ff1c50;}
+
+table tr:hover {background-color: #66e0ff;}
+
+#filtro {
+  background-image: url("../img/lupa.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 20%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
 }

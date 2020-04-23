@@ -15,6 +15,6 @@
 		elseif (isset($_REQUEST["denegar"])) Header("Location: ../accions/accion_denegarsolicitud.php"); 
 	}
 	else 
-		Header("Location: ../peticiondias.php");
+		Header("Location: ../muestra/peticiondias.php");
 
 ?>

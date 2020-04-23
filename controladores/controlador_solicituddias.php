@@ -13,6 +13,6 @@
 		
 	}
 	else 
-		Header("Location: ../peticiondias.php");
+		Header("Location: ../muestra/peticiondias.php");
 
 ?>

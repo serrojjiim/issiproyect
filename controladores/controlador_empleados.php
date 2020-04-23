@@ -18,10 +18,10 @@
 		
 		$_SESSION["empleado"] = $empleado;
 			
-		if (isset($_REQUEST["editar"])) Header("Location: ../modificarEmpleado.php"); 
+		if (isset($_REQUEST["editar"])) Header("Location: ../modificar/modificarEmpleado.php"); 
 		else Header("Location: ../accions/accion_borrar_empleado.php"); 
 	}
 	else 
-		Header("Location: ../muestraempleados.php");
+		Header("Location: ../muestra/muestraempleados.php");
 
 ?>

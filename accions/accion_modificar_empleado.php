@@ -5,8 +5,8 @@
 		$empleado = $_SESSION["empleado"];
 		unset($_SESSION["empleado"]);
 		
-		require_once("gestionas/gestionBD.php");
-		require_once("gestionas/gestionarEmpleado.php");
+		require_once("../gestionas/gestionBD.php");
+		require_once("../gestionas/gestionarEmpleado.php");
 		
 		$conexion = crearConexionBD();	
 		$excepcionm = modificar_maquina($conexion,$empleado["DNI"],$empleado["OID_MAQ"]);
@@ -18,16 +18,18 @@
 		
 	
 		$_SESSION["empleado"] = obtener_empleado_dni($conexion, $empleado["DNI"]);
+		
+		
 		cerrarConexionBD($conexion);
 		if ($excepcion<>"") {
 			$_SESSION["excepcion"] = $excepcion;
 			$_SESSION["destino"] = "modificarEmpleado.php";
-			Header("Location: excepcion.php");
+			Header("Location: ../excepcion.php");
 		}
 		
 		else 
 		$_SESSION["mensajeok"] = 1;
-		Header("Location: modificarEmpleado.php");
+		Header("Location: ../modificar/modificarEmpleado.php");
 	}
-	else Header("Location: muestraEmpleados.php"); // Se ha tratado de acceder directamente a este PHP
+	else Header("Location: ../muestra/muestraEmpleados.php"); // Se ha tratado de acceder directamente a este PHP
 ?>
