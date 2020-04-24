@@ -11,12 +11,12 @@
     	if(isset($_SESSION['cargo']))
    	    unset($_SESSION['cargo']);
 		$conexion = crearConexionBD();
-		$usuario = consultaBaseDatosDni($conexion,$dni);
 		$usuariop=consultaBaseDatosPass($conexion,$dni);
-		cerrarConexionBD($conexion);	
+		$usuario2=obtener_empleado_dni($conexion,$dni);
+		cerrarConexionBD($conexion);		
 		
 		
-		if($usuario['dni']==null){
+		if($usuario2['DNI']==null or $usuario2['OCULTO']==1){
 			$error=1;
 		}else{
 			if ($usuariop['pass'] == null){
