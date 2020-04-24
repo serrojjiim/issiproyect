@@ -55,7 +55,7 @@
 <main>
 
 	<div style="overflow-x:auto; overflow-y:auto;">
-	 <table style="width:50%" id="tablaProveedores">
+	 <table id="tablaProveedores">
 	 	<caption>Listado de los pedidos de clientes</caption>
 	 	<input type="text" id="filtro" onkeyup="filtrar()" placeholder="Filtrar por acabado.." title="Escribe un acabado">
 
@@ -96,14 +96,14 @@
 
 				<?php }	else { ?>
 
-						<tr>
+						<tr class="fila">
 							<td align="center"><?php echo $fila['CIF'] ?></td>
 							<td align="center"><?php echo $fila['NOMBRE'] ?></td>
 							<td align="center"><?php echo $fila['DIRECCION'] ?></td>
 							<td align="center"><?php echo $fila['TELEFONO'] ?></td>
 							<td align="center"><?php echo $fila['EMAIL']?></td>
-    						<td><a href="#"><img src="img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></a></td>
-							<td><a href="#"><img src="img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td>
+    						<td class="boton"><a href="#"><img src="../img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></a></td>
+							<td class="boton"><a href="#"><img src="../img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td>
 						</tr>
 						
 				<?php } ?>

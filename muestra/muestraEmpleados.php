@@ -45,7 +45,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
-  <link rel="stylesheet" type="text/css" href="../css/popup2.css" />
   <title>Lista de Empleados</title>
  
 
@@ -83,7 +82,6 @@
 		foreach($filas as $fila) {
 
 	?>
-	
 
 
 
@@ -196,32 +194,16 @@
 								else if($fila['OID_MAQ']==null) echo "Ninguna";
 							?></td>
 							
-							<form action="../controladores/controlador_empleados.php">
-								
+							
 								<td class ="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
 									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
 								</button></td>
 						
-								<td class ="boton">
-									<button id="b" name="b" type="button" class="vistacliente" 
-									onclick="window.location='#popup<?php echo $fila["OID_EMP"]; ?>';" >
+								<td class ="boton"><button id="borrar" name="borrar" type="submit" class="vistacliente" 
+									onclick="return confirm('¿Seguro que quieres dar de baja a <?php echo $fila['NOMBRE'] ?> ?')" >
 									<img src="../img/papeleraBorrar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
-								</button>
-								
-								
-								</td>
+								</button></td>
 							
-							
-								<div id="popup<?php echo $fila["OID_EMP"]; ?>" class="overlay" align="left">
-									<div class="popup">
-										<a class="close" href="#">X</a>
-										<p align="center">¿Seguro que quieres dar de baja a <?php echo $fila['NOMBRE']; echo " ";  echo $fila['APELLIDOS'] ;?>?</p>
-									</br>
-										<button id="borrar" name="borrar" type="submit" class="bPop">Borrar</button>
-									</div>
-								</div>
-
-							</form>
 						</tr>
 						
 						<?php } ?>
