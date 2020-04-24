@@ -5,6 +5,9 @@
     require_once("../gestionas/gestionBD.php");
 	require_once("../gestionas/gestionarEmpleado.php");
 	require_once("../gestionas/gestionarCliente.php");
+	require_once("../gestionas/gestionarPC.php");
+	require_once("../gestionas/gestionarProducto.php");
+	
     require_once("../consultaPaginada.php");
 	
 	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
@@ -43,6 +46,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
+  <link rel="stylesheet" type="text/css" href="../css/popup.css" />
   <script type="text/javascript" src="../js/filtro.js"></script>
   <title>Lista de pedidos de clientes</title>
 </head>
@@ -75,8 +79,24 @@
 	
 		foreach($filas as $fila) {
 
-	?>
+	
+	$lineas = lineaspedidoC($conexion,$fila["OID_PEDCLI"]);
+		 
+		 ?>
+		<div id="popup<?php echo $fila["OID_PEDCLI"]; ?>" class="overlay" align="left">
+	<div class="popup">
+		<a class="close" href="#">&times;</a>
+		<?php foreach($lineas as $linea) { 
+			$nombrePro = obtenerProducto($conexion,$linea["OID_PROD"]);
+			?>
+			<p>CANTIDAD: <?php echo $linea["CANTIDAD"]; ?> PRECIO(UNITARIO):<?php echo $linea["PRECIO"]; ?> MATERIAL:<?php echo $nombrePro["NOMBRE"];?></p>
 
+	<?php
+	
+	 } ?>
+		</div>
+		
+	</div> 
 		<form method="post" action="../controladores/controlador_pedidosClientes.php">
 
 			<div class="fila_pedidosClientes">
@@ -106,7 +126,7 @@
 					$cliente= getClienteOid($conexion, $fila['OID_CLI']);
 					$empleado = obtener_empleado_oid($conexion, $fila['OID_EMP']);?>
 
-						<tr class="fila">
+						<tr class="fila" onclick="window.location='#popup<?php echo $fila["OID_PEDCLI"]; ?>';">
 							<td align="center"><?php echo $fila['FECHAPEDIDO'] ?></td>
 							<td align="center"><?php echo $fila['FECHAFINFABRICACION'] ?></td>
 							<td align="center"><?php echo $fila['FECHAENVIO'] ?></td>

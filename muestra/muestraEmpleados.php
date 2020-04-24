@@ -194,8 +194,7 @@
 								else if($fila['OID_MAQ']==null) echo "Ninguna";
 							?></td>
 							
-							<form action="../controladores/controlador_empleados.php">
-								
+							
 								<td class ="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
 									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
 								</button></td>
@@ -204,7 +203,7 @@
 									onclick="return confirm('¿Seguro que quieres dar de baja a <?php echo $fila['NOMBRE'] ?> ?')" >
 									<img src="../img/papeleraBorrar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
 								</button></td>
-							</form>
+							
 						</tr>
 						
 						<?php } ?>

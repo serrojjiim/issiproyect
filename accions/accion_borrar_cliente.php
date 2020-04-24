@@ -10,7 +10,7 @@
 				
 		
 		$conexion = crearConexionBD();		
-		$excepcion = ocultar($conexion,$cliente['CIF']);
+		$excepcion = ocultarC($conexion,$cliente['CIF']);
 		cerrarConexionBD($conexion);	
 		
 		if ($excepcion<>"") {

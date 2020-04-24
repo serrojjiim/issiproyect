@@ -50,7 +50,7 @@ window.onclick = function(event) {
 </div> -->
 <p>Hola <?php echo $_SESSION['nombre']?></p>
 <p>Hola <?php echo $_SESSION['dni']?></p>
-
+<p>Hola <?php echo $_SESSION['cargo']?></p>
 </body>
 </html>
 

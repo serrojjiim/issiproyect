@@ -36,7 +36,7 @@ function getClienteOid($conexion,$oid){
 	return $stmt->fetch();
 }
 
-function ocultar($conexion,$cif){
+function ocultarC($conexion,$cif){
 		try{
 	$consulta = "UPDATE CLIENTE SET OCULTO=1 WHERE (CLIENTE.CIF='$cif')";
 	$stmt = $conexion->prepare($consulta);
@@ -46,3 +46,4 @@ function ocultar($conexion,$cif){
 		return $e->getMessage();
     }
 }
+?>

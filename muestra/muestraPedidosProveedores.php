@@ -5,6 +5,8 @@
     require_once("../gestionas/gestionBD.php");
 	require_once("../gestionas/gestionarEmpleado.php");
 	require_once("../gestionas/gestionarProveedor.php");
+	require_once("../gestionas/gestionarPP.php");
+	require_once("../gestionas/gestionarMaterial.php");
     require_once("../consultaPaginada.php");
 	
 	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
@@ -16,6 +18,7 @@
 	if ($pag_tam < 1) $pag_tam = 5;
 
 	unset($_SESSION["paginacion"]);
+	
 
 	$conexion = crearConexionBD();
 
@@ -43,6 +46,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
+  <link rel="stylesheet" type="text/css" href="../css/popup.css" />
+
   <script type="text/javascript" src="../js/filtro.js"></script>
   <title>Lista de proveedores</title>
 </head>
@@ -56,7 +61,7 @@
 <main>
 
 	<div style="overflow-x:auto; overflow-y:auto;">
-	 <table style="width:50%" id="tablaPedidosProveedores">
+	 <table id="tablaPedidosProveedores">
 	 	<caption>Listado de los pedidos a proveedores</caption>
 	 	<input type="text" id="filtro" onkeyup="filtrar()" placeholder="Filtrar por acabado.." title="Escribe un acabado">
 
@@ -72,8 +77,27 @@
 	
 		foreach($filas as $fila) {
 
-	?>
+	
 
+		$lineas = lineaspedidoP($conexion,$fila["OID_PEDPROV"]);
+		 
+		 ?>
+		<div id="popup<?php echo $fila["OID_PEDPROV"]; ?>" class="overlay" align="left">
+	<div class="popup">
+		<a class="close" href="#">&times;</a>
+		<?php foreach($lineas as $linea) { 
+			$nombreMat = obtenerMaterial($conexion,$linea["OID_MAT"]);
+			?>
+			<p>CANTIDAD: <?php echo $linea["CANTIDAD"]; ?> PRECIO(UNITARIO):<?php echo $linea["PRECIO"]; ?> MATERIAL:<?php echo $nombreMat["NOMBRE"];?></p>
+
+	<?php
+	
+	 } ?>
+		</div>
+		
+	</div> 
+	
+</div>
 		<form method="post" action="../controladores/controlador_pedidosProveedores.php">
 
 			<div class="fila_pedidoProveedor">
@@ -89,29 +113,28 @@
 
 				<?php
 
-					if (isset($pedprov) and ($pedprov["OID_PEDPROV"] == $fila["OID_PEDPROV"])) { ?>
-						
-						<tr>
-							<td align="center"<?php echo $fila['FECHAPEDIDO'] ?></td>
-						</tr>
-
-				<?php }	else { 
-					
+				
 					$proveedor = obtener_proveedor_oid($conexion, $fila['OID_PROV']);
 					$empleado = obtener_empleado_oid($conexion, $fila['OID_EMP']);?>
 					
-
-						<tr>
+	
+						<tr class="fila" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';">
 							<td align="center"><?php echo $fila['FECHAPEDIDO'] ?></td>
 							<td align="center"><?php echo $fila['FECHAPAGO'] ?></td>
 							<td align="center"><?php echo $fila['COSTETOTAL']."€" ?></td>
 							<td align="center"><?php echo $proveedor["NOMBRE"]?></td>
 							<td align="center"><?php echo $empleado['NOMBRE']." ".$empleado['APELLIDOS']?></td>
-    						<td><a href="#"><img src="img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></a></td>
-							<td><a href="#"><img src="img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td>
+    						<td class ="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
+									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
+								</button></td>
+						
+								<td class ="boton"><button id="borrar" name="borrar" type="submit" class="vistacliente">
+									<img src="../img/papeleraBorrar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
+								</button></td>
+								
 						</tr>
 						
-				<?php } ?>
+				
 
 				</div>
 			</div>
@@ -154,5 +177,6 @@
 	</nav>
 	
 </main>
+
 </body>
 </html>
