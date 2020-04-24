@@ -1,16 +1,24 @@
 table {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
-}
+  width: 90%;
+  margin-left:auto; 
+  margin-right:auto;
 
+
+  
+}
+button.vistacliente{
+	background: transparent;
+    border: none !important;
+}
 caption {
 	color:black;
 	font-size: 2em;
 	font-family: "Arial Black";}
 
 th {
-  border: 1px solid black;
+  border: 0px solid black;
   padding-top: 12px;
   padding-bottom: 12px;
   background-color: #ff1c50;
@@ -19,13 +27,17 @@ th {
 
 
 td {
-  border: 1px solid #ddd;
+  border: 0px solid #ddd;
+}
+td.boton{
+	width: 40px;
+	background-color:transparent;
 }
 
 table tr:nth-child(even){background-color: #ff1c50;}
 
-table tr:hover {background-color: #66e0ff;}
-
+table tr.fila:hover td {background-color: #a2a2a214;}
+table tr.fila:hover td.boton{background-color: transparent !important;}
 #filtro {
   background-image: url("../img/lupa.png");
   background-size: contain;
@@ -36,3 +48,34 @@ table tr:hover {background-color: #66e0ff;}
   border: 1px solid #ddd;
   margin-bottom: 12px;
 }
+
+
+p.fOculto{
+	color:#94929847;
+}
+@media screen and (max-width: 600px) {
+       table {
+           width:100%;
+       }
+       thead {
+           display: none;
+       }
+       tr:nth-of-type(2n) {
+           background-color: inherit;
+       }
+       tr td:first-child {
+           background: #f0f0f0;
+           font-weight:bold;
+           font-size:1.3em;
+       }
+       tbody td {
+           display: block;
+           text-align:center;
+       }
+       tbody td:before {
+           content: attr(data-th);
+           display: block;
+           text-align:center;
+       }
+}
+

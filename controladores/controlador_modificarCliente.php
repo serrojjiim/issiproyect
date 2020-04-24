@@ -12,7 +12,7 @@ if (isset($_REQUEST["CIF"])){
 		
 		$_SESSION['cliente'] = $cliente;
 		
-		if (isset($_REQUEST["guardar"])) Header("Location: ../accion_modificar_cliente.php"); 
+		if (isset($_REQUEST["guardar"])) Header("Location: ../accions/accion_modificar_cliente.php"); 
 		
 }	
 		

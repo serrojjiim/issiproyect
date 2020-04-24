@@ -11,12 +11,12 @@
 		
 		$_SESSION["cliente"] = $cliente;
 			
-		if (isset($_REQUEST["editar"])) Header("Location: ../modificarCliente.php");
-		else if (isset($_REQUEST["borrar"])) Header("Location: ../accion_borrar_cliente.php");
+		if (isset($_REQUEST["editar"])) Header("Location: ../modificar/modificarCliente.php");
+		else if (isset($_REQUEST["borrar"])) Header("Location: ../accions/accion_borrar_cliente.php");
 		
 		//else (isset($_REQUEST["grabar"])) Header("Location: accion_modificar_libro.php");
 	}
 	else 
-		Header("Location: muestraCliente.php");
+		Header("Location: ../muestra/muestraCliente.php");
 
 ?>

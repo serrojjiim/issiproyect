@@ -12,6 +12,7 @@ drop table producto;
 drop table pedidoCliente;
 drop table cliente;
 drop table nomina;
+drop table peticiondias;
 drop table empleado;
 drop table maquina;
 
@@ -54,9 +55,19 @@ CREATE TABLE empleado (
     diasvacaciones      INTEGER,
     oid_maq             INTEGER,
     pass              VARCHAR(70),
-
+    oculto             INTEGER DEFAULT 0,
     PRIMARY KEY ( oid_emp ),
     FOREIGN KEY ( oid_maq ) REFERENCES maquina
+);
+
+CREATE TABLE peticiondias (
+    oid_peticiondias   INTEGER NOT NULL,
+    oid_emp   INTEGER,
+    dias   INTEGER,
+    motivo VARCHAR(400),
+    aceptada NUMBER(1),
+    PRIMARY KEY (oid_peticiondias),
+    FOREIGN KEY ( oid_emp ) REFERENCES empleado
 );
 
 
@@ -219,6 +230,7 @@ ALTER TABLE pedidocliente ADD CONSTRAINT ck_costeTotal_pedidocliente CHECK(coste
 
 
 DROP SEQUENCE incrementa_oid_emp;
+DROP SEQUENCE incrementa_oid_peticiondias;
 DROP SEQUENCE incrementa_oid_jefemaq;
 DROP SEQUENCE incrementa_oid_nom;
 DROP SEQUENCE incrementa_oid_cli;
@@ -234,6 +246,8 @@ DROP SEQUENCE incrementa_oid_cogeca;
 DROP SEQUENCE incrementa_oid_maq;
 
 CREATE SEQUENCE incrementa_oid_emp INCREMENT BY 1 START WITH 1 MAXVALUE 999999 CYCLE;/
+
+CREATE SEQUENCE incrementa_oid_peticiondias INCREMENT BY 1 START WITH 1 MAXVALUE 999999 CYCLE;/
 
 CREATE SEQUENCE incrementa_oid_jefemaq INCREMENT BY 1 START WITH 1 MAXVALUE 999999 CYCLE;/
 
@@ -265,6 +279,13 @@ CREATE OR REPLACE TRIGGER genera_PK_empleado_BI
     BEFORE INSERT ON empleado FOR EACH ROW
     BEGIN
         SELECT incrementa_oid_emp.NEXTVAL INTO :NEW.OID_emp FROM DUAL;
+    END;
+    /
+    
+    CREATE OR REPLACE TRIGGER genera_PK_peticiondias_BI
+    BEFORE INSERT ON peticiondias FOR EACH ROW
+    BEGIN
+        SELECT incrementa_oid_peticiondias.NEXTVAL INTO :NEW.OID_peticiondias FROM DUAL;
     END;
     /
 CREATE OR REPLACE TRIGGER genera_PK_jefemaquina_BI

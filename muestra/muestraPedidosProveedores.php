@@ -2,10 +2,12 @@
 
 	session_start();
 
-    require_once("gestionas/gestionBD.php");
-	require_once("gestionas/gestionarEmpleado.php");
-	require_once("gestionas/gestionarCliente.php");
-    require_once("consultaPaginada.php");
+    require_once("../gestionas/gestionBD.php");
+	require_once("../gestionas/gestionarEmpleado.php");
+	require_once("../gestionas/gestionarProveedor.php");
+	require_once("../gestionas/gestionarPP.php");
+	require_once("../gestionas/gestionarMaterial.php");
+    require_once("../consultaPaginada.php");
 	
 	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
 	$pagina_seleccionada = isset($_GET["PAG_NUM"])? (int)$_GET["PAG_NUM"]: (isset($paginacion)? (int)$paginacion["PAG_NUM"]: 1);
@@ -16,10 +18,11 @@
 	if ($pag_tam < 1) $pag_tam = 5;
 
 	unset($_SESSION["paginacion"]);
+	
 
 	$conexion = crearConexionBD();
 
-	$query = "SELECT * FROM PEDIDOCLIENTE";
+	$query = "SELECT * FROM PEDIDOPROVEEDOR";
 
 	
 	$total_registros = total_consulta($conexion,$query);
@@ -42,9 +45,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" type="text/css" href="css/muestraTabla.css" />
-  <script type="text/javascript" src="js/filtro.js"></script>
-  <title>Lista de pedidos de clientes</title>
+  <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
+  <link rel="stylesheet" type="text/css" href="../css/popup.css" />
+
+  <script type="text/javascript" src="../js/filtro.js"></script>
+  <title>Lista de proveedores</title>
 </head>
 
 <body>
@@ -56,18 +61,15 @@
 <main>
 
 	<div style="overflow-x:auto; overflow-y:auto;">
-	 <table style="width:50%" id="tablaPedidosClientes">
-	 	<caption>Listado de los pedidos de clientes</caption>
+	 <table id="tablaPedidosProveedores">
+	 	<caption>Listado de los pedidos a proveedores</caption>
 	 	<input type="text" id="filtro" onkeyup="filtrar()" placeholder="Filtrar por acabado.." title="Escribe un acabado">
 
 		<tr>
-    		<th>Fecha del pedido</th>
-    		<th>Fin de fabricación</th>
-    		<th>Fecha de envío</th>
-    		<th>Fecha de llegada</th>
-    		<th>Fecha de pago</th>
+    		<th>Fecha pedido</th>
+    		<th>Fecha pago</th>
     		<th>Coste total</th>
-    		<th>Cliente</th>
+    		<th>Proveedor</th>
     		<th>Empleado</th>
   		</tr>
 
@@ -75,51 +77,64 @@
 	
 		foreach($filas as $fila) {
 
-	?>
+	
 
-		<form method="post" action="controladores/controlador_pedidosClientes.php">
+		$lineas = lineaspedidoP($conexion,$fila["OID_PEDPROV"]);
+		 
+		 ?>
+		<div id="popup<?php echo $fila["OID_PEDPROV"]; ?>" class="overlay" align="left">
+	<div class="popup">
+		<a class="close" href="#">&times;</a>
+		<?php foreach($lineas as $linea) { 
+			$nombreMat = obtenerMaterial($conexion,$linea["OID_MAT"]);
+			?>
+			<p>CANTIDAD: <?php echo $linea["CANTIDAD"]; ?> PRECIO(UNITARIO):<?php echo $linea["PRECIO"]; ?> MATERIAL:<?php echo $nombreMat["NOMBRE"];?></p>
 
-			<div class="fila_pedidosClientes">
+	<?php
+	
+	 } ?>
+		</div>
+		
+	</div> 
+	
+</div>
+		<form method="post" action="../controladores/controlador_pedidosProveedores.php">
 
-				<div class="datos_pedidosClientes">
+			<div class="fila_pedidoProveedor">
 
-					<input id="OID_PEDCLI" name="OID_PEDCLI" type="hidden" value="<?php echo $fila["OID_PEDCLI"]; ?>"/>
+				<div class="datos_pedidoProveedor">
+
+					<input id="OID_PEDPROV" name="OID_PEDPROV" type="hidden" value="<?php echo $fila["OID_PEDPROV"]; ?>"/>
 					<input id="FECHAPEDIDO" name="FECHAPEDIDO" type="hidden" value="<?php echo $fila["FECHAPEDIDO"]; ?>"/>
-					<input id="FECHAFINFABRICACION" name="FECHAFINFABRICACION" type="hidden" value="<?php echo $fila["FECHAFINFABRICACION"]; ?>"/>
-					<input id="FECHAENVIO" name="FECHAENVIO" type="hidden" value="<?php echo $fila["FECHAENVIO"]; ?>"/>
-					<input id="FECHALLEGADA" name="FECHALLEGADA" type="hidden" value="<?php echo $fila["FECHALLEGADA"]; ?>"/>
 					<input id="FECHAPAGO" name="FECHAPAGO" type="hidden" value="<?php echo $fila["FECHAPAGO"]; ?>"/>
 					<input id="COSTETOTAL" name="COSTETOTAL" type="hidden" value="<?php echo $fila["COSTETOTAL"]; ?>"/>
-					<input id="OID_CLI" name="OID_CLI" type="hidden" value="<?php echo $fila["OID_CLI"]; ?>"/>
+					<input id="OID_PROV" name="OID_PROV" type="hidden" value="<?php echo $fila["OID_PROV"]; ?>"/>
 					<input id="OID_EMP" name="OID_EMP" type="hidden" value="<?php echo $fila["OID_EMP"]; ?>"/>
 
 				<?php
 
-					if (isset($pedcli) and ($pedcli["OID_PEDCLI"] == $fila["OID_PEDCLI"])) { ?>
-						
-						<tr>
-							<td align="center"<?php echo $fila['FECHAPEDIDO'] ?></td>
-						</tr>
-
-				<?php }	else {
-											
-					$cliente= getClienteOid($conexion, $fila['OID_CLI']);
+				
+					$proveedor = obtener_proveedor_oid($conexion, $fila['OID_PROV']);
 					$empleado = obtener_empleado_oid($conexion, $fila['OID_EMP']);?>
-
-						<tr>
+					
+	
+						<tr class="fila" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';">
 							<td align="center"><?php echo $fila['FECHAPEDIDO'] ?></td>
-							<td align="center"><?php echo $fila['FECHAFINFABRICACION'] ?></td>
-							<td align="center"><?php echo $fila['FECHAENVIO'] ?></td>
-							<td align="center"><?php echo $fila['FECHALLEGADA'] ?></td>
 							<td align="center"><?php echo $fila['FECHAPAGO'] ?></td>
-							<td align="center"><?php echo $fila['COSTETOTAL']."€"?></td>
-							<td align="center"><?php echo $cliente['NOMBRE']?></td>
+							<td align="center"><?php echo $fila['COSTETOTAL']."€" ?></td>
+							<td align="center"><?php echo $proveedor["NOMBRE"]?></td>
 							<td align="center"><?php echo $empleado['NOMBRE']." ".$empleado['APELLIDOS']?></td>
-    						<td><a href="#"><img src="img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></a></td>
-							<td><a href="#"><img src="img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td>
+    						<td class ="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
+									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
+								</button></td>
+						
+								<td class ="boton"><button id="borrar" name="borrar" type="submit" class="vistacliente">
+									<img src="../img/papeleraBorrar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
+								</button></td>
+								
 						</tr>
 						
-				<?php } ?>
+				
 
 				</div>
 			</div>
@@ -131,7 +146,7 @@
 	</div>
 	
 	</br>
-	<form method="get" action="muestraPedidosClientes.php">
+	<form method="get" action="muestraPedidoProveedor.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -156,11 +171,12 @@
 					if ( $pagina == $pagina_seleccionada) { 	?>
 						<span class="current"><?php echo $pagina; ?></span>
 			<?php }	else { ?>
-						<a href="muestraPedidosClientes.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+						<a href="muestraPedidoProveedor.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
 			<?php } ?>
 		</div>
 	</nav>
 	
 </main>
+
 </body>
 </html>

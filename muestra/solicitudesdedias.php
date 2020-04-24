@@ -1,19 +1,13 @@
 <?php
+session_start();
+if($_SESSION['cargo']!="JEFEPERSONAL"){
+		echo "</p>No tienes permisos para acceder a esta página</p>";
+		
+	}else{
 
-	session_start();
-
-    require_once("gestionas/gestionBD.php");
-    require_once("gestionas/gestionarCamion.php");
-    require_once("gestionas/gestionarMaquina.php");
-    require_once("gestionas/gestionarMaterial.php");
-    require_once("gestionas/gestionarNomina.php");
-    require_once("gestionas/gestionarEmpleado.php");
-    require_once("consultaPaginada.php");
+    require_once("../gestionas/gestionBD.php");
+    require_once("../consultaPaginada.php");
 	
-	// if (isset($_SESSION["libro"])){
-		// $libro = $_SESSION["libro"];
-		// unset($_SESSION["libro"]);
-	// }
 
 	// ¿Venimos simplemente de cambiar página o de haber seleccionado un registro ?
 	// ¿Hay una sesión activa?
@@ -34,7 +28,7 @@
 
 	// La consulta que ha de paginarse
 
-	$query = "SELECT * FROM EMPLEADO"; //consulta_paginada($conexion, $query, 3, 3);
+	$query = "SELECT * FROM PETICIONDIAS"; //consulta_paginada($conexion, $query, 3, 3);
 
 	
 	// Se comprueba que el tamaño de página, página seleccionada y total de registros son conformes.
@@ -64,7 +58,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- <link rel="stylesheet" type="text/css" href="css/biblio.css" /> -->
     	<!-- <script type="text/javascript" src="./js/boton.js"></script> -->
-  <title>Lista de Empleados</title>
+  <title>Lista de solicitudes</title>
 </head>
 
 <body>
@@ -88,7 +82,7 @@
 
 			<?php }	else { ?>
 
-						<a href="muestraEmpleados.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+						<a href="solicitudesdedias.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
 
 			<?php } ?>
 
@@ -96,7 +90,7 @@
 
 
 
-		<form method="get" action="muestraEmpleados.php">
+		<form method="get" action="solicitudesdedias.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -128,53 +122,30 @@
 
 	 <article class="empleado">
 
-		<form method="post" action="controladores/controlador_empleados.php">
+		<form method="post" action="../controladores/controlador_solicitudesdedias.php">
 
 			<div class="fila_empleado">
 
 				<div class="datos_empleado">
+					<input id="OID_PETICIODIAS" name="OID_PETICIONDIAS"
+
+						type="hidden" value="<?php echo $fila["OID_PETICIONDIAS"]; ?>"/>
 					<input id="OID_EMP" name="OID_EMP"
 
 						type="hidden" value="<?php echo $fila["OID_EMP"]; ?>"/>
-					<input id="DNI" name="DNI"
 
-						type="hidden" value="<?php echo $fila["DNI"]; ?>"/>
+					<input id="DIAS" name="DIAS"
 
-					<input id="NOMBRE" name="NOMBRE"
+						type="hidden" value="<?php echo $fila["DIAS"]; ?>"/>
 
-						type="hidden" value="<?php echo $fila["NOMBRE"]; ?>"/>
+					<input id="MOTIVO" name="MOTIVO"
 
-					<input id="APELLIDOS" name="APELLIDOS"
+						type="hidden" value="<?php echo $fila["MOTIVO"]; ?>"/>
+					<input id="ACEPTADA" name="ACEPTADA"
 
-						type="hidden" value="<?php echo $fila["APELLIDOS"]; ?>"/>
-					<input id="TELEFONO" name="TELEFONO"
+						type="hidden" value="<?php echo $fila["ACEPTADA"]; ?>"/>
 
-						type="hidden" value="<?php echo $fila["TELEFONO"]; ?>"/>
-
-					<input id="DIRECCION" name="DIRECCION"
-
-						type="hidden" value="<?php echo $fila["DIRECCION"]; ?>"/>
-
-					<input id="CARGO" name="CARGO"
-
-						type="hidden" value="<?php echo $fila["CARGO"]; ?>"/>
-					<input id="CAPITALSOCIAL" name="CAPITALSOCIAL"
-
-						type="hidden" value="<?php echo $fila["CAPITALSOCIAL"]; ?>"/>
-
-					<input id="FECHACONTRATACION" name="FECHACONTRATACION"
-
-						type="hidden" value="<?php echo $fila["FECHACONTRATACION"]; ?>"/>
-
-					<input id="DIASVACACIONES" name="DIASVACACIONES"
-
-						type="hidden" value="<?php echo $fila["DIASVACACIONES"]; ?>"/>
-					<input id="OID_MAQ" name="OID_MAQ"
-
-						type="hidden" value="<?php echo $fila["OID_MAQ"]; ?>"/>
-
-
-
+						<?php if($fila["ACEPTADA"]== NULL ){ ?>
 
 
 				<?php
@@ -188,11 +159,13 @@
 
 				<?php }	else { ?>
 
+								<input id="DNI" name="DNI" type="hidden" value="<?php echo $fila["DNI"]; ?>"/>
 
-						<input id="DNI" name="DNI" type="hidden" value="<?php echo $fila["DNI"]; ?>"/>
+						<div class="fila"><b><?php echo $fila["OID_EMP"]." "; echo $fila["DIAS"]; ?></b></div>
+						<div class="dni"><b><?php echo $fila["MOTIVO"]; ?></b></div>
+						<div class="dni"><b><?php echo $fila["ACEPTADA"]; ?></b></div>
+					
 
-						<div class="fila"><b><?php echo $fila["NOMBRE"]." "; echo $fila["APELLIDOS"]; ?></b></div>
-						<div class="dni"><b><?php echo $fila["DNI"]; ?></b></div>
 					</br>
 
 				<?php } ?>
@@ -207,28 +180,29 @@
 
 						<button id="grabar" name="grabar" type="submit" class="editar_fila">
 
-							<img src="img/bag_menuito.bmp" class="editar_fila" alt="Guardar modificación">
+							<img src="../img/bag_menuito.bmp" class="editar_fila" alt="Guardar modificación">
 
 						</button>
 
 				 <?php } else {?>
 
-						 <button id="editar" name="editar" type="submit" class="editar_fila">
+						 <button id="aceptar" name="aceptar" type="submit" class="editar_fila">
 
-							<img src="img/pencil_menuito.bmp" class="editar_fila" alt="Editar libro">
+							<img src="../img/pencil_menuito.bmp" class="editar_fila" alt="Aceptar peticion">
 
 						</button>
 				<?php } ?>
 
-					<button id="borrar" name="borrar" type="submit" class="editar_fila">
+					<button id="denegar" name="denegar" type="submit" class="editar_fila">
 
-						<img src="img/remove_menuito.bmp" class="editar_fila" alt="Borrar empleado">
+						<img src="../img/remove_menuito.bmp" class="editar_fila" alt="Denegar peticion">
 
 					</button> 
 
 				</div>
 
 			</div>
+						<?php } ?>
 
 		</form>
 
@@ -241,3 +215,5 @@
 </main>
 </body>
 </html>
+	<?php } ?>
+

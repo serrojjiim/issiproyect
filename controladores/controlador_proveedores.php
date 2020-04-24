@@ -16,6 +16,6 @@
 		// else Header("Location: accion_borrar_libro.php"); 
 	}
 	else 
-		Header("Location: pruebaPaginacion.php");
+		Header("Location: ../pruebaPaginacion.php");
 
 ?>

@@ -20,13 +20,13 @@ if (isset($_POST['submit'])) {
 			$_SESSION['login'] = $usuario['DNI'];
 			$_SESSION['nombre'] = $usuario['NOMBRE'];
 			$_SESSION['cargo'] = getCargoString($usuario['CARGO']);
-			Header("Location: index1.php");
+			Header("Location: muestra/index1.php");
 
 		} else {
 			Header("Location: login.php");
 		}
 	} else {
-		echo "<div class=\"error\"><p align=\"center\">Las contraseñas no coinciden.</p></div>";
+		$error=1;
 
 	}
 
@@ -37,30 +37,30 @@ if (isset($_POST['submit'])) {
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="css/formLogin.css" />
-		<title>Registro</title>
+		 <link rel="icon" href="img/logo_coenca.png" />
+
+		<title>Coenca | Registro</title>
 	</head>
 
 	<body>
-
-		<?php
-	if (isset($passNoCoinciden)) {
-
-		echo "<p>Las contraseñas no coinciden.</p>";
-
-	}
-		?>
+	
 		<div align="center" class="login">
+
+		<img style="margin-left:auto;margin-right: auto;display: block;margin-top: 5%" src="img/logo_coenca.png" height="200" width="200">
+
+		<?php if(isset($error)) echo "<div align=\"center\" class=\"error\"><p align=\"center\">Las contraseñas no coinciden.</p></div>";?>
 			<form action="registro.php" method="post">
-				<div>
-					<label for="pass"></label>
-					<input style="border-radius:15px" placeholder="Introduce una contraseña" type="password" name="pass" id="pass" />
+				<div><label for="pass"></label>
+					<input placeholder="Introduce una contraseña" type="password" name="pass" id="pass" />
+					
 				</div>
 				<div>
 					<label for="passC"></label>
-					<input style="margin-top: 5%;border-radius:15px" placeholder="Confirma la contraseña"type="password" name="passC" id="passC" />
+					<input placeholder="Confirma la contraseña"type="password" name="passC" id="passC" />
 				</div>
-				<input style="margin-top: 5%;border-radius:15px" type="submit" name="submit" value="submit" />
+				<input class="botonLogin" type="submit" name="submit" value="Registrate" />
 			</form>
+				</br></br></br></br></br>
 		</div>
 
 	</body>

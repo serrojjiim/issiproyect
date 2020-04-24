@@ -5,6 +5,19 @@ function consultarTodosEmpleados($conexion) {
     return $conexion->query($consulta);
 }
 
+function ocultar($conexion,$oid){
+		try{
+	$consulta = "UPDATE EMPLEADO SET OCULTO=1, CARGO=null,OID_MAQ=null,DIASVACACIONES=null  WHERE EMPLEADO.OID_EMP='$oid'";
+	$stmt = $conexion->prepare($consulta);
+	$stmt->execute();
+	return "";
+		}catch(PDOException $e) {
+		return $e->getMessage();
+    }
+	
+}
+
+
 function obtener_empleado_dni($conexion, $dniemp){
 	$consulta = "SELECT * FROM EMPLEADO WHERE (EMPLEADO.DNI = '$dniemp')";
 	  $stmt = $conexion->prepare($consulta);

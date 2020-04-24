@@ -2,10 +2,9 @@
 
 	session_start();
 
-    require_once("gestionas/gestionBD.php");
-	require_once("gestionas/gestionarEmpleado.php");
-	require_once("gestionas/gestionarProveedor.php");
-    require_once("consultaPaginada.php");
+    require_once("../gestionas/gestionBD.php");
+    require_once("../gestionas/gestionarMaquina.php");
+    require_once("../consultaPaginada.php");
 	
 	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
 	$pagina_seleccionada = isset($_GET["PAG_NUM"])? (int)$_GET["PAG_NUM"]: (isset($paginacion)? (int)$paginacion["PAG_NUM"]: 1);
@@ -19,7 +18,7 @@
 
 	$conexion = crearConexionBD();
 
-	$query = "SELECT * FROM PEDIDOPROVEEDOR";
+	$query = "SELECT * FROM PROVEEDOR";
 
 	
 	$total_registros = total_consulta($conexion,$query);
@@ -42,8 +41,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" type="text/css" href="css/muestraTabla.css" />
-  <script type="text/javascript" src="js/filtro.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
+  <script type="text/javascript" src="../js/filtro.js"></script>
   <title>Lista de proveedores</title>
 </head>
 
@@ -56,16 +55,16 @@
 <main>
 
 	<div style="overflow-x:auto; overflow-y:auto;">
-	 <table style="width:50%" id="tablaPedidosProveedores">
-	 	<caption>Listado de los pedidos a proveedores</caption>
+	 <table id="tablaProveedores">
+	 	<caption>Listado de los pedidos de clientes</caption>
 	 	<input type="text" id="filtro" onkeyup="filtrar()" placeholder="Filtrar por acabado.." title="Escribe un acabado">
 
 		<tr>
-    		<th>Fecha pedido</th>
-    		<th>Fecha pago</th>
-    		<th>Coste total</th>
-    		<th>Proveedor</th>
-    		<th>Empleado</th>
+    		<th>CIF</th>
+    		<th>Nombre</th>
+    		<th>Dirección</th>
+    		<th>Teléfono</th>
+    		<th>Email</th>
   		</tr>
 
 	<?php
@@ -74,41 +73,37 @@
 
 	?>
 
-		<form method="post" action="controladores/controlador_pedidosProveedores.php">
+		<form method="post" action="../controladores/controlador_proveedores.php">
 
-			<div class="fila_pedidoProveedor">
+			<div class="fila_proveedor">
 
-				<div class="datos_pedidoProveedor">
+				<div class="datos_proveedor">
 
-					<input id="OID_PEDPROV" name="OID_PEDPROV" type="hidden" value="<?php echo $fila["OID_PEDPROV"]; ?>"/>
-					<input id="FECHAPEDIDO" name="FECHAPEDIDO" type="hidden" value="<?php echo $fila["FECHAPEDIDO"]; ?>"/>
-					<input id="FECHAPAGO" name="FECHAPAGO" type="hidden" value="<?php echo $fila["FECHAPAGO"]; ?>"/>
-					<input id="COSTETOTAL" name="COSTETOTAL" type="hidden" value="<?php echo $fila["COSTETOTAL"]; ?>"/>
 					<input id="OID_PROV" name="OID_PROV" type="hidden" value="<?php echo $fila["OID_PROV"]; ?>"/>
-					<input id="OID_EMP" name="OID_EMP" type="hidden" value="<?php echo $fila["OID_EMP"]; ?>"/>
+					<input id="CIF" name="CIF" type="hidden" value="<?php echo $fila["CIF"]; ?>"/>
+					<input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $fila["NOMBRE"]; ?>"/>
+					<input id="DIRECCION" name="DIRECCION" type="hidden" value="<?php echo $fila["DIRECCION"]; ?>"/>
+					<input id="TELEFONO" name="TELEFONO" type="hidden" value="<?php echo $fila["TELEFONO"]; ?>"/>
+					<input id="EMAIL" name="EMAIL" type="hidden" value="<?php echo $fila["EMAIL"]; ?>"/>
 
 				<?php
 
-					if (isset($pedprov) and ($pedprov["OID_PEDPROV"] == $fila["OID_PEDPROV"])) { ?>
+					if (isset($prov) and ($prov["OID_PROV"] == $fila["OID_PROV"])) { ?>
 						
 						<tr>
 							<td align="center"<?php echo $fila['FECHAPEDIDO'] ?></td>
 						</tr>
 
-				<?php }	else { 
-					
-					$proveedor = obtener_proveedor_oid($conexion, $fila['OID_PROV']);
-					$empleado = obtener_empleado_oid($conexion, $fila['OID_EMP']);?>
-					
+				<?php }	else { ?>
 
-						<tr>
-							<td align="center"><?php echo $fila['FECHAPEDIDO'] ?></td>
-							<td align="center"><?php echo $fila['FECHAPAGO'] ?></td>
-							<td align="center"><?php echo $fila['COSTETOTAL']."€" ?></td>
-							<td align="center"><?php echo $proveedor["NOMBRE"]?></td>
-							<td align="center"><?php echo $empleado['NOMBRE']." ".$empleado['APELLIDOS']?></td>
-    						<td><a href="#"><img src="img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></a></td>
-							<td><a href="#"><img src="img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td>
+						<tr class="fila">
+							<td align="center"><?php echo $fila['CIF'] ?></td>
+							<td align="center"><?php echo $fila['NOMBRE'] ?></td>
+							<td align="center"><?php echo $fila['DIRECCION'] ?></td>
+							<td align="center"><?php echo $fila['TELEFONO'] ?></td>
+							<td align="center"><?php echo $fila['EMAIL']?></td>
+    						<td class="boton"><a href="#"><img src="../img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></a></td>
+							<td class="boton"><a href="#"><img src="../img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td>
 						</tr>
 						
 				<?php } ?>
@@ -123,7 +118,7 @@
 	</div>
 	
 	</br>
-	<form method="get" action="muestraPedidoProveedor.php">
+	<form method="get" action="muestraProveedor.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -148,7 +143,7 @@
 					if ( $pagina == $pagina_seleccionada) { 	?>
 						<span class="current"><?php echo $pagina; ?></span>
 			<?php }	else { ?>
-						<a href="muestraPedidoProveedor.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+						<a href="muestraProveedor.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
 			<?php } ?>
 		</div>
 	</nav>

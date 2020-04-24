@@ -2,9 +2,9 @@
 
 	session_start();
 
-    require_once("gestionas/gestionBD.php");
-    require_once("gestionas/gestionarMaquina.php");
-    require_once("consultaPaginada.php");
+    require_once("../gestionas/gestionBD.php");
+    require_once("../gestionas/gestionarMaquina.php");
+    require_once("../consultaPaginada.php");
 	
 	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
 	$pagina_seleccionada = isset($_GET["PAG_NUM"])? (int)$_GET["PAG_NUM"]: (isset($paginacion)? (int)$paginacion["PAG_NUM"]: 1);
@@ -18,7 +18,7 @@
 
 	$conexion = crearConexionBD();
 
-	$query = "SELECT * FROM PROVEEDOR";
+	$query = "SELECT * FROM MAQUINA";
 
 	
 	$total_registros = total_consulta($conexion,$query);
@@ -41,9 +41,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" type="text/css" href="css/muestraTabla.css" />
-  <script type="text/javascript" src="js/filtro.js"></script>
-  <title>Lista de proveedores</title>
+  <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
+  <script type="text/javascript" src="../js/filtro.js"></script>
+  <title>Lista de máquinas</title>
 </head>
 
 <body>
@@ -55,16 +55,12 @@
 <main>
 
 	<div style="overflow-x:auto; overflow-y:auto;">
-	 <table style="width:50%" id="tablaProveedores">
-	 	<caption>Listado de los pedidos de clientes</caption>
+	 <table class="tabla" id="tablaMaquina">
+	 	<caption>Listado de las maquinas disponibles</caption>
 	 	<input type="text" id="filtro" onkeyup="filtrar()" placeholder="Filtrar por acabado.." title="Escribe un acabado">
 
 		<tr>
-    		<th>CIF</th>
     		<th>Nombre</th>
-    		<th>Dirección</th>
-    		<th>Teléfono</th>
-    		<th>Email</th>
   		</tr>
 
 	<?php
@@ -73,37 +69,29 @@
 
 	?>
 
-		<form method="post" action="controladores/controlador_proveedores.php">
+		<form method="post" action="../controladores/controlador_maquinas.php">
 
-			<div class="fila_proveedor">
+			<div class="fila_maquina">
 
-				<div class="datos_proveedor">
+				<div class="datos_maquina">
 
-					<input id="OID_PROV" name="OID_PROV" type="hidden" value="<?php echo $fila["OID_PROV"]; ?>"/>
-					<input id="CIF" name="CIF" type="hidden" value="<?php echo $fila["CIF"]; ?>"/>
+					<input id="OID_MAQ" name="OID_MAQ" type="hidden" value="<?php echo $fila["OID_MAQ"]; ?>"/>
 					<input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $fila["NOMBRE"]; ?>"/>
-					<input id="DIRECCION" name="DIRECCION" type="hidden" value="<?php echo $fila["DIRECCION"]; ?>"/>
-					<input id="TELEFONO" name="TELEFONO" type="hidden" value="<?php echo $fila["TELEFONO"]; ?>"/>
-					<input id="EMAIL" name="EMAIL" type="hidden" value="<?php echo $fila["EMAIL"]; ?>"/>
 
 				<?php
 
-					if (isset($prov) and ($prov["OID_PROV"] == $fila["OID_PROV"])) { ?>
+					if (isset($maquina) and ($maquina["OID_MAQ"] == $fila["OID_MAQ"])) { ?>
 						
 						<tr>
-							<td align="center"<?php echo $fila['FECHAPEDIDO'] ?></td>
+							<td align="center"<?php echo $fila['NOMBRE'] ?></td>
 						</tr>
 
 				<?php }	else { ?>
 
-						<tr>
-							<td align="center"><?php echo $fila['CIF'] ?></td>
+						<tr class="fila">
 							<td align="center"><?php echo $fila['NOMBRE'] ?></td>
-							<td align="center"><?php echo $fila['DIRECCION'] ?></td>
-							<td align="center"><?php echo $fila['TELEFONO'] ?></td>
-							<td align="center"><?php echo $fila['EMAIL']?></td>
-    						<td><a href="#"><img src="img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></a></td>
-							<td><a href="#"><img src="img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td>
+    						<td class="boton"><a href="#"><img src="../img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></a></td>
+							<td class="boton"><a href="#"><img src="../img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td>
 						</tr>
 						
 				<?php } ?>
@@ -118,7 +106,7 @@
 	</div>
 	
 	</br>
-	<form method="get" action="muestraProveedor.php">
+	<form method="get" action="muestraMaquina.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -143,7 +131,7 @@
 					if ( $pagina == $pagina_seleccionada) { 	?>
 						<span class="current"><?php echo $pagina; ?></span>
 			<?php }	else { ?>
-						<a href="muestraProveedor.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+						<a href="muestraMaquinas.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
 			<?php } ?>
 		</div>
 	</nav>
