@@ -9,7 +9,8 @@
 		require_once("../gestionas/gestionarEmpleado.php");
 		
 		$conexion = crearConexionBD();		
-		$excepcion = quitar_empleado($conexion,$empleado["DNI"]);
+		//$excepcion = quitar_empleado($conexion,$empleado["DNI"]);              LO QUE TENÍAS
+		$excepcion = ocultar($conexion,$empleado['OID_EMP']);
 		cerrarConexionBD($conexion);
 			
 		

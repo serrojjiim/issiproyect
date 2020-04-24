@@ -1,5 +1,5 @@
 body {
-	background: #9D9698;
+	background-image: url('../img/fondo.png');
 }
 .login{
 	display: inline-block;
@@ -14,10 +14,46 @@ body {
 }
 .error{
 	color: #d9baba;	
-	border: 2px solid red;
-	margin-top:17%;
 	background: #eb262657;
 	border-color: #FF0000; 
-	border-radius: 20px;
-	height: 70px;
+	border-radius: 10px;
+	height:80%;
+	width:80%;
+	margin-left: auto;
+	margin-right: auto;
 }
+div.login{
+	height:100%;
+	width:15%;
+	background-color:#32223a4a;
+	border-radius:20px;
+	margin-top:10%;
+	
+}
+input[type=text]{
+	border-radius:5px;
+	background-color:#a26f93;
+	font-color:white;
+    border:none;
+}
+input[type=password]{
+	border-radius:5px;
+	background-color:#a26f93;
+	font-color:white;
+    border:none;
+   	margin-top:10px;
+
+}
+
+input[type=submit]{
+    border:none;
+	border-radius:5px;    
+	background-color:#da4c6f;
+	color:white;
+}
+::placeholder{
+	color:white;
+	margin-left:auto;
+	margin-right:auto;
+}
+

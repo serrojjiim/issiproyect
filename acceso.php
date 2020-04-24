@@ -11,7 +11,7 @@
 	
 			
 		if ($usuario['DNI']==null){
-			echo "<div class=\"error\"><p align=\"center\">Contraseña incorrecta</p></div>";
+			$error=1;
 		
 		}else{
 		$_SESSION['login'] = $usuario['DNI'];	
@@ -27,16 +27,22 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="css/formLogin.css" />
-  <title>Gestión de biblioteca: Login</title>
+    <link rel="icon" href="img/logo_coenca.png" />
+
+  <title>Coenca | Acceso</title>
 </head>
 
 <body>
+		<div align="center" class="login">
+	<img style="margin-left:auto;margin-right: auto;display: block;margin-top: 5%" src="img/logo_coenca.png" height="200" width="200">
 
-	<div align="center" class="login">
+ 	<?php if(isset($error)) echo "<div class=\"error\"><p align=\"center\">Contraseña incorrecta</p></div>"; ?>
 	<form action="acceso.php" method="post">
-		<div><label for="pass"></label><input style="border-radius:15px" placeholder="Introduce tu contraseña" type="password" name="pass" id="pass" /></div>
-		<input style="border-radius:15px" type="submit" name="submit" value="submit" />
+		<div><label for="pass"></label><input placeholder="Introduce tu contraseña" type="password" name="pass" id="pass" /></div>
+		<input class="botonLogin" style="border-radius:15px" type="submit" name="submit" value="Acceder" />
 	</form>
+		</br></br></br></br></br></br>
+
 	</div>
 
 </body>

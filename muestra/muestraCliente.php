@@ -122,7 +122,8 @@
 									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
 								</button></td>
 						
-								<td class ="boton"><button id="borrar" name="borrar" type="submit" class="vistacliente">
+								<td class ="boton"><button id="borrar" name="borrar" type="submit" class="vistacliente"
+									onclick="return confirm('¿Seguro que quieres dar de baja a <?php echo $fila['NOMBRE'] ?> ?')">
 									<img src="../img/papeleraBorrar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
 								</button></td>
 							</form>
