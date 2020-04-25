@@ -12,6 +12,8 @@ function getMaquinaOid($conexion,$oid){
 	return $stmt->fetch();
 }
 
+
+
 function borrarMaq($conexion,$oid){
 		try{
 	$consulta = "DELETE FROM MAQUINA WHERE (MAQUINA.OID_MAQ = '$oid')";
@@ -22,5 +24,24 @@ function borrarMaq($conexion,$oid){
 		return $e->getMessage();
     }
 }
+
+function getEmpleadosNoEnMaquina($conexion,$oid){
+	$consulta = "SELECT nombre,apellidos,cargo FROM EMPLEADO WHERE EMPLEADO.OID_MAQ<>'$oid'"; 
+	return $conexion->query($consulta);
+}
+
+
+function getEmpleadosMaquina($conexion,$oid){
+	$consulta = "SELECT nombre,apellidos,cargo FROM EMPLEADO WHERE EMPLEADO.OID_MAQ='$oid'";
+	return $conexion->query($consulta);
+}
+function getJefeMaquina2($conexion,$oid){
+	$consulta = "SELECT nombre,apellidos,cargo FROM EMPLEADO WHERE EMPLEADO.OID_MAQ='$oid' AND EMPLEADO.CARGO=9";
+	$stmt = $conexion->prepare($consulta);
+	$stmt->execute();
+	
+	return $stmt->fetch();
+}
+
 
 ?>

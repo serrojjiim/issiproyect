@@ -43,6 +43,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
+  <link rel="stylesheet" type="text/css" href="../css/muestraMaquinas.css" />
    <link rel="stylesheet" type="text/css" href="../css/popup2.css" />
   <script type="text/javascript" src="../js/filtro.js"></script>
   <title>Lista de máquinas</title>
@@ -90,7 +91,8 @@
   		</tr>
 
 	<?php
-	
+		$contador=0;
+		$contador2=0;
 		foreach($filas as $fila) {
 
 	?>
@@ -105,15 +107,17 @@
 					<input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $fila["NOMBRE"]; ?>"/>
 
 						<tr class="fila">
-							<td align="center"><?php echo $fila['NOMBRE'] ?></td>
+							<td class="nombre" align="center"><p onclick="window.location='#popup<?php echo $contador; ?>';"><?php echo $fila['NOMBRE'] ?></p></td>
 							
 							<form action="../controladores/controlador_maquinas.php">
 								
 								<td class ="boton">
-									<button id="b" name="b" type="button" class="vistacliente" onclick="window.location='#popup<?php echo $fila["OID_MAQ"]; ?>';" >
+									<button id="b" name="b" type="button" class="vistacliente" onclick="window.location='#popup<?php echo $fila["NOMBRE"]; ?>';" >
 									<img src="../img/papeleraBorrar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
-								</button></td>
-								<div id="popup<?php echo $fila["OID_MAQ"]; ?>" class="overlay" align="left">
+								</button>
+								</td>
+								
+								<div id="popup<?php echo $fila["NOMBRE"]; ?>" class="overlay" align="left">
 									<div class="popup">
 										<a class="close" href="#">X</a>
 										<p align="center">¿Seguro que quieres borrar la máquina: <?php echo $fila['NOMBRE'];?>?</p>
@@ -121,10 +125,51 @@
 										<button id="borrar" name="borrar" type="submit" class="bPop">Borrar</button>
 									</div>
 								</div>
+								
+								<div id="popup<?php echo $contador; ?>" class="overlay" align="left">
+									<div class="popup">
+										<a class="close" href="#">X</a>
+										<div class="dJefe" align="center">
+
+										<label class="jefMaq"><?php 
+												$conexion=crearConexionBD();
+	
+												$jefe = getJefeMaquina2($conexion,$fila['OID_MAQ']);
+												cerrarConexionBD($conexion);
+
+												echo $jefe['NOMBRE']; echo " "; echo $jefe['APELLIDOS']; echo " "; echo "</br>";
+											
+										
+										?>
+										</label>
+										</div>
+										<div class="dPeones" align="center">
+
+										<label class="peones"><?php 
+												$conexion=crearConexionBD();
+	
+												$peones = getEmpleadosMaquina($conexion,$fila['OID_MAQ']);
+												cerrarConexionBD($conexion);
+
+
+												foreach($peones as $peon){
+													echo $peon['NOMBRE']; echo " "; echo $peon['APELLIDOS']; echo " "; echo "</br>";
+												}
+											
+										
+										?>
+										</label>
+										</div>
+										
+									</br>
+									</div>
+								</div>
+								
+								
 							</form>
 						</tr>
 						
-				<?php } ?>
+				<?php $contador++;$contador2++; } ?>
 
 				</div>
 			</div>
