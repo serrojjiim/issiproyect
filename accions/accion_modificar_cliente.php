@@ -1,5 +1,10 @@
 <?php 
 	session_start();
+	
+	$infoPag = $_SESSION["paginacion"];
+	$PAG_NUM = $infoPag['PAG_NUM'];
+	$PAG_TAM = $infoPag['PAG_TAM'];
+	
 	if(isset($_SESSION['cliente'])){
 		$cliente = $_SESSION['cliente'];
 		unset($_SESSION['cliente']);
@@ -19,9 +24,9 @@
 			Header("Location: ../excepcion.php");
 	}else 
 		$_SESSION["mensajeok"] = 1;
-		Header("Location: ../modificar/modificarCliente.php");	
+		Header("Location: ../modificar/modificarCliente.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM);	
 	}
-		else Header("Location: ../muestra/muestraCliente.php"); // Se ha tratado de acceder directamente a este PHP
+		else Header("Location: ../muestra/muestraCliente.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM); // Se ha tratado de acceder directamente a este PHP
 	
 	
 	

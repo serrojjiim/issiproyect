@@ -1,6 +1,10 @@
 <?php	
 	session_start();
 	
+	$infoPag = $_SESSION["paginacion"];
+	$PAG_NUM = $infoPag['PAG_NUM'];
+	$PAG_TAM = $infoPag['PAG_TAM'];
+	
 	if (isset($_REQUEST["DNI"])){
 		$empleado["OID_EMP"] = $_REQUEST["OID_EMP"];
 		$empleado["DNI"] = $_REQUEST["DNI"];
@@ -22,6 +26,6 @@
 		else Header("Location: ../accions/accion_borrar_empleado.php"); 
 	}
 	else 
-		Header("Location: ../muestra/muestraempleados.php");
+		Header("Location: ../muestra/muestraEmpleados.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM);
 
 ?>

@@ -1,6 +1,10 @@
 <?php	
 	session_start();
 	
+	$infoPag = $_SESSION["paginacion"];
+	$PAG_NUM = $infoPag['PAG_NUM'];
+	$PAG_TAM = $infoPag['PAG_TAM'];
+	
 	if (isset($_REQUEST["CIF"])){
 		$cliente["OID_CLI"] = $_REQUEST["OID_CLI"];
 		$cliente["CIF"] = $_REQUEST["CIF"];
@@ -17,6 +21,6 @@
 		//else (isset($_REQUEST["grabar"])) Header("Location: accion_modificar_libro.php");
 	}
 	else 
-		Header("Location: ../muestra/muestraCliente.php");
+		Header("Location: ../muestra/muestraCliente.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM);
 
 ?>

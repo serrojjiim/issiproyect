@@ -1,5 +1,9 @@
 <?php	
-	session_start();	
+	session_start();
+	
+	$infoPag = $_SESSION["paginacion"];
+	$PAG_NUM = $infoPag['PAG_NUM'];
+	$PAG_TAM = $infoPag['PAG_TAM'];	
 	
 	if (isset($_SESSION["empleado"])) {
 		$empleado = $_SESSION["empleado"];
@@ -19,7 +23,7 @@
 			$_SESSION["destino"] = "muestraEmpleados.php";
 			Header("Location: ../excepcion.php");
 		}
-		else Header("Location: ../muestra/muestraEmpleados.php");
+		else Header("Location: ../muestra/muestraEmpleados.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM);
 	}
-	else Header("Location: ../muestra/muestraEmpleados.php"); // Se ha tratado de acceder directamente a este PHP
+	else Header("Location: ../muestra/muestraEmpleados.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM); // Se ha tratado de acceder directamente a este PHP
 ?>
