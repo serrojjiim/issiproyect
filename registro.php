@@ -43,7 +43,8 @@ if (isset($_POST['submit'])) {
 	</head>
 
 	<body>
-	
+		<a href="muestra/index1.php"><img src="img/back.png" width="80px" alt="Volver" height="50px" style="position: absolute"/></a>
+
 		<div align="center" class="login">
 
 		<img class="logoCoenca" src="img/logo_coenca.png">
