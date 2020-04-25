@@ -1,62 +1,100 @@
 body {
 	background-image: url('../img/fondo.png');
+	background-attachment: fixed;
+	background-position: center center; 
+	background-repeat: no-repeat;
+	background-size: cover;
 }
+
 .login{
-	display: inline-block;
-	margin-top: 3%;
-	margin-left:45%;
-	
-	
+	margin-left: 37.5%;
+	margin-top: 10%;
+	width: 200px;
+	height: 200px;
 }
+
 .botonLogin{
 	display: inline-block;
 	margin-top: 5%;
+	border-radius:15px
 }
+
 .error{
-	color: #d9baba;	
+	position: absolute;
+	color: black;	
 	background: #eb262657;
 	border-color: #FF0000; 
-	border-radius: 10px;
-	height:80%;
 	width:80%;
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: 10%;
+	top: 110%;
+	font-family: "Comic Sans MS", sans-serif;
+	font-size: 25px;
+	border-radius: 15px;
 }
+
 div.login{
-	height:100%;
-	width:15%;
+	height:50%;
+	width:25%;
 	background-color:#32223a4a;
 	border-radius:20px;
-	margin-top:10%;
-	
+	position: absolute;
 }
-input[type=text]{
-	border-radius:5px;
-	background-color:#a26f93;
-	font-color:white;
-    border:none;
-}
-input[type=password]{
-	border-radius:5px;
-	background-color:#a26f93;
-	font-color:white;
-    border:none;
-   	margin-top:10px;
 
+input[type=text]{
+	border-radius: 5px;
+	background-color:#a26f93b5;
+	font-color:white;
+    border: groove;
+	border-width: medium;
+	border-color: #4d00002b;
+   	margin-top:10px;
+   	width: 300px;
+   	height: 40px;
+   	text-align: center;
+}
+
+input[type=password]{
+	border-radius: 5px;
+	background-color:#a26f93b5;
+	font-color:white;
+    border:none;
+    border: groove;
+	border-width: medium;
+	border-color: #4d00002b;
+   	margin-top:10px;
+   	width: 300px;
+   	height: 40px;
 }
 
 input[type=submit]{
-    border:none;
+    border-color: #da4c6f;
 	border-radius:5px;    
-	background-color:#da4c6f;
+	background-color:#da4c6fb8;
 	color:white;
+	font-family: "Comic Sans MS", Arial, sans-serif;
 }
+
 ::placeholder{
 	color:white;
 	margin-left:auto;
 	margin-right:auto;
 }
+
 input:focus{
 	color:white;
 }
 
+.logoCoenca{
+	margin-left:auto;
+	margin-right: auto;
+	display: block;
+	margin-top: 5%;
+	width: 80%;
+	height: 70%;
+}
+
+#dni, #pass, #passC{
+	text-align: center;
+	font-family: "Comic Sans MS", Arial, sans-serif;
+	font-size: inherit;
+}

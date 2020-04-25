@@ -34,15 +34,13 @@
 
 <body>
 		<div align="center" class="login">
-	<img style="margin-left:auto;margin-right: auto;display: block;margin-top: 5%" src="img/logo_coenca.png" height="200" width="200">
+	<img class="logoCoenca" src="img/logo_coenca.png">
 
- 	<?php if(isset($error)) echo "<div class=\"error\"><p align=\"center\">Contraseña incorrecta</p></div>"; ?>
+ 	<?php if(isset($error)) echo "<div class=\"error\"><p>¡Contraseña incorrecta!</p></div>"; ?>
 	<form action="acceso.php" method="post">
-		<div><label for="pass"></label><input placeholder="Introduce tu contraseña" type="password" name="pass" id="pass" /></div>
-		<input class="botonLogin" style="border-radius:15px" type="submit" name="submit" value="Acceder" />
+		<div><label for="pass"></label><input placeholder="Introduce tu contraseña" type="password" name="pass" id="pass" style="position: absolute; top: 65%; left: 18.5%;"/></div>
+		<input class="botonLogin" type="submit" name="submit" value="Acceder" style="width:150px; height:30px;"/>
 	</form>
-		</br></br></br></br></br></br>
-
 	</div>
 
 </body>
