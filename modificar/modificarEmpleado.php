@@ -70,7 +70,7 @@
 	
 	 	<div>
 	<label class="textoMod">Cargo</label></br>	
-	<select  align="center" class="seleccion" id="CARGO" name="CARGO">
+	<select  style="margin-right: 1%;" align="center" class="seleccion" id="CARGO" name="CARGO">
      	<option value="1"<?php if($empleado['CARGO']==1) echo "selected"; ?>>Presidente</option> 
     	<option value="2"<?php if($empleado['CARGO']==2) echo "selected"; ?>>Vicepresidente</option> 
     	<option value="3"<?php if($empleado['CARGO']==3) echo "selected"; ?>>Secretario</option>
@@ -90,7 +90,7 @@
 	
 	<div>
 	<label class="textoMod">Maquina</label></br>	
-	<select class="seleccion" id="OID_MAQ" name="OID_MAQ">
+	<select  class="seleccion" id="OID_MAQ" name="OID_MAQ">
      	<option value="1"<?php if($empleado['OID_MAQ']==1) echo "selected"; ?>>Pintura</option> 
     	<option value="2"<?php if($empleado['OID_MAQ']==2) echo "selected"; ?>>Fresadora</option> 
     	<option value="3"<?php if($empleado['OID_MAQ']==3) echo "selected"; ?>>Serigrafiadora</option>

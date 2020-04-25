@@ -12,8 +12,9 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
  <link rel="stylesheet" type="text/css" href="css/header.css" />
- <link rel="stylesheet" type="text/css" href="css/modificarForm.css" />
+ <link rel="stylesheet" type="text/css" href="css/modificarForm.css?v=1" />
 </head>
 <body>
 <main>
@@ -55,6 +56,10 @@
 
 	<button id="guardar" name="guardar" type="submit" class="botonG">
 			<img src="../img/guardar.png" class="imagen" >
+	</button>
+	
+	<button id="patras" name="patras" type="submit" class="botonG2">
+			<img src="../img/back.png" class="editar_fila" alt="Modificar cargo empleado">
 	</button>
 
 	</form>

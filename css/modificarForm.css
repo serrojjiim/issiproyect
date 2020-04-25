@@ -24,7 +24,7 @@ input.inMod2{
 	background-color:#ffffff;
 	outline-width: 0;
     color:#615d5d;
-    width:130%;
+    width:123%;
     text-indent: 4%;
     margin-top:4%;
     margin-left:33%;
@@ -38,7 +38,7 @@ input.inMod3{
 	background-color:#ffffff;
 	outline-width: 0;
     color:#615d5d;
-    width:130%;
+    width:123%;
     text-indent: 4%;
     margin-top:4%;
     margin-left:90%;
@@ -120,9 +120,9 @@ select.seleccion{
 	background-color:#ffffff;
 	outline-width: 0;
     color:#615d5d;
-    width:80%;
+    width:83%;
     text-indent: 2%;
     margin-top:2%;
-       cursor:pointer;
+    cursor:pointer;
 
 }

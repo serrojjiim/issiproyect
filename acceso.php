@@ -33,12 +33,11 @@
 </head>
 
 <body>
-	<a href="muestra/index1.php"><img src="img/back.png" width="80px" alt="Volver" height="50px" style="position: absolute"/></a>
 		<div align="center" class="login">
-	<img class="logoCoenca" src="img/logo_coenca.png">
+		<img class="logoCoenca" src="img/logo_coenca.png">
 
  	<?php if(isset($error)) echo "<div class=\"error\"><p>¡Contraseña incorrecta!</p></div>"; ?>
-	<form action="acceso.php" method="post">
+		<form action="acceso.php" method="post">
 		<div><label for="pass"></label><input placeholder="Introduce tu contraseña" type="password" name="pass" id="pass" style="position: absolute; top: 65%; left: 18.5%;"/></div>
 		<input class="botonLogin" type="submit" name="submit" value="Acceder" style="width:150px; height:30px;"/>
 	</form>

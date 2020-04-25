@@ -48,10 +48,12 @@ input[type=text]{
 	border-width: medium;
 	border-color: #4d00002b;
    	margin-top:10px;
-   	width: 300px;
-   	height: 40px;
+	padding:2%;
    	text-align: center;
-}
+    outline:none;    
+        color:white;
+
+       }
 
 input[type=password]{
 	border-radius: 5px;
@@ -62,15 +64,18 @@ input[type=password]{
 	border-width: medium;
 	border-color: #4d00002b;
    	margin-top:10px;
-   	width: 300px;
-   	height: 40px;
+    padding:2%;
+    color:white;
+
 }
 
 input[type=submit]{
-    border-color: #da4c6f;
+	margin-top:15%;
+    border:none;
 	border-radius:5px;    
 	background-color:#da4c6fb8;
 	color:white;
+	cursor:pointer;
 	font-family: "Comic Sans MS", Arial, sans-serif;
 }
 
@@ -89,8 +94,7 @@ input:focus{
 	margin-right: auto;
 	display: block;
 	margin-top: 5%;
-	width: 80%;
-	height: 70%;
+	width: 60%;
 }
 
 #dni, #pass, #passC{
@@ -98,3 +102,11 @@ input:focus{
 	font-family: "Comic Sans MS", Arial, sans-serif;
 	font-size: inherit;
 }
+input.registro{
+	margin-top:1%;
+	margin-left:16%;
+}
+input.registroB{
+	margin-left:39%;
+	margin-top:1%
+	}
