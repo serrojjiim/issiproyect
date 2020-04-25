@@ -23,7 +23,7 @@
 
 	$conexion = crearConexionBD();
 
-	$query = "SELECT * FROM EMPLEADO"; 
+	$query = "SELECT * FROM EMPLEADO ORDER BY OCULTO NULLS LAST"; 
 
 	$total_registros = total_consulta($conexion,$query);
 	$total_paginas = (int) ($total_registros / $pag_tam);
