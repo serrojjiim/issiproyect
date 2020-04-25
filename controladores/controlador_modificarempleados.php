@@ -1,6 +1,10 @@
 <?php	
 	session_start();
 	
+	$infoPag = $_SESSION["paginacion"];
+	$PAG_NUM = $infoPag['PAG_NUM'];
+	$PAG_TAM = $infoPag['PAG_TAM'];
+		
 	if (isset($_REQUEST["DNI"])){
 		$empleado["OID_EMP"] = $_REQUEST["OID_EMP"];
 		$empleado["DNI"] = $_REQUEST["DNI"];
@@ -15,11 +19,10 @@
 		$empleado["OID_MAQ"] = $_REQUEST["OID_MAQ"];
 		
 		
-		
 		$_SESSION["empleado"] = $empleado;
 			
 		if (isset($_REQUEST["guardar"])) Header("Location: ../accions/accion_modificar_empleado.php"); 
-		else if(isset($_REQUEST['patras'])) Header("Location: ../muestra/muestraEmpleados.php");
+		else if(isset($_REQUEST['patras'])) Header("Location: ../muestra/muestraEmpleados.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM);
 	}
 	else 
 		Header("Location: ../modificar/modificarEmpleado.php");

@@ -3,9 +3,6 @@
 	
 	if (isset($_SESSION["empleado"])) {
 		$empleado = $_SESSION["empleado"];
-		
-	
-		
 
 ?>
 

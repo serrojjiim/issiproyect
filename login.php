@@ -45,19 +45,16 @@
 
 <body>
 	
-
-	
+	<a href="muestra/index1.php"><img src="img/back.png" width="80px" alt="Volver" height="50px" style="position: absolute"/></a>
 	
 	<div align="center" class="login">
 
-	<img style="margin-left:auto;margin-right: auto;display: block;margin-top: 5%" src="img/logo_coenca.png" height="200" width="200">
+	<img class="logoCoenca" src="img/logo_coenca.png">
 	<?php if(isset($error))echo "<div class=\"error\"><p align=\"center\">El DNI indicado no tiene acceso</p></div>"; ?>
 	<form action="login.php" method="post">
-		<div ><label for="dni"></label><input type="text" name="dni" id="dni" placeholder="Introduce tu DNI" pattern="^[0-9]{8}[A-Z]"/></div>
-		<div><input class="botonLogin" type="submit" name="submit" value="Acceder"/></div>
+		<div ><label for="dni"></label><input type="text" name="dni" id="dni" placeholder="Introduce tu DNI" pattern="^[0-9]{8}[A-Z]" style="position: absolute; top: 65%; left: 18.5%;"/></div>
+		<div><input class="botonLogin" type="submit" name="submit" value="Acceder" style="width:150px; height:30px;"/></div>
 	</form>
-	
-	</br></br></br></br></br></br>
 	</div>
 
 </body>

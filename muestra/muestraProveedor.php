@@ -19,7 +19,7 @@
 
 	$conexion = crearConexionBD();
 
-	$query = "SELECT * FROM PROVEEDOR";
+	$query = "SELECT * FROM PROVEEDOR ORDER BY OCULTO NULLS LAST";
 
 	
 	$total_registros = total_consulta($conexion,$query);

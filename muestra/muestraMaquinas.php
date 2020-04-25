@@ -43,6 +43,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
+   <link rel="stylesheet" type="text/css" href="../css/popup2.css" />
   <script type="text/javascript" src="../js/filtro.js"></script>
   <title>Lista de máquinas</title>
 </head>
@@ -103,20 +104,24 @@
 					<input id="OID_MAQ" name="OID_MAQ" type="hidden" value="<?php echo $fila["OID_MAQ"]; ?>"/>
 					<input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $fila["NOMBRE"]; ?>"/>
 
-				<?php
-
-					if (isset($maquina) and ($maquina["OID_MAQ"] == $fila["OID_MAQ"])) { ?>
-						
-						<tr>
-							<td align="center"<?php echo $fila['NOMBRE'] ?></td>
-						</tr>
-
-				<?php }	else { ?>
-
 						<tr class="fila">
 							<td align="center"><?php echo $fila['NOMBRE'] ?></td>
-    						<td class="boton"><a href="#"><img src="../img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></a></td>
-							<td class="boton"><a href="#"><img src="../img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td>
+							
+							<form action="../controladores/controlador_maquinas.php">
+								
+								<td class ="boton">
+									<button id="b" name="b" type="button" class="vistacliente" onclick="window.location='#popup<?php echo $fila["OID_MAQ"]; ?>';" >
+									<img src="../img/papeleraBorrar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
+								</button></td>
+								<div id="popup<?php echo $fila["OID_MAQ"]; ?>" class="overlay" align="left">
+									<div class="popup">
+										<a class="close" href="#">X</a>
+										<p align="center">¿Seguro que quieres borrar la máquina: <?php echo $fila['NOMBRE'];?>?</p>
+									</br>
+										<button id="borrar" name="borrar" type="submit" class="bPop">Borrar</button>
+									</div>
+								</div>
+							</form>
 						</tr>
 						
 				<?php } ?>
@@ -124,8 +129,6 @@
 				</div>
 			</div>
 		</form>
-
-	<?php } ?>
 	
 	 </table>
 	</div>

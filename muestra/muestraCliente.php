@@ -18,7 +18,7 @@
 
 	$conexion = crearConexionBD();
 
-	$query = "SELECT * FROM CLIENTE";
+	$query = "SELECT * FROM CLIENTE ORDER BY OCULTO NULLS LAST";
 
 	
 	$total_registros = total_consulta($conexion,$query);
