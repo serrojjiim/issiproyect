@@ -19,7 +19,7 @@ ul.topnav li.letras a {
   text-decoration: none;
 }
 
-ul.topnav li a.letras:hover:not(.active) {background-color: #ff1c50;}
+ul.topnav li a.letras:hover:not(.active) {background-color: #aa173a;}
 
 ul.topnav li a.active {background-color: #4CAF50;}
 li.logo {

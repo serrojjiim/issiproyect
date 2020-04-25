@@ -9,6 +9,7 @@
     require_once("../gestionas/gestionarNomina.php");
     require_once("../gestionas/gestionarProducto.php");
     require_once("../consultaPaginada.php");
+	unset($_SESSION["paginacion"]);
 	
 	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
 	$pagina_seleccionada = isset($_GET["PAG_NUM"])? (int)$_GET["PAG_NUM"]: (isset($paginacion)? (int)$paginacion["PAG_NUM"]: 1);
@@ -58,10 +59,35 @@
 	?>
 <main>
 
-	<div style="overflow-x:auto; overflow-y:auto;">
-	 <table style="width:50%" id="tablaProducto">
-	 	<caption>Listado de los productos disponibles</caption>
-	 	<input type="text" id="filtro" onkeyup="filtrar(5)" placeholder="Filtrar por acabado.." title="Escribe un acabado">
+	<div class="titulotabla">
+	 	<div><h2 class="titulo">Listado de los productos</h2></div>
+	 </div>
+	<div class="selectpag">
+	
+	
+	<form method="get" action="muestraProductos.php">
+
+			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
+
+			Mostrando
+
+			<input id="PAG_TAM" name="PAG_TAM" type="number"
+
+				min="1" max="<?php echo $total_registros;?>"
+
+				value="<?php echo $pag_tam?>" autofocus="autofocus" />
+
+			entradas de <?php echo $total_registros?>
+
+			<input type="submit" value="Cambiar">
+
+		</form>
+		
+		</div>
+		
+		<div class ="tabla">
+	 <table class="tabla" id="tablaProducto">
+	 	
 
 		<tr>
     		<th>Tipo de material</th>
@@ -91,33 +117,20 @@
 					<input id="ALTURA" name="ALTURA" type="hidden" value="<?php echo $fila["ALTURA"]; ?>"/>
 					<input id="ACABADO" name="ACABADO" type="hidden" value="<?php echo $fila["ACABADO"]; ?>"/>
 
-				<?php
+			
 
-					if (isset($producto) and ($producto["OID_PROD"] == $fila["OID_PROD"])) { ?>
-						
-						<tr>
-							<td align="center"<?php echo $fila['NOMBRE'] ?></td>
-    						<td align="center"><?php echo $fila['PRECIO'] ?></td>
-    						<td align="center"><?php echo $fila['LONGITUD'] ?></td>
-    						<td align="center"><?php echo $fila['PROFUNDIDAD'] ?></td>
-    						<td align="center"><?php echo $fila['ALTURA'] ?></td>
-    						<td align="center"><?php echo $fila['ACABADO'] ?></td>
-						</tr>
-
-				<?php }	else { ?>
-
-						<tr>
+						<tr class="fila">
 							<td align="center"><?php echo $fila['NOMBRE'] ?></td>
     						<td align="center"><?php echo $fila['PRECIO'] ?></td>
     						<td align="center"><?php echo $fila['LONGITUD'] ?></td>
     						<td align="center"><?php echo $fila['PROFUNDIDAD'] ?></td>
     						<td align="center"><?php echo $fila['ALTURA'] ?></td>
     						<td align="center"><?php echo $fila['ACABADO'] ?></td>
-    						<td><a href="#"><img src="img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></a></td>
-							<td><a href="#"><img src="img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td>
+    						<td class="boton"><a href="#"><img src="../img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></a></td>
+							<td class="boton"><a href="#"><img src="../img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td>
 						</tr>
 						
-				<?php } ?>
+				
 
 				</div>
 			</div>
@@ -128,36 +141,64 @@
 	 </table>
 	</div>
 	
-	</br>
-	<form method="get" action="muestraProducto.php">
-
-			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
-
-			Mostrando
-
-			<input id="PAG_TAM" name="PAG_TAM" type="number"
-
-				min="1" max="<?php echo $total_registros;?>"
-
-				value="<?php echo $pag_tam?>" autofocus="autofocus" />
-
-			entradas de <?php echo $total_registros?>
-
-			<input type="submit" value="Cambiar">
-	</form>
-	
-	<nav>
-		<div id="enlaces">
+	<div class="paginas">
+		<nav>
+			<div id="enlaces">
 			<?php
-				for( $pagina = 1; $pagina <= $total_paginas; $pagina++ )
+			
+				if($total_paginas <=6){
+					 for( $pagina = 1; $pagina <= $total_paginas; $pagina++ )
+						if ( $pagina == $pagina_seleccionada) { 	?>
+							<span class="current"><?php echo $pagina; ?></span>
 
-					if ( $pagina == $pagina_seleccionada) { 	?>
-						<span class="current"><?php echo $pagina; ?></span>
 			<?php }	else { ?>
+
 						<a href="muestraProductos.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
-			<?php } ?>
+
+			<?php }
+			 }
+				
+				else if($pagina_seleccionada >= $total_paginas-3) {
+					 for( $pagina = $pagina_seleccionada-(6-($total_paginas-$pagina_seleccionada)); $pagina <= $total_paginas; $pagina++ )
+						if ( $pagina == $pagina_seleccionada) { 	?>
+
+						<span class="current"><?php echo $pagina; ?></span>
+
+			<?php }	else { ?>
+
+						<a href="muestraProductos.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+			<?php }
+			 }
+				else if($pagina_seleccionada <= 4) { 
+					for( $pagina = 1; $pagina <= $pagina_seleccionada+(7-$pagina_seleccionada); $pagina++ )
+					if ( $pagina == $pagina_seleccionada) { 	?>
+
+						<span class="current"><?php echo $pagina; ?></span>
+
+			<?php }	else { ?>
+
+						<a href="muestraProductos.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+			<?php } 
+				}
+				else {
+					for( $pagina = $pagina_seleccionada-3; $pagina <= $pagina_seleccionada+3; $pagina++ )
+				if ( $pagina == $pagina_seleccionada) { 	?>
+
+						<span class="current"><?php echo $pagina; ?></span>
+
+			<?php }	else { ?>
+
+						<a href="muestraProductos.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+			<?php } 
+				} ?>
+			
+
 		</div>
-	</nav>
+		</nav>
+		</div>
 	
 </main>
 </body>

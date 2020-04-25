@@ -8,6 +8,7 @@
 	require_once("../gestionas/gestionarPP.php");
 	require_once("../gestionas/gestionarMaterial.php");
     require_once("../consultaPaginada.php");
+	unset($_SESSION["paginacion"]);
 	
 	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
 	$pagina_seleccionada = isset($_GET["PAG_NUM"])? (int)$_GET["PAG_NUM"]: (isset($paginacion)? (int)$paginacion["PAG_NUM"]: 1);
@@ -60,11 +61,34 @@
 	?>
 <main>
 
-	<div style="overflow-x:auto; overflow-y:auto;">
-	 <table id="tablaPedidosProveedores">
-	 	<caption>Listado de los pedidos a proveedores</caption>
-	 	<input type="text" id="filtro" onkeyup="filtrar()" placeholder="Filtrar por acabado.." title="Escribe un acabado">
+	<div class="titulotabla">
+	 	<div><h2 class="titulo">Listado de los pedidos a proveedores</h2></div>
+	 </div>
+	<div class="selectpag">
+	
+	
+	<form method="get" action="muestraPedidosProveedores.php">
 
+			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
+
+			Mostrando
+
+			<input id="PAG_TAM" name="PAG_TAM" type="number"
+
+				min="1" max="<?php echo $total_registros;?>"
+
+				value="<?php echo $pag_tam?>" autofocus="autofocus" />
+
+			entradas de <?php echo $total_registros?>
+
+			<input type="submit" value="Cambiar">
+
+		</form>
+		
+		</div>
+		
+		<div class ="tabla">
+	 <table id="tablaPedidosProveedores">
 		<tr>
     		<th>Fecha pedido</th>
     		<th>Fecha pago</th>
@@ -145,36 +169,65 @@
 	 </table>
 	</div>
 	
-	</br>
-	<form method="get" action="muestraPedidoProveedor.php">
-
-			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
-
-			Mostrando
-
-			<input id="PAG_TAM" name="PAG_TAM" type="number"
-
-				min="1" max="<?php echo $total_registros;?>"
-
-				value="<?php echo $pag_tam?>" autofocus="autofocus" />
-
-			entradas de <?php echo $total_registros?>
-
-			<input type="submit" value="Cambiar">
-	</form>
-	
-	<nav>
-		<div id="enlaces">
+	<div class="paginas">
+		<nav>
+			<div id="enlaces">
 			<?php
-				for( $pagina = 1; $pagina <= $total_paginas; $pagina++ )
+			
+				if($total_paginas <=6){
+					 for( $pagina = 1; $pagina <= $total_paginas; $pagina++ )
+						if ( $pagina == $pagina_seleccionada) { 	?>
+							<span class="current"><?php echo $pagina; ?></span>
 
-					if ( $pagina == $pagina_seleccionada) { 	?>
-						<span class="current"><?php echo $pagina; ?></span>
 			<?php }	else { ?>
-						<a href="muestraPedidoProveedor.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
-			<?php } ?>
+
+						<a href="muestraPedidosProveedores.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+			<?php }
+			 }
+				
+				else if($pagina_seleccionada >= $total_paginas-3) {
+					 for( $pagina = $pagina_seleccionada-(6-($total_paginas-$pagina_seleccionada)); $pagina <= $total_paginas; $pagina++ )
+						if ( $pagina == $pagina_seleccionada) { 	?>
+
+						<span class="current"><?php echo $pagina; ?></span>
+
+			<?php }	else { ?>
+
+						<a href="muestraPedidosProveedores.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+			<?php }
+			 }
+				else if($pagina_seleccionada <= 4) { 
+					for( $pagina = 1; $pagina <= $pagina_seleccionada+(7-$pagina_seleccionada); $pagina++ )
+					if ( $pagina == $pagina_seleccionada) { 	?>
+
+						<span class="current"><?php echo $pagina; ?></span>
+
+			<?php }	else { ?>
+
+						<a href="muestraPedidosProveedores.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+			<?php } 
+				}
+				else {
+					for( $pagina = $pagina_seleccionada-3; $pagina <= $pagina_seleccionada+3; $pagina++ )
+				if ( $pagina == $pagina_seleccionada) { 	?>
+
+						<span class="current"><?php echo $pagina; ?></span>
+
+			<?php }	else { ?>
+
+						<a href="muestraPedidosProveedores.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+			<?php } 
+				} ?>
+			
+
 		</div>
-	</nav>
+		</nav>
+		</div>
+	
 	
 </main>
 

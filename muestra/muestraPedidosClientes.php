@@ -7,6 +7,7 @@
 	require_once("../gestionas/gestionarCliente.php");
 	require_once("../gestionas/gestionarPC.php");
 	require_once("../gestionas/gestionarProducto.php");
+	unset($_SESSION["paginacion"]);
 	
     require_once("../consultaPaginada.php");
 	
@@ -59,10 +60,34 @@
 	?>
 <main>
 
-	<div style="overflow-x:auto; overflow-y:auto;">
+	<div class="titulotabla">
+	 	<div><h2 class="titulo">Listado de los pedidos de clientes</h2></div>
+	 </div>
+	<div class="selectpag">
+	
+	
+	<form method="get" action="muestraPedidosClientes.php">
+
+			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
+
+			Mostrando
+
+			<input id="PAG_TAM" name="PAG_TAM" type="number"
+
+				min="1" max="<?php echo $total_registros;?>"
+
+				value="<?php echo $pag_tam?>" autofocus="autofocus" />
+
+			entradas de <?php echo $total_registros?>
+
+			<input type="submit" value="Cambiar">
+
+		</form>
+		
+		</div>
+		
+		<div class ="tabla">
 	 <table id="tablaClientes">
-	 	<caption>Listado de los pedidos de clientes</caption>
-	 	<input type="text" id="filtro" onkeyup="filtrar()" placeholder="Filtrar por acabado.." title="Escribe un acabado">
 
 		<tr>
     		<th>Fecha del pedido</th>
@@ -150,36 +175,64 @@
 	 </table>
 	</div>
 	
-	</br>
-	<form method="get" action="muestraPedidosClientes.php">
+	<div class="paginas">
+		<nav>
+			<div id="enlaces">
+				<?php
+			
+				if($total_paginas <=6){
+					 for( $pagina = 1; $pagina <= $total_paginas; $pagina++ )
+						if ( $pagina == $pagina_seleccionada) { 	?>
+							<span class="current"><?php echo $pagina; ?></span>
 
-			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
-
-			Mostrando
-
-			<input id="PAG_TAM" name="PAG_TAM" type="number"
-
-				min="1" max="<?php echo $total_registros;?>"
-
-				value="<?php echo $pag_tam?>" autofocus="autofocus" />
-
-			entradas de <?php echo $total_registros?>
-
-			<input type="submit" value="Cambiar">
-	</form>
-	
-	<nav>
-		<div id="enlaces">
-			<?php
-				for( $pagina = 1; $pagina <= $total_paginas; $pagina++ )
-
-					if ( $pagina == $pagina_seleccionada) { 	?>
-						<span class="current"><?php echo $pagina; ?></span>
 			<?php }	else { ?>
+
 						<a href="muestraPedidosClientes.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
-			<?php } ?>
+
+			<?php }
+			 }
+				
+				else if($pagina_seleccionada >= $total_paginas-3) {
+					 for( $pagina = $pagina_seleccionada-(6-($total_paginas-$pagina_seleccionada)); $pagina <= $total_paginas; $pagina++ )
+						if ( $pagina == $pagina_seleccionada) { 	?>
+
+						<span class="current"><?php echo $pagina; ?></span>
+
+			<?php }	else { ?>
+
+						<a href="muestraPedidosClientes.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+			<?php }
+			 }
+				else if($pagina_seleccionada <= 4) { 
+					for( $pagina = 1; $pagina <= $pagina_seleccionada+(7-$pagina_seleccionada); $pagina++ )
+					if ( $pagina == $pagina_seleccionada) { 	?>
+
+						<span class="current"><?php echo $pagina; ?></span>
+
+			<?php }	else { ?>
+
+						<a href="muestraPedidosClientes.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+			<?php } 
+				}
+				else {
+					for( $pagina = $pagina_seleccionada-3; $pagina <= $pagina_seleccionada+3; $pagina++ )
+				if ( $pagina == $pagina_seleccionada) { 	?>
+
+						<span class="current"><?php echo $pagina; ?></span>
+
+			<?php }	else { ?>
+
+						<a href="muestraPedidosClientes.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+			<?php } 
+				} ?>
+			
+
 		</div>
-	</nav>
+		</nav>
+		</div>
 	
 </main>
 </body>
