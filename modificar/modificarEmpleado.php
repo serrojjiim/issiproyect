@@ -13,28 +13,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
  <link rel="stylesheet" type="text/css" href="css/header.css" />
+ <link rel="stylesheet" type="text/css" href="css/modificarForm.css" />
 </head>
 <body>
 <main>
-	<?php 
-	if (isset($_SESSION["mensajeok"])) {
-			unset($_SESSION["mensajeok"]);
-		
-		echo "¡El empleado ha sido modificado correctamente!";
-		
-	}  
-	?>
+		<div align="center" class="divMod">
+	<div>
+
 	<form method="post" action="../controladores/controlador_modificarempleados.php">
-	<input id="OID_EMP" name="OID_EMP" type="text" value="<?php echo $empleado["OID_EMP"]; ?>"/><br />
-	<input id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $empleado["NOMBRE"]; ?>"/><br />
-	<input id="APELLIDOS" name="APELLIDOS" type="text" value="<?php echo $empleado["APELLIDOS"]; ?>"/><br />
-	<input pattern="^[0-9]{8}[A-Z]" id="DNI" name="DNI" type="text" value="<?php echo $empleado["DNI"]; ?>"/><br />
-	<input pattern="^[0-9]{9}" id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $empleado["TELEFONO"]; ?>"/><br />
-	<input id="DIRECCION" name="DIRECCION" type="text" value="<?php echo $empleado["DIRECCION"]; ?>"/><br />
+	<input class="inMod" id="OID_EMP" name="OID_EMP" type="hidden" value="<?php echo $empleado["OID_EMP"]; ?>"/><br />
 	
-	<select id="CARGO" name="CARGO">
+	<div class="lineaxd">
+	<div>
+	<label class="textoMod2">Nombre</label></br>		
+	<input class="inMod2" id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $empleado["NOMBRE"]; ?>"/><br />
+	</div>
+	
+	<div>
+	<label class="textoMod3">Apellidos</label></br>	
+	<input class="inMod3" id="APELLIDOS" name="APELLIDOS" type="text" value="<?php echo $empleado["APELLIDOS"]; ?>"/><br />
+	</div>
+	</div>
+	
+	<div>
+	<label class="textoMod">Direccion</label></br>	
+	<input class="inMod" id="DIRECCION" name="DIRECCION" type="text" value="<?php echo $empleado["DIRECCION"]; ?>"/><br />
+	</div>
+	
+	
+	
+	<div class="lineaxd">
+	<div>
+	<label class="textoMod2">Dni</label></br>	
+	<input class="inMod2" pattern="^[0-9]{8}[A-Z]" id="DNI" name="DNI" type="text" value="<?php echo $empleado["DNI"]; ?>"/><br />
+	</div>
+	<div>
+	<label class="textoMod3">Telefono</label></br>	
+	<input class="inMod3" pattern="^[0-9]{9}" id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $empleado["TELEFONO"]; ?>"/><br />
+	</div>
+	</div>	
+
+	
+	
+	<div>
+	<label class="textoMod">Fecha de contratacion</label></br>	
+	<input class="inMod" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{2}" id="FECHACONTRATACION" name="FECHACONTRATACION" type="text" value="<?php echo $empleado["FECHACONTRATACION"]; ?>"/><br />
+	</div>
+	
+	<div>
+	<label class="textoMod">Capital Social</label></br>	
+	<input class="inMod" id="CAPITALSOCIAL" name="CAPITALSOCIAL" type="text" value="<?php echo $empleado["CAPITALSOCIAL"]; ?>"/><br />
+	</div>
+	
+	<div>
+	<label class="textoMod">Dias de vacaciones</label></br>	
+	<input class="inMod" id="DIASVACACIONES" name="DIASVACACIONES" type="text" value="<?php echo $empleado["DIASVACACIONES"]; ?>"/><br/>
+	</div>
+	
+	 	<div>
+	<label class="textoMod">Cargo</label></br>	
+	<select  align="center" class="seleccion" id="CARGO" name="CARGO">
      	<option value="1"<?php if($empleado['CARGO']==1) echo "selected"; ?>>Presidente</option> 
     	<option value="2"<?php if($empleado['CARGO']==2) echo "selected"; ?>>Vicepresidente</option> 
     	<option value="3"<?php if($empleado['CARGO']==3) echo "selected"; ?>>Secretario</option>
@@ -47,13 +86,14 @@
     	<option value="10"<?php if($empleado['CARGO']==10) echo "selected"; ?>>Peón</option> 
     	<option value="11"<?php if($empleado['CARGO']==11) echo "selected"; ?>>Camionero</option> 
     	</select>
-   	<br />
-
-	<input pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{2}" id="FECHACONTRATACION" name="FECHACONTRATACION" type="text" value="<?php echo $empleado["FECHACONTRATACION"]; ?>"/><br />
-	<input id="CAPITALSOCIAL" name="CAPITALSOCIAL" type="text" value="<?php echo $empleado["CAPITALSOCIAL"]; ?>"/><br />
-	<input id="DIASVACACIONES" name="DIASVACACIONES" type="text" value="<?php echo $empleado["DIASVACACIONES"]; ?>"/><br />
+  
+	</div>
 	
-	<select id="OID_MAQ" name="OID_MAQ">
+	
+	
+	<div>
+	<label class="textoMod">Maquina</label></br>	
+	<select class="seleccion" id="OID_MAQ" name="OID_MAQ">
      	<option value="1"<?php if($empleado['OID_MAQ']==1) echo "selected"; ?>>Pintura</option> 
     	<option value="2"<?php if($empleado['OID_MAQ']==2) echo "selected"; ?>>Fresadora</option> 
     	<option value="3"<?php if($empleado['OID_MAQ']==3) echo "selected"; ?>>Serigrafiadora</option>
@@ -69,16 +109,32 @@
     	</select>
     	
    	<br />
-	<button id="guardar" name="guardar" type="submit" class="editar_fila">
-			<img src="../img/bag_menuito.bmp" class="editar_fila" alt="Modificar cargo empleado">
+   	</div>
+  
+	
+	
+   	</div>
+   	</div>
+   	
+	<button id="guardar" name="guardar" type="submit" class="botonG">
+			<img src="../img/guardar.png" class="imagen" >
 	</button>
-	<button id="patras" name="patras" type="submit" class="editar_fila">
+	
+	<button id="patras" name="patras" type="submit" class="botonG2">
 			<img src="../img/back.png" class="editar_fila" alt="Modificar cargo empleado">
 	</button>
 
 
 
 	</form>
+	<?php 
+	if (isset($_SESSION["mensajeok"])) {
+			unset($_SESSION["mensajeok"]);
+			
+		echo "<div align=\"center\" class=\"error\"><p>¡El empleado ha sido modificado correctamente!</p></div>";
+		
+	}  
+	?>
 	<?php } ?>
 </main>
 </body>

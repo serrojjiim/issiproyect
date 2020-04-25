@@ -9,7 +9,7 @@
  
 	$conexion = crearConexionBD();
 	$actualizaCli = actualizarDatosCliente($conexion,$cliente['OID_CLI'],$cliente['CIF'],$cliente['NOMBRE']
-	,$cliente['DIRECCION'],$cliente['TELEFONO'],$cliente['EMAIL']);
+	,$cliente['DIRECCION'],$cliente['TELEFONO'],$cliente['EMAIL'],$cliente['OCULTO']);
 	
 	$_SESSION['cliente'] = getClienteOid($conexion, $cliente['OID_CLI']);
 	cerrarConexionBD($conexion);

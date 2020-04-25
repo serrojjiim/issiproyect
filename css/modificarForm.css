@@ -1,10 +1,10 @@
 body{
-	background-color:#fdffff
+	background-color:#c97f917d
 }
 form.modForm{
         
 	}
-input.xd{
+input.inMod{
 	padding:1%;
 	border-radius:5px;
 	margin-top:2%;
@@ -12,25 +12,45 @@ input.xd{
 	background-color:#ffffff;
 	outline-width: 0;
     color:#615d5d;
-    width:85%;
+    width:80%;
+    text-indent: 2%;
+    margin-top:2%;
 }
-input.xd2{
-	padding:1%;
+input.inMod2{
+	padding:4%;
 	border-radius:5px;
 	margin-top:2%;
 	border:none;
 	background-color:#ffffff;
 	outline-width: 0;
     color:#615d5d;
-    width:41%;
+    width:130%;
+    text-indent: 4%;
+    margin-top:4%;
+    margin-left:33%;
+    
+}
+input.inMod3{
+	padding:4%;
+	border-radius:5px;
+	margin-top:2%;
+	border:none;
+	background-color:#ffffff;
+	outline-width: 0;
+    color:#615d5d;
+    width:130%;
+    text-indent: 4%;
+    margin-top:4%;
+    margin-left:90%;
+
 }
 div.divMod{
     border-radius:20px;
-	background-color: #ff0047;
+	background-color: #aa173ad9;
 	padding-top:5%;
 	padding-bottom:5%;
 	width:40%;
-	margin-top:15%;
+	margin-top:5%;
 	margin-left:auto;
 	margin-right:auto;
 	
@@ -44,5 +64,65 @@ div.divLin{
 label.textoMod{
 	color:#ffffff;
 	float: left;
-	margin-left:8%
+	margin-top:2%;
+	margin-left:13%
+}
+label.textoMod2{
+	color:#ffffff;
+	float: left;
+	margin-left:47%;
+	margin-top:4%;
+		margin-top:2%;
+
+}
+label.textoMod3{
+	color:#ffffff;
+	float: left;
+	margin-left:100%;
+	margin-top:4%;
+		margin-top:2%;
+
+}
+button.botonG{
+    margin-top:2%;
+    margin-left:45%;
+    border:none;
+    background-color:#f0f8ff00;
+       cursor:pointer;
+
+    }
+button.botonG2{
+   border:none;
+   background-color:#f0f8ff00;
+   cursor:pointer;
+}
+div.error{
+	border-radius:20px;
+    margin-top:1%;
+    margin-left:auto;
+    margin-right:auto;
+    background-color:#14f11440;
+    width:37%;
+    padding:1%;
+}
+div.lineaxd{
+	display:flex;
+	margin-top:1%;
+}
+img.imagen{
+    width:40px;
+}
+select.seleccion{
+    padding:1%;
+	border-radius:5px;
+	margin-top:2%;
+	border:none;
+	background-color:#ffffff;
+	outline-width: 0;
+    color:#615d5d;
+    width:80%;
+    text-indent: 2%;
+    margin-top:2%;
+       cursor:pointer;
+
 }
