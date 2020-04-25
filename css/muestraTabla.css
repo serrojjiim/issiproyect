@@ -12,7 +12,7 @@ button.vistacliente{
 	background: transparent;
     border: none !important;
 }
-caption {
+h2.titulo {
 	color:black;
 	font-size: 2em;
 	font-family: "Arial Black";}
@@ -21,7 +21,7 @@ th {
   border: 0px solid black;
   padding-top: 12px;
   padding-bottom: 12px;
-  background-color: #ff1c50;
+  background-color: #aa173a;
   color: white;
 }
 
@@ -52,6 +52,63 @@ table tr.fila:hover td.boton{background-color: transparent !important;}
 
 p.fOculto{
 	color:#94929847;
+}
+
+div.paginas{
+	width:200px;
+	height:30px;
+	padding-top:3px;
+	margin-top:5px;
+	overflow: hidden; 
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div.tabla {
+	height: auto; 
+	overflow: hidden;
+}
+
+div.selectpag{
+	height: 30px; 
+	overflow: hidden;
+	padding-top: 20px;
+	margin-bottom: 3px; 
+	padding-left: 80px;
+}
+
+div.titulotabla{
+	height:90px;
+	overflow: hidden;
+	padding-top: 20px;
+	margin-bottom: 3px; 
+	display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+a:link, a:visited {
+	margin-right:4px;	
+  text-decoration: none;
+  font-size: large;
+  color: #000000;
+}
+
+a:link:active, a:visited:active {
+  margin-right:4px;	
+  text-decoration: none;
+  font-size: large;
+  color: #D9BABA;
+  
+}
+
+span.current{
+	width:4px;
+	margin-right:4px;
+	border-radius: 10px;
+  border: 1.5px solid #DA4C6F;
+	  font-size: x-large;
+
 }
 @media screen and (max-width: 600px) {
        table {
