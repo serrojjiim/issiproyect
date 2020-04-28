@@ -15,7 +15,7 @@
 		$conexion = crearConexionBD();	
 	
 		$excepcion = anadirempleado($conexion,$nempleado["DNI"],$nempleado["NOMBRE"],$nempleado["APELLIDOS"],$nempleado["TELEFONO"],$nempleado["DIRECCION"]
-		,$nempleado["CARGO"],$nempleado["CAPITALSOCIAL"],$nempleado["FECHACONTRATACION"],$nempleado["DIASVACACIONES"],$nempleado["OID_MAQ"]);
+		,$nempleado["CAPITALSOCIAL"],$nempleado["FECHACONTRATACION"],$nempleado["DIASVACACIONES"],$nempleado["OID_MAQ"]);
 		
 
 		
@@ -30,7 +30,7 @@
 		}
 		
 		$_SESSION["mensajeoka"] = 1;
-		Header("Location: ../muestra/muestraEmpleados.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM);
+		Header("Location: ../modificar/nuevoEmpleado.php");
 	}
 	else Header("Location: ../muestra/muestraEmpleados.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM); // Se ha tratado de acceder directamente a este PHP
 ?>

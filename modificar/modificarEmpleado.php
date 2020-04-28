@@ -1,6 +1,6 @@
 <?php	
 	session_start();	
-	if($_SESSION['cargo']!="PRESIDENTE" and $_SESSION['cargo']!="VICEPRESIDENTE"){
+	if( !isset($_SESSION["cargo"]) or ($_SESSION['cargo']!="PRESIDENTE" and $_SESSION['cargo']!="VICEPRESIDENTE")){
 		echo "</p>No tienes permisos para acceder a esta página</p>";
 		
 	}else{
@@ -43,18 +43,18 @@
 	<div class="linea2">
 	<div class="dividido">
 	<label class="textoMod">Nombre</label></br>		
-	<input class="corto" id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $empleado["NOMBRE"]; ?>"/><br />
+	<input class="corto" id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $empleado["NOMBRE"]; ?>" required/><br />
 	</div>
 	
 	<div class="dividido">
 	<label class="textoMod">Apellidos</label></br>	
-	<input class="corto" id="APELLIDOS" name="APELLIDOS" type="text" value="<?php echo $empleado["APELLIDOS"]; ?>"/><br />
+	<input class="corto" id="APELLIDOS" name="APELLIDOS" type="text" value="<?php echo $empleado["APELLIDOS"]; ?>" required/><br />
 	</div>
 	</div>
 	
 	<div class="linea">
-			<label for="DIRECCION" class="textoMod">Direccion</label></br>	
-			<input align="center" class="largo" id="DIRECCION" name="DIRECCION" type="text" value="<?php echo $empleado["DIRECCION"]; ?>"/><br />
+		<label for="DIRECCION" class="textoMod">Direccion</label></br>	
+		<input align="center" class="largo" id="DIRECCION" name="DIRECCION" type="text" value="<?php echo $empleado["DIRECCION"]; ?>" required/><br />
 	</div>
 	
 	
@@ -62,11 +62,11 @@
 	<div class="linea2">
 	<div class="dividido">
 	<label class="textoMod">Dni</label></br>	
-	<input class="corto" pattern="^[0-9]{8}[A-Z]" id="DNI" name="DNI" type="text" value="<?php echo $empleado["DNI"]; ?>"/><br />
+	<input class="corto" pattern="^[0-9]{8}[A-Z]" id="DNI" name="DNI" type="text" value="<?php echo $empleado["DNI"]; ?> "required/><br />
 	</div>
 	<div class="dividido">
 	<label class="textoMod">Telefono</label></br>	
-	<input class="corto" pattern="^[0-9]{9}" id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $empleado["TELEFONO"]; ?>"/><br />
+	<input class="corto" pattern="^[0-9]{9}" id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $empleado["TELEFONO"]; ?>"required/><br />
 	</div>
 	</div>	
 
@@ -74,22 +74,22 @@
 	
 	<div class="linea">
 	<label class="textoMod">Fecha de contratacion</label></br>	
-	<input class="largo" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{2}" id="FECHACONTRATACION" name="FECHACONTRATACION" type="text" value="<?php echo $empleado["FECHACONTRATACION"]; ?>"/><br />
+	<input class="largo" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{2}" id="FECHACONTRATACION" name="FECHACONTRATACION" type="text" value="<?php echo $empleado["FECHACONTRATACION"]; ?>" required/><br />
 	</div>
 	
 	<div class="linea">
 	<label class="textoMod">Capital Social</label></br>	
-	<input class="largo" id="CAPITALSOCIAL" name="CAPITALSOCIAL" type="text" value="<?php echo $empleado["CAPITALSOCIAL"]; ?>"/><br />
+	<input class="largo" id="CAPITALSOCIAL" name="CAPITALSOCIAL" type="text" value="<?php echo $empleado["CAPITALSOCIAL"]; ?>"required/><br />
 	</div>
 	
 	<div class="linea">
 	<label class="textoMod">Dias de vacaciones</label></br>	
-	<input class="largo" id="DIASVACACIONES" name="DIASVACACIONES" type="text" value="<?php echo $empleado["DIASVACACIONES"]; ?>"/><br/>
+	<input class="largo" id="DIASVACACIONES" name="DIASVACACIONES" type="text" value="<?php echo $empleado["DIASVACACIONES"]; ?>"required/><br/>
 	</div>
 	
 	 	<div class="linea">
 	<label class="textoMod">Cargo</label></br>	
-	<select class="seleccion" id="CARGO" name="CARGO">
+	<select class="seleccion" id="CARGO" name="CARGO" required>
      	<option value="1"<?php if($empleado['CARGO']==1) echo "selected"; ?>>Presidente</option> 
     	<option value="2"<?php if($empleado['CARGO']==2) echo "selected"; ?>>Vicepresidente</option> 
     	<option value="3"<?php if($empleado['CARGO']==3) echo "selected"; ?>>Secretario</option>
@@ -131,7 +131,7 @@
 			<img src="../img/salvar.png" class="imagen" alt="Guardar">
 	</button>
 	
-	<button title="Volver a la tabla" id="patras" name="patras" type="submit" class="botonG2">
+	<button onclick="window.location.href='../muestra/muestraEmpleados.php'" title="Volver a la tabla" id="patras" name="patras" type="button" class="botonG2">
 			<img src="../img/atras.png" class="imagen" alt="Volver">
 	</button>
 	

@@ -65,7 +65,7 @@ CREATE TABLE peticiondias (
     oid_emp   INTEGER,
     dias   INTEGER,
     motivo VARCHAR(400),
-    aceptada NUMBER(1),
+    aceptada NUMBER(1) DEFAULT 3,
     PRIMARY KEY (oid_peticiondias),
     FOREIGN KEY ( oid_emp ) REFERENCES empleado
 );

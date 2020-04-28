@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php session_start(); 
+if(!isset($_SESSION["cargo"])){
+		echo "</p>No tienes permisos para acceder a esta página</p>";
+		
+	}else{?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -51,6 +55,8 @@ window.onclick = function(event) {
 <p>Hola <?php echo $_SESSION['nombre']?></p>
 <p>Hola <?php echo $_SESSION['dni']?></p>
 <p>Hola <?php echo $_SESSION['cargo']?></p>
+<p>Hola <?php echo $_SESSION['oid_emp']?></p>
 </body>
 </html>
 
+<?php } ?>

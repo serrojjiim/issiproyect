@@ -1,7 +1,7 @@
 <?php
 
 	session_start();
-	if($_SESSION['cargo']!="JEFEPERSONAL" and $_SESSION['cargo']!="PRESIDENTE"){
+	if(!isset($_SESSION["cargo"]) or ($_SESSION['cargo']!="JEFEPERSONAL" and $_SESSION['cargo']!="PRESIDENTE")){
 		echo "</p>No tienes permisos para acceder a esta página</p>";
 		
 	}else{
@@ -57,7 +57,7 @@
 
 </head>
 
-<body>
+<body style="background-color:#dfdfdf7d;">
 
 <?php
 	include_once ("header.php");
@@ -65,7 +65,7 @@
 <main> 	
 	<!-- <input type="text" id="filtro" onkeyup="filtrar()" placeholder="Filtrar por acabado.." title="Escribe un acabado"> -->
 	<div class="titulotabla">
-	 	<div><h2 class="titulo">Listado de los empleados</h2></div>
+	 	<div><p class="titulo">LISTADO DE EMPLEADOS</p></div>
 	 </div>
 	<div class="selectpag">
 	
@@ -84,7 +84,7 @@
 
 			entradas de <?php echo $total_registros?>
 
-			<input type="submit" value="Cambiar">
+			<input style="cursor: pointer;" type="submit" value="Cambiar">
 
 		</form>
 		</div>
@@ -108,7 +108,7 @@
 		<div class ="tabla">
 	 	<table  id="tablaClientes">	
 		<tr>
-    		<th>DNI</th>
+    		<th class="primera">DNI</th>
     		<th>Nombre</th>
     		<th>Apellidos</th>
     		<th>Teléfono</th>
@@ -120,7 +120,7 @@
     		<th>Fecha de Contratacion</th>
     		<th>Dias de vacaciones</th>
     		<?php } ?>
-    		<th>Maquina	</th>
+    		<th class="ultima">Maquina	</th>
   		</tr>
 			
 	<?php
@@ -186,11 +186,11 @@
 								<?php
 								if($_SESSION['cargo']=="PRESIDENTE"){ ?>
 								<td class ="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
-									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
+									<img src="../img/lapizEditar.png" class="boton" alt="Lapiz Editar" height="40" width="40">
 								</button></td>
 						
 								<td class ="boton"><button id="activar" name="activar" type="submit" class="vistacliente">
-									<img src="../img/activar.png" class="borrar_fila" alt="Papelera Borrar" height="34" width="34">
+									<img src="../img/activar.png" class="boton" alt="Papelera Borrar" height="34" width="34">
 								</button></td>
 								<?php } ?>
 
@@ -240,12 +240,12 @@
 							<?php
 								if($_SESSION['cargo']=="PRESIDENTE"){ ?>
 								<td class ="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
-									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
+									<img src="../img/lapizEditar.png" class="boton" alt="Lapiz Editar" height="40" width="40">
 								</button></td>
 						
 								<td class ="boton"><button id="b" name="b" type="button" class="vistacliente" 
 									onclick="window.location='#popup<?php echo $fila["OID_EMP"]; ?>';" >
-									<img src="../img/ocultar.png" class="borrar_fila" alt="Papelera Borrar" height="34" width="34">
+									<img src="../img/ocultar.png" class="boton" alt="Papelera Borrar" height="34" width="34">
 								</button></td>
 							<div id="popup<?php echo $fila["OID_EMP"]; ?>" class="overlay" align="left">
 									<div class="popup">

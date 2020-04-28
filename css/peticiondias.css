@@ -1,0 +1,78 @@
+body {
+	background-color:#dfdfdf7d;
+}
+
+td{
+	word-wrap:break-word;
+}
+button.send{
+	background-color: transparent;
+	border: none;
+}
+td.motivo{
+	word-wrap:break-word;
+	max-width:0;
+	padding-right:3%;
+}
+tr.aceptada{
+	background-color: #00c2ff24;
+}
+ textarea.areamotivo{
+ 	outline:none;
+ 	resize :none;
+ 	border-radius:8px;
+ 	width:98%;
+ 	border: none;
+ }
+ 
+ input.diasapedir{
+ 	border:none;
+ 	width: 100%;
+ }
+tr.denegada{
+	background-color: #ff00002b;
+	
+}
+
+tr.pendiente{
+	background-color: #c3c3c39c;
+}
+
+div.linea{
+	display:block;
+	margin-bottom: 7%;
+	 border-bottom: 1px solid #aa173a;
+	 margin-left:7%;
+	 margin-right: 7%;
+	 margin-top: 7%;
+}
+div.lineab{
+	display:block;
+	margin-bottom: 7%;
+	 
+	 margin-left:7%;
+	 margin-right: 7%;
+	 margin-top: 7%;
+}
+
+div.formdias{
+	width:50%;
+	margin-left:auto; 
+  	margin-right:auto;
+  	border: 2px solid #aa173a;
+  	border-radius: 8px;
+  		background-color: #ffffffd9;
+}
+div.solicitudes{
+	width:54%;
+	display:inline-block;
+	height: 100%;
+	margin-left: 3%;
+}
+div.formsolicitud{
+	width:40%;
+	display:inline-block;
+	height:100%;
+	float:right;
+	margin-right: 3%;
+}

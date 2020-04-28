@@ -1,3 +1,4 @@
+
 <?php	
 	session_start();
 	
@@ -16,6 +17,7 @@
 		$nempleado["FECHACONTRATACION"] = $_REQUEST["FECHACONTRATACION"];
 		$nempleado["DIASVACACIONES"] = $_REQUEST["DIASVACACIONES"];
 		$nempleado["OID_MAQ"] = $_REQUEST["OID_MAQ"];
+		
 		
 		
 		$_SESSION["nempleado"] = $nempleado;

@@ -56,7 +56,8 @@ function quitar_empleado($conexion,$dniemp) {
     }
 }
 
-function anadirempleado($conexion,$dni_emp,$nombren,$apellidosn,$telefonon,$direccionn,$cargoo,$capitalsocialn,$fechacontratacionn,$diasvacacionesn,$maqq) {
+function anadirempleado($conexion,$dni_emp,$nombren,$apellidosn,$telefonon,$direccionn,$capitalsocialn,$fechacontratacionn,$diasvacacionesn,$maqq) {
+		$cargo = 10;
 	try {
 		$stmt=$conexion->prepare('CALL ANADIRR_EMPLEADO(:dni,:nombre,:apellidos,:telefono,:direccion,:cargo,:capitalsocial,:fechacontratacion,:diasvacaciones,:maq)');
 		$stmt->bindParam(':dni',$dni_emp);
@@ -64,7 +65,7 @@ function anadirempleado($conexion,$dni_emp,$nombren,$apellidosn,$telefonon,$dire
 		$stmt->bindParam(':apellidos',$apellidosn);
 		$stmt->bindParam(':telefono',$telefonon);
 		$stmt->bindParam(':direccion',$direccionn);
-		$stmt->bindParam(':cargo',$cargoo);
+		$stmt->bindParam(':cargo',$cargo);
 		$stmt->bindParam(':capitalsocial',$capitalsocialn);
 		$stmt->bindParam(':fechacontratacion',$fechacontratacionn);
 		$stmt->bindParam(':diasvacaciones',$diasvacacionesn);	

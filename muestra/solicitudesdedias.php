@@ -1,13 +1,13 @@
 <?php
 session_start();
-if($_SESSION['cargo']!="JEFEPERSONAL"){
+if(!isset($_SESSION["cargo"]) or $_SESSION['cargo']!="JEFEPERSONAL"){
 		echo "</p>No tienes permisos para acceder a esta página</p>";
 		
 	}else{
 
     require_once("../gestionas/gestionBD.php");
     require_once("../consultaPaginada.php");
-	
+	 require_once("../gestionas/gestionarEmpleado.php");
 
 	// ¿Venimos simplemente de cambiar página o de haber seleccionado un registro ?
 	// ¿Hay una sesión activa?
@@ -28,7 +28,7 @@ if($_SESSION['cargo']!="JEFEPERSONAL"){
 
 	// La consulta que ha de paginarse
 
-	$query = "SELECT * FROM PETICIONDIAS"; //consulta_paginada($conexion, $query, 3, 3);
+	$query = "SELECT * FROM PETICIONDIAS WHERE ACEPTADA = 3"; //consulta_paginada($conexion, $query, 3, 3);
 
 	
 	// Se comprueba que el tamaño de página, página seleccionada y total de registros son conformes.
@@ -56,41 +56,30 @@ if($_SESSION['cargo']!="JEFEPERSONAL"){
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <!-- <link rel="stylesheet" type="text/css" href="css/biblio.css" /> -->
-    	<!-- <script type="text/javascript" src="./js/boton.js"></script> -->
+  <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />    
+  <link rel="stylesheet" type="text/css" href="../css/popupocultar.css" />  	
   <title>Lista de solicitudes</title>
 </head>
 
-<body>
+<body style="background-color: #dfdfdf7d">
 
 <?php
 	include_once ("header.php");
 	?>
 <main>
 
-	 <nav>
+	
 
-		<div id="enlaces">
+<div class="titulotabla">
+	 	<div><p class="titulo">PETICIONES PENDIENTE DE REVISAR</p></div>
+	 </div>
 
-			<?php
-
-				for( $pagina = 1; $pagina <= $total_paginas; $pagina++ )
-
-					if ( $pagina == $pagina_seleccionada) { 	?>
-
-						<span class="current"><?php echo $pagina; ?></span>
-
-			<?php }	else { ?>
-
-						<a href="solicitudesdedias.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
-
-			<?php } ?>
-
-		</div>
-
-
-
-		<form method="get" action="solicitudesdedias.php">
+		
+	<div style ="width: 60%;margin-left: auto;margin-right: auto" class ="tabla">
+		<div class="selectpag">
+	
+			<div style="display: inline-block;width: 50%;">
+			<form class="formpag" method="get" action="muestraEmpleados.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -104,113 +93,155 @@ if($_SESSION['cargo']!="JEFEPERSONAL"){
 
 			entradas de <?php echo $total_registros?>
 
-			<input type="submit" value="Cambiar">
+			<input style="cursor: pointer;" type="submit" value="Cambiar">
 
-		</form>
-
-	</nav>
-
-
-
+			</form>
+			</div>
+	
+		</div>
+		
+	 	<table id="tablaClientes">	
+		<tr>
+    		<th class="primera">Empleado</th>
+    		<th>Dias</th>
+    		<th class="ultima">Motivo	</th>  		
+    		</tr>
+			
 	<?php
 
 		foreach($filas as $fila) {
 
 	?>
-
-
-
-	 <article class="empleado">
-
+		<?php if ($fila["ACEPTADA"] == 3) { ?>
+			
+		
 		<form method="post" action="../controladores/controlador_solicitudesdedias.php">
 
-			<div class="fila_empleado">
+			<div class="fila_solicitud">
 
-				<div class="datos_empleado">
-					<input id="OID_PETICIODIAS" name="OID_PETICIONDIAS"
-
-						type="hidden" value="<?php echo $fila["OID_PETICIONDIAS"]; ?>"/>
-					<input id="OID_EMP" name="OID_EMP"
-
-						type="hidden" value="<?php echo $fila["OID_EMP"]; ?>"/>
-
-					<input id="DIAS" name="DIAS"
-
-						type="hidden" value="<?php echo $fila["DIAS"]; ?>"/>
-
-					<input id="MOTIVO" name="MOTIVO"
-
-						type="hidden" value="<?php echo $fila["MOTIVO"]; ?>"/>
-					<input id="ACEPTADA" name="ACEPTADA"
-
-						type="hidden" value="<?php echo $fila["ACEPTADA"]; ?>"/>
-
-						<?php if($fila["ACEPTADA"]== NULL ){ ?>
-
-
-				<?php
-
-					if (isset($empleado) and ($empleado["DNI"] == $fila["DNI"])) { ?>
-
-
-						<h3><input id="DNI" name="DNI" type="text" value="<?php echo $fila["DNI"]; ?>"/>	</h3>
-
-						<h4><?php echo $fila["NOMBRE"]." ".$fila["APELLIDOS"]; ?></h4>
-
-				<?php }	else { ?>
-
-								<input id="DNI" name="DNI" type="hidden" value="<?php echo $fila["DNI"]; ?>"/>
-
-						<div class="fila"><b><?php echo $fila["OID_EMP"]." "; echo $fila["DIAS"]; ?></b></div>
-						<div class="dni"><b><?php echo $fila["MOTIVO"]; ?></b></div>
-						<div class="dni"><b><?php echo $fila["ACEPTADA"]; ?></b></div>
+				<div class="datos_solicitud">
 					
-
-					</br>
-
-				<?php } ?>
+					<input id="OID_PETICIONDIAS" name="OID_PETICIONDIAS"  type="hidden" value="<?php echo $fila["OID_PETICIONDIAS"]; ?>"/>
+					<?php 
+						$emple = obtener_empleado_oid($conexion,$fila["OID_EMP"]);
+						?> 
+						<tr class="fila">
+							<td align="middle"><?php echo $emple['NOMBRE']; echo " "; echo $emple['APELLIDOS']; ?></td>
+							
+							<td align="center"><?php echo $fila['DIAS'] ?></td>
+							
+							<td style="word-wrap:break-word;max-width:0;padding-right: 3%;width: 40%;" align="center"><?php echo $fila['MOTIVO'] ?></td>					
+								
+							<td class ="boton">
+								<button title="Aceptar petición" id="acepta" name="acepta" type="button" class="vistacliente" 
+								onclick="window.location='#popupa<?php echo $fila["OID_PETICIONDIAS"]; ?>';">
+									<img src="../img/aceptar.png" class="boton" alt="Aceptar petición" height="40" width="40">
+								</button>
+							</td>
+						
+							<td class ="boton">
+								<button title="Denegar petición" id="denegar" name="denegar" type="button" class="vistacliente" 
+									onclick="window.location='#popupd<?php echo $fila["OID_PETICIONDIAS"]; ?>';" >
+									<img src="../img/denegar.png" class="boton" alt="Denegar petición" height="40" width="40">
+								</button>
+								</td>
+								
+							<div id="popupd<?php echo $fila["OID_PETICIONDIAS"]; ?>" class="overlay" align="left">
+									<div class="popup">
+										<a class="close" href="#">X</a>
+										<p class="textp" align="center">¿Seguro que quieres denegar la petición a <?php echo $emple['NOMBRE']; echo " "; echo $emple['APELLIDOS'];?>?</p>
+										</br>
+										<button id="denegarr" name="denegarr" type="submit" class="bPop"><img src="../img/denegar.png" width="30px" height="30px"/></button>
+									</div>
+							</div>
+							
+							<div id="popupa<?php echo $fila["OID_PETICIONDIAS"]; ?>" class="overlay" align="left">
+									<div class="popup">
+										<a class="close" href="#">X</a>
+										<p class="textp" align="center">¿Seguro que quieres aceptar la petición a <?php echo $emple['NOMBRE']; echo " "; echo $emple['APELLIDOS'];?>?</p>
+										</br>
+										<button id="aceptarr" name="aceptarr" type="submit" class="bPop"><img src="../img/aceptar.png" width="30px" height="30px"/></button>
+									</div>
+							</div>
+								
+						</tr>
+						
+					
+				
 
 				</div>
-
-
-
-				<div id="botones_fila">
-
-				<?php if (isset($empleado) and ($empleado["OID_EMP"] == $fila["OID_EMP"])) { ?>
-
-						<button id="grabar" name="grabar" type="submit" class="editar_fila">
-
-							<img src="../img/bag_menuito.bmp" class="editar_fila" alt="Guardar modificación">
-
-						</button>
-
-				 <?php } else {?>
-
-						 <button id="aceptar" name="aceptar" type="submit" class="editar_fila">
-
-							<img src="../img/pencil_menuito.bmp" class="editar_fila" alt="Aceptar peticion">
-
-						</button>
-				<?php } ?>
-
-					<button id="denegar" name="denegar" type="submit" class="editar_fila">
-
-						<img src="../img/remove_menuito.bmp" class="editar_fila" alt="Denegar peticion">
-
-					</button> 
-
 				</div>
-
-			</div>
-						<?php } ?>
-
 		</form>
 
-	</article>
+
 
 
 
 	<?php } ?>
+	<?php } ?>
+	</table>
+	</div>
+	
+
+
+		<div class="paginas">
+		<nav>
+			<div id="enlaces">
+				<?php
+			
+				if($total_paginas <=6){
+					 for( $pagina = 1; $pagina <= $total_paginas; $pagina++ )
+						if ( $pagina == $pagina_seleccionada) { 	?>
+							<span class="current"><?php echo $pagina; ?></span>
+
+			<?php }	else { ?>
+
+						<a href="solicitudesdedias.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+			<?php }
+			 }
+				
+				else if($pagina_seleccionada >= $total_paginas-3) {
+					 for( $pagina = $pagina_seleccionada-(6-($total_paginas-$pagina_seleccionada)); $pagina <= $total_paginas; $pagina++ )
+						if ( $pagina == $pagina_seleccionada) { 	?>
+
+						<span class="current"><?php echo $pagina; ?></span>
+
+			<?php }	else { ?>
+
+						<a href="solicitudesdedias.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+			<?php }
+			 }
+				else if($pagina_seleccionada <= 4) { 
+					for( $pagina = 1; $pagina <= $pagina_seleccionada+(7-$pagina_seleccionada); $pagina++ )
+					if ( $pagina == $pagina_seleccionada) { 	?>
+
+						<span class="current"><?php echo $pagina; ?></span>
+
+			<?php }	else { ?>
+
+						<a href="solicitudesdedias.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+			<?php } 
+				}
+				else {
+					for( $pagina = $pagina_seleccionada-3; $pagina <= $pagina_seleccionada+3; $pagina++ )
+				if ( $pagina == $pagina_seleccionada) { 	?>
+
+						<span class="current"><?php echo $pagina; ?></span>
+
+			<?php }	else { ?>
+
+						<a href="solicitudesdedias.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+			<?php } 
+				} ?>
+			
+
+		</div>
+		</nav>
+		</div>
 
 </main>
 </body>

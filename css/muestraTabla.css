@@ -1,3 +1,4 @@
+
 table {
   font: 14px Arial, sans-serif;
   border-collapse: collapse;
@@ -16,7 +17,11 @@ input[type=submit]{
 
 form.formpag{
 	font: 14px Arial, sans-serif;
-	width: 50%;
+	width: 70%;
+}
+
+img.boton{
+	cursor:pointer;
 }
 button.vistacliente{
 	background: transparent;
@@ -28,10 +33,12 @@ button.anadir{
     border: none !important;
     float:right;
 }
-h2.titulo {
+p.titulo {
 	color:black;
-	font-size: 2em;
-	font-family: "Arial Black";}
+	font-size: xx-large;
+font: 40px Arial, Helvetica, sans-serif;
+	font-weight:lighter;
+}
 
 th {
   border: 0px solid black;
@@ -40,7 +47,12 @@ th {
   background-color: #aa173a;
   color: white;
 }
-
+th.ultima{
+	border-top-right-radius:8px; 
+}
+th.primera{
+	border-top-left-radius: 8px;
+}
 
 td {
   border: 0px solid #ddd;
@@ -50,8 +62,12 @@ td.boton{
 	background-color:transparent;
 }
 
-table tr:nth-child(even){background-color: #ff1c50;}
-
+tr.fila td {
+	background-color: #fff;
+}
+tr.fila td.boton {
+	background-color: transparent;
+}
 table tr.fila:hover td {background-color: #a2a2a214;}
 table tr.fila:hover td.boton{background-color: transparent !important;}
 #filtro {
