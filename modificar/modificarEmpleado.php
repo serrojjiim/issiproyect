@@ -10,8 +10,8 @@
 <!DOCTYPE html>
 <html>
 <head>
- <link rel="stylesheet" type="text/css" href="css/header.css" />
- <link rel="stylesheet" type="text/css" href="css/modificarForm.css" />
+ <link rel="stylesheet" type="text/css" href="../css/header.css" />
+ <link rel="stylesheet" type="text/css" href="../css/modificarForm.css" />
 </head>
 <body>
 <main>
