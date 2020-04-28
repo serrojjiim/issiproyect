@@ -109,6 +109,16 @@ vertical-align: middle;
 margin-left:7%;
 }
 
+div.error2{
+	border-radius:20px;
+    margin-top:2%;
+    margin-left:auto;
+    margin-right:auto;
+    background-color:#ff360073;
+    width:37%;
+    font: 15px Arial, sans-serif;
+}
+
 div.errortext{
 display:inline-block;	
 width:60%;

@@ -28,12 +28,18 @@
 
 			
 			
-	
-			if(isset($_REQUEST["borrar"])) Header("Location: ../accions/accion_borrar_maquina.php");
+		
+		if(isset($_REQUEST["borrar"])) Header("Location: ../accions/accion_borrar_maquina.php");
 		else if(isset($_REQUEST['editar'])) Header("Location: ../modificar/modificarMaquina.php");
 		else if($condic) Header("Location: ../accions/accion_anadir_EmpleadoMaquina.php");
+		
 	}
-	else 
-		Header("Location: ../modificar/modificarMaquina.php");
+	else if(isset($_REQUEST['guardar'])){
+		$_SESSION['NOMBREMAQUINA'] =$_REQUEST['NOMBREMAQUINA'];
+		
+		
+		Header("Location: ../accions/accion_editar_maquina.php");
+	}
+	else Header("Location: ../modificar/modificarMaquina.php");
 
 ?>

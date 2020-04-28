@@ -1,12 +1,12 @@
 table {
   font: 14px Arial, sans-serif;
   border-collapse: collapse;
-  width: 90%;
-  margin-left:auto; 
-  margin-right:auto;
-
-
+  width:100%;
   
+  
+}
+tbody{
+
 }
 input[type=submit]{
 	border-radius: 8px;
@@ -48,10 +48,8 @@ td {
 td.boton{
 	width: 40px;
 	background-color:transparent;
-	
 }
 
-table tr:nth-child(even){background-color: #ff1c50;}
 
 table tr.fila:hover td {background-color: #a2a2a214;}
 table tr.fila:hover td.boton{background-color: transparent !important;}
@@ -77,8 +75,7 @@ div.paginas{
 	padding-top:3px;
 	margin-top:5px;
 	overflow: hidden; 
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: 25%;
 }
 
 div.tabla {

@@ -21,57 +21,16 @@
 	include_once ("../muestra/header.php");
 	?>
 <main>
-	
-	<div align="center" class="divMod">
-		
-	<div>
-	<form class="modForm"  method="post" action="../controladores/controlador_modificarCliente.php">
-	<input id="OID_CLI" name="OID_CLI" type="hidden"  value="<?php echo $cliente['OID_CLI'] ?>"/>
-	
-	<div>
-	<label class="textoMod">Nombre</label></br>
-	<input class="inMod" id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $cliente["NOMBRE"]; ?>"/>
-	</div>
-	
-	<div class="lineaxd">
-	<div>
-	<label class="textoMod2" >Cif</label></br>
-	<input class="inMod2" pattern="^[a-zA-Z]{1}[0-9]{7}[a-zA-Z]{1}"  id="CIF" name="CIF" type="text" value="<?php echo $cliente["CIF"]; ?>"/></br>
-	</div>
-	<div >
-	<label class="textoMod3" >Telefono</label></br>
-	<input class="inMod3" pattern="^[0-9]{9}" id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $cliente["TELEFONO"]; ?>"/>
-	</div>
-	</div>
-	<div>
-	<label class="textoMod">Direccion</label></br>
-	<input class="inMod" id="DIRECCION" name="DIRECCION" type="text" value="<?php echo $cliente["DIRECCION"]; ?>" />
-	</div>
-	
-	<div>
-	<label class="textoMod">Email</label></br>
-	<input class="inMod" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" 
-	id="EMAIL" name="EMAIL" type="text" value="<?php echo $cliente["EMAIL"]; ?>"/>
-	</div>
-	
-	</div>
-	</div>
-
-	<button id="guardar" name="guardar" type="submit" class="botonG">
-			<img src="../img/guardar.png" class="imagen" >
-	</button>
-	
-	<button id="patras" name="patras" type="submit" class="botonG2">
-			<img src="../img/back.png" class="editar_fila" alt="Modificar cargo empleado">
-	</button>
-
-	</form>
-	
-	<?php 
+<?php 
 	if (isset($_SESSION["mensajeok"])) {
 			unset($_SESSION["mensajeok"]);
 			
-		echo "<div align=\"center\" class=\"error\"><p>¡El cliente ha sido modificado correctamente!</p></div>";
+		echo "<div>
+	<div class=\"error\">
+		<div class=\"tick\"><img src=\"../img/tick.png\" /></div>
+		<div class=\"errortext\" style=\"display: inline-block; align-items: center;\" ><p>¡El cliente ha sido editado correctamente!</p></div>
+	</div>";
+		
 		
 	}  
 	?>
@@ -79,6 +38,63 @@
 	
 	
 	<?php } ?>
+	<div class="divMod">
+	
+	<form method="post" action="../controladores/controlador_clientes.php">
+	
+		<input id="OID_CLI" name="OID_CLI" type="hidden"  value="<?php echo $cliente['OID_CLI'] ?>"/>
+
+	
+	<div class="linea">
+			<label for="NOMBRE" class="textoMod">Nombre</label></br>	
+			<input align="center" class="largo" id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $cliente['NOMBRE'];?>"/><br />
+	</div>
+	
+	<div class="linea2">
+	<div class="dividido">
+	<label class="textoMod">Cif</label></br>		
+	<input class="corto" pattern="^[a-zA-Z]{1}[0-9]{7}[a-zA-Z]{1}" id="CIF" name="CIF" type="text" value="<?php echo $cliente['CIF'];?>"/><br />
+	</div>
+	
+	<div class="dividido">
+	<label class="textoMod">Teléfono</label></br>	
+	<input class="corto" pattern="^[0-9]{9}" id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $cliente['TELEFONO'];?>"/><br />
+	</div>
+	</div>
+	
+	
+	
+	
+	<div class="linea">
+	<label class="textoMod">Direccion</label></br>	
+	<input class="largo" id="DIRECCION" name="DIRECCION" type="text" value="<?php echo $cliente['DIRECCION'];?>"/><br />
+	</div>
+	
+	<div class="linea">
+	<label class="textoMod">Email</label></br>	
+	<input class="largo" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" id="EMAIL" name="EMAIL" type="text" value="<?php echo $cliente['EMAIL'];?>"/><br />
+	</div>
+		
+    	
+   	<br />
+  	<div class="linea2">
+		<button title="Guardar" id="guardar" name="guardar" type="submit" class="botonG">
+			<img src="../img/salvar.png" class="imagen" alt="Guardar">
+	</button>
+	
+	<button title="Volver a la tabla" id="patras" name="patras" type="submit" class="botonG2">
+			<img src="../img/atras.png" class="imagen" alt="Volver">
+	</button>
+	
+   	</div>
+   	</div>
+   	
+
+
+
+
+	</form>
+
 </main>
 </body>
 </html>
