@@ -52,8 +52,8 @@
 	<img class="logoCoenca" src="img/logo_coenca.png">
 	<?php if(isset($error))echo "<div class=\"error\"><p align=\"center\">El DNI indicado no tiene acceso</p></div>"; ?>
 	<form action="login.php" method="post">
-		<div ><label for="dni"></label><input spellcheck="false" type="text" name="dni" id="dni" placeholder="Introduce tu DNI" pattern="^[0-9]{8}[A-Z]" style="position: absolute; top: 65%; left: 18.5%;"/></div>
-		<div><input class="botonLogin" type="submit" name="submit" value="Acceder" style="width:150px; height:30px;"/></div>
+		<div><input spellcheck="false" type="text" name="dni" id="dni" placeholder="Introduce tu DNI" pattern="^[0-9]{8}[A-Z]"/></div>
+		<input class="botonLogin" type="submit" name="submit" value="Acceder" style="width:150px; height:30px;"/>
 	</form>
 	</div>
 
