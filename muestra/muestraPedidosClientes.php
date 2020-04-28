@@ -161,7 +161,7 @@
 							<td align="center"><?php echo $cliente['NOMBRE']?></td>
 							<td align="center"><?php echo $empleado['NOMBRE']." ".$empleado['APELLIDOS']?></td>
     						<td class="boton"><a href="#"><img src="../img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></a></td>
-							<td class="boton"><a href="#"><img src="../img/papeleraBorrar.png" alt="Papelera Borrar" height="40" width="40"></a></td>
+							<td class="boton"><a href="#"><img src="../img/ocultar.png" alt="Papelera Borrar" height="34" width="34"></a></td>
 						</tr>
 						
 				<?php } ?>

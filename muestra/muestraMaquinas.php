@@ -44,7 +44,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
   <link rel="stylesheet" type="text/css" href="../css/muestraMaquinas.css" />
-   <link rel="stylesheet" type="text/css" href="../css/popup3.css" />
+   <link rel="stylesheet" type="text/css" href="../css/popupocultar.css" />
   <script type="text/javascript" src="../js/filtro.js"></script>
   <title>Lista de máquinas</title>
 </head>
@@ -120,7 +120,7 @@
 								
 								<td class ="boton">
 									<button id="borrar" name="borrar" type="button" class="vistacliente" onclick="window.location='#popup<?php echo $fila["NOMBRE"]; echo "Remove";?>';" >
-									<img src="../img/papeleraBorrar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
+									<img src="../img/ocultar.png" class="borrar_fila" alt="Papelera Borrar" height="34" width="34">
 								</button>
 								</td>
 										
@@ -129,9 +129,9 @@
 								<div id="popup<?php echo $fila["NOMBRE"]; echo "Remove"; ?>" class="overlay" align="left">
 									<div class="popup">
 										<a class="close" href="#">X</a>
-										<p align="center">¿Seguro que quieres borrar la máquina: <?php echo $fila['NOMBRE'];?>?</p>
+										<p class="textp" align="center">¿Seguro que quieres ocultar la máquina <?php echo $fila['NOMBRE'];?>?</p>
 									</br>
-										<button id="borrar" name="borrar" type="submit" class="bPop">Borrar</button>
+										<button id="borrar" name="borrar" type="submit" class="bPop"><img src="../img/ocultar.png" width="30px" height="30px"/></button>
 									</div>
 								</div>
 							

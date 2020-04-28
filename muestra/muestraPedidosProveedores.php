@@ -153,7 +153,7 @@
 								</button></td>
 						
 								<td class ="boton"><button id="borrar" name="borrar" type="submit" class="vistacliente">
-									<img src="../img/papeleraBorrar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
+									<img src="../img/ocultar.png" class="borrar_fila" alt="Papelera Borrar" height="34" width="34">
 								</button></td>
 								
 						</tr>

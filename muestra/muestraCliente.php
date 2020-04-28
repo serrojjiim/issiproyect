@@ -5,6 +5,7 @@
     require_once("../gestionas/gestionBD.php");
     require_once("../consultaPaginada.php");
 	unset($_SESSION["paginacion"]);
+	unset($_SESSION["mensajeoka"]);
 	
 	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
 	$pagina_seleccionada = isset($_GET["PAG_NUM"])? (int)$_GET["PAG_NUM"]: (isset($paginacion)? (int)$paginacion["PAG_NUM"]: 1);
@@ -152,14 +153,14 @@
 								<td class ="boton">
 									<button id="b" name="b" type="button" class="vistacliente" 
 									onclick="window.location='#popup<?php echo $fila["OID_CLI"]; ?>';" >
-									<img src="../img/papeleraBorrar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
+									<img src="../img/ocultar.png" class="borrar_fila" alt="Papelera Borrar" height="34" width="34">
 								</button></td>
 								<div id="popup<?php echo $fila["OID_CLI"]; ?>" class="overlay" align="left">
 									<div class="popup">
 										<a class="close" href="#">X</a>
-										<p align="center">¿Seguro que quieres dar de baja a <?php echo $fila['NOMBRE'];?>?</p>
+										<p class="textp" align="center">¿Seguro que quieres dar de baja a <?php echo $fila['NOMBRE'];?>?</p>
 									</br>
-										<button id="borrar" name="borrar" type="submit" class="bPop">Borrar</button>
+										<button id="borrar" name="borrar" type="submit" class="bPop"><img src="../img/ocultar.png" width="30px" height="30px"/></button>
 									</div>
 								</div>
 							</form>
