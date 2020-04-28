@@ -64,13 +64,11 @@ input[type=password]{
 	border-width: medium;
 	border-color: #4d00002b;
    	margin-top:10px;
-    padding:2%;
     color:white;
 
 }
 
 input[type=submit]{
-	margin-top:15%;
     border:none;
 	border-radius:5px;    
 	background-color:#da4c6fb8;
@@ -102,11 +100,10 @@ input:focus{
 	font-family: "Comic Sans MS", Arial, sans-serif;
 	font-size: inherit;
 }
-input.registro{
-	margin-top:1%;
-	margin-left:16%;
+
+.registro{
+	height: 35px;
 }
-input.registroB{
-	margin-left:39%;
-	margin-top:1%
-	}
+.registroB{
+	height: 30px;
+}

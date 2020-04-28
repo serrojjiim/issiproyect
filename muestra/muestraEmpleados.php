@@ -193,6 +193,7 @@
 									<img src="../img/activar.png" class="borrar_fila" alt="Papelera Borrar" height="34" width="34">
 								</button></td>
 								<?php } ?>
+
 							</form>
 						</tr>
 					<?php }else{ ?>

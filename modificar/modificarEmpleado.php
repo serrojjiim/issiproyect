@@ -120,7 +120,7 @@
     	<option value="8"<?php if($empleado['OID_MAQ']==8) echo "selected"; ?>>Pintura2</option> 
     	<option value="9"<?php if($empleado['OID_MAQ']==9) echo "selected"; ?>>Almacen1</option> 
     	<option value="10"<?php if($empleado['OID_MAQ']==10) echo "selected"; ?>>Almacen2</option> 
-    	<option value="10"<?php if($empleado['OID_MAQ']==null) echo "selected"; ?>>Ninguna</option> 
+    	<option value="11"<?php if($empleado['OID_MAQ']==null) echo "selected"; ?>>Ninguna</option> 
 
     	</select>
     	

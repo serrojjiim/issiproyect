@@ -38,7 +38,7 @@
 
  	<?php if(isset($error)) echo "<div class=\"error\"><p>¡Contraseña incorrecta!</p></div>"; ?>
 		<form action="acceso.php" method="post">
-		<div><label for="pass"></label><input placeholder="Introduce tu contraseña" type="password" name="pass" id="pass" style="position: absolute; top: 65%; left: 18.5%;"/></div>
+		<div><input placeholder="Introduce tu contraseña" type="password" name="pass" id="pass"/></div>
 		<input class="botonLogin" type="submit" name="submit" value="Acceder" style="width:150px; height:30px;"/>
 	</form>
 	</div>
