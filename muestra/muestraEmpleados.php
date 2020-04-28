@@ -1,7 +1,11 @@
 <?php
 
 	session_start();
-
+	if($_SESSION['cargo']!="JEFEPERSONAL" and $_SESSION['cargo']!="PRESIDENTE"){
+		echo "</p>No tienes permisos para acceder a esta página</p>";
+		
+	}else{
+		
     require_once("../gestionas/gestionBD.php");
     require_once("../gestionas/gestionarCamion.php");
     require_once("../gestionas/gestionarMaquina.php");
@@ -23,7 +27,7 @@
 
 	$conexion = crearConexionBD();
 
-	$query = "SELECT * FROM EMPLEADO ORDER BY OCULTO NULLS LAST"; 
+	$query = "SELECT * FROM EMPLEADO"; 
 
 	$total_registros = total_consulta($conexion,$query);
 	$total_paginas = (int) ($total_registros / $pag_tam);
@@ -46,7 +50,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
-  <link rel="stylesheet" type="text/css" href="../css/popup2.css" />
+  <link rel="stylesheet" type="text/css" href="../css/popupocultar.css" />
   <title>Lista de Empleados</title>
  
 
@@ -61,12 +65,12 @@
 <main> 	
 	<!-- <input type="text" id="filtro" onkeyup="filtrar()" placeholder="Filtrar por acabado.." title="Escribe un acabado"> -->
 	<div class="titulotabla">
-	 	<div><h2 class="titulo">Listado de los pedidos de empleados</h2></div>
+	 	<div><h2 class="titulo">Listado de los empleados</h2></div>
 	 </div>
 	<div class="selectpag">
 	
-	
-	<form method="get" action="muestraEmpleados.php">
+	<div style="display: inline-block;width: 50%;">
+	<form class="formpag" method="get" action="muestraEmpleados.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -83,6 +87,21 @@
 			<input type="submit" value="Cambiar">
 
 		</form>
+		</div>
+		<?php
+								if($_SESSION['cargo']=="PRESIDENTE"){ ?>
+		<div style="display: inline-block;float:right;">
+			
+
+			<button onclick="window.location.href='../modificar/nuevoEmpleado.php'" id="anadir" name="anadir" type="button" class="anadir">
+			<img src="../img/anadir.png" class="" alt="Añadir Empleado" height="25" width="25">
+			</button>
+			
+		</div>
+		
+		<?php } ?>
+		
+		
 		
 		</div>
 		
@@ -94,10 +113,13 @@
     		<th>Apellidos</th>
     		<th>Teléfono</th>
     		<th>Direccion</th>
+    		<?php
+								if($_SESSION['cargo']=="PRESIDENTE"){ ?>
     		<th>Cargo</th>
     		<th>Capital Social</th>
     		<th>Fecha de Contratacion</th>
     		<th>Dias de vacaciones</th>
+    		<?php } ?>
     		<th>Maquina	</th>
   		</tr>
 			
@@ -130,18 +152,6 @@
 
 
 
-
-
-				<!-- <?php
-
-					if (isset($empleado) and ($empleado["DNI"] == $fila["DNI"])) { ?>
-
-
-						<h3><input id="DNI" name="DNI" type="text" value="<?php echo $fila["DNI"]; ?>"/>	</h3>
-
-						<h4><?php echo $fila["NOMBRE"]." ".$fila["APELLIDOS"]; ?></h4>
-
-				<?php }	else { ?> -->
 					<?php	if($fila['OCULTO']==1) { ?>
 							<tr class="fila">
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['DNI'] ?></p></td>
@@ -149,10 +159,13 @@
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['APELLIDOS'] ?></p></td>
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['TELEFONO'] ?></p></td>
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['DIRECCION'] ?></p></td>
+							<?php
+								if($_SESSION['cargo']=="PRESIDENTE"){ ?>
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['CARGO']?></p></td>
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['CAPITALSOCIAL']?></p></td>
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['FECHACONTRATACION']?></p></td>
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['DIASVACACIONES']?></p></td>
+							<?php } ?>
 							<td class="oculto" align="center"><p class="fOculto"><?php 
 								if($fila['OID_MAQ']==1) echo "Pintura";
 								else if($fila['OID_MAQ']==2) echo "Fresadora";
@@ -170,23 +183,27 @@
 							?></p></td>
 							
 							<form action="../controladores/controlador_empleados.php">
-								
+								<?php
+								if($_SESSION['cargo']=="PRESIDENTE"){ ?>
 								<td class ="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
 									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
 								</button></td>
 						
-								<td class ="boton"><button id="borrar" name="borrar" type="submit" class="vistacliente">
-									<img src="../img/papeleraBorrar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
+								<td class ="boton"><button id="activar" name="activar" type="submit" class="vistacliente">
+									<img src="../img/activar.png" class="borrar_fila" alt="Papelera Borrar" height="34" width="34">
 								</button></td>
+								<?php } ?>
 							</form>
 						</tr>
 					<?php }else{ ?>
 						<tr class="fila">
-							<td align="center"><?php echo $fila['DNI'] ?></td>
+							<td align="center"><p><?php echo $fila['DNI'] ?></p></td>
 							<td align="center"><?php echo $fila['NOMBRE'] ?></td>
 							<td align="center"><?php echo $fila['APELLIDOS'] ?></td>
 							<td align="center"><?php echo $fila['TELEFONO'] ?></td>
 							<td align="center"><?php echo $fila['DIRECCION'] ?></td>
+							<?php
+								if($_SESSION['cargo']=="PRESIDENTE"){ ?>
 							<td align="center"><?php
 								if($fila['CARGO']==1) echo "Presidente";
 								else if($fila['CARGO']==2) echo "Vicepresidente";
@@ -200,9 +217,11 @@
 								else if($fila['CARGO']==10) echo "Peón";
 								else if($fila['CARGO']==11) echo "Camionero";
 								?></td>
+								
 							<td align="center"><?php echo $fila['CAPITALSOCIAL']?></td>
 							<td align="center"><?php echo $fila['FECHACONTRATACION']?></td>
 							<td align="center"><?php echo $fila['DIASVACACIONES']?></td>
+							<?php } ?>
 							<td align="center"><?php 
 								if($fila['OID_MAQ']==1) echo "Pintura";
 								else if($fila['OID_MAQ']==2) echo "Fresadora";
@@ -217,27 +236,28 @@
 								
 								else if($fila['OID_MAQ']==null) echo "Ninguna";
 							?></td>
-							
-							
+							<?php
+								if($_SESSION['cargo']=="PRESIDENTE"){ ?>
 								<td class ="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
 									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
 								</button></td>
 						
 								<td class ="boton"><button id="b" name="b" type="button" class="vistacliente" 
 									onclick="window.location='#popup<?php echo $fila["OID_EMP"]; ?>';" >
-									<img src="../img/papeleraBorrar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
+									<img src="../img/ocultar.png" class="borrar_fila" alt="Papelera Borrar" height="34" width="34">
 								</button></td>
 							<div id="popup<?php echo $fila["OID_EMP"]; ?>" class="overlay" align="left">
 									<div class="popup">
 										<a class="close" href="#">X</a>
-										<p align="center">¿Seguro que quieres dar de baja a <?php echo $fila['NOMBRE']; echo " "; echo $fila['APELLIDOS'];?>?</p>
+										<p class="textp" align="center">¿Seguro que quieres dar de baja a <?php echo $fila['NOMBRE']; echo " "; echo $fila['APELLIDOS'];?>?</p>
 									</br>
-										<button id="borrar" name="borrar" type="submit" class="bPop">Borrar</button>
+										<button id="borrar" name="borrar" type="submit" class="bPop"><img src="../img/ocultar.png" width="30px" height="30px"/></button>
 									</div>
 								</div>
+								<?php } ?>
 						</tr>
 						
-						<?php } ?>
+					
 				<?php } ?>
 
 				</div>
@@ -318,3 +338,4 @@
 
 </body>
 </html>
+<?php } ?>

@@ -23,6 +23,7 @@
 		$_SESSION["empleado"] = $empleado;
 			
 		if (isset($_REQUEST["editar"])) Header("Location: ../modificar/modificarEmpleado.php"); 
+		else if(isset($_REQUEST["activar"])) header("Location: ../accions/accion_activar_empleado.php");
 		else Header("Location: ../accions/accion_borrar_empleado.php"); 
 	}
 	else 

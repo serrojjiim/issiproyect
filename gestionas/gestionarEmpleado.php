@@ -17,6 +17,18 @@ function ocultar($conexion,$oid){
 	
 }
 
+function activar($conexion,$oid){
+		try{
+	$consulta = "UPDATE EMPLEADO SET OCULTO=0, CARGO=null,OID_MAQ=null,DIASVACACIONES=null  WHERE EMPLEADO.OID_EMP='$oid'";
+	$stmt = $conexion->prepare($consulta);
+	$stmt->execute();
+	return "";
+		}catch(PDOException $e) {
+		return $e->getMessage();
+    }
+	
+}
+
 
 function obtener_empleado_dni($conexion, $dniemp){
 	$consulta = "SELECT * FROM EMPLEADO WHERE (EMPLEADO.DNI = '$dniemp')";
@@ -43,6 +55,27 @@ function quitar_empleado($conexion,$dniemp) {
 		return $e->getMessage();
     }
 }
+
+function anadirempleado($conexion,$dni_emp,$nombren,$apellidosn,$telefonon,$direccionn,$cargoo,$capitalsocialn,$fechacontratacionn,$diasvacacionesn,$maqq) {
+	try {
+		$stmt=$conexion->prepare('CALL ANADIRR_EMPLEADO(:dni,:nombre,:apellidos,:telefono,:direccion,:cargo,:capitalsocial,:fechacontratacion,:diasvacaciones,:maq)');
+		$stmt->bindParam(':dni',$dni_emp);
+		$stmt->bindParam(':nombre',$nombren);
+		$stmt->bindParam(':apellidos',$apellidosn);
+		$stmt->bindParam(':telefono',$telefonon);
+		$stmt->bindParam(':direccion',$direccionn);
+		$stmt->bindParam(':cargo',$cargoo);
+		$stmt->bindParam(':capitalsocial',$capitalsocialn);
+		$stmt->bindParam(':fechacontratacion',$fechacontratacionn);
+		$stmt->bindParam(':diasvacaciones',$diasvacacionesn);	
+		$stmt->bindParam(':maq',$maqq);
+		$stmt->execute();
+		return "";
+	} catch(PDOException $e) {
+		return $e->getMessage();
+    }
+}
+
 
 function modificar_cargo($conexion,$dniemp,$cargonuevo) {
 	try {
