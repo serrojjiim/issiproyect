@@ -9,7 +9,7 @@
 		$conexion = crearConexionBD();
 		$usuario = consultaPassBD($conexion,$pass,$_SESSION['dni']);
 	
-			
+			 
 		if ($usuario['DNI']==null){
 			$error=1;
 		
