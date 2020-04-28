@@ -17,8 +17,9 @@
 			
 		if (isset($_REQUEST["editar"])) Header("Location: ../modificar/modificarCliente.php");
 		else if (isset($_REQUEST["borrar"])) Header("Location: ../accions/accion_borrar_cliente.php");
-		
-		//else (isset($_REQUEST["grabar"])) Header("Location: accion_modificar_libro.php");
+		else if (isset($_REQUEST["activar"])) Header("Location: ../accions/accion_activar_cliente.php");
+		else if(isset($_REQUEST["guardar"])) Header("Location: ../accions/accion_modificar_cliente.php");
+		else if(isset($_REQUEST["patras"])) Header("Location: ../muestra/muestraCliente.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM);
 	}
 	else 
 		Header("Location: ../muestra/muestraCliente.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM);

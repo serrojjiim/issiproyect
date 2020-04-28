@@ -1,13 +1,12 @@
-
 table {
   font: 14px Arial, sans-serif;
   border-collapse: collapse;
-  width: 90%;
-  margin-left:auto; 
-  margin-right:auto;
-
-
+  width:100%;
   
+  
+}
+tbody{
+
 }
 input[type=submit]{
 	border-radius: 8px;
@@ -17,11 +16,7 @@ input[type=submit]{
 
 form.formpag{
 	font: 14px Arial, sans-serif;
-	width: 70%;
-}
-
-img.boton{
-	cursor:pointer;
+	width: 50%;
 }
 button.vistacliente{
 	background: transparent;
@@ -33,12 +28,10 @@ button.anadir{
     border: none !important;
     float:right;
 }
-p.titulo {
+h2.titulo {
 	color:black;
-	font-size: xx-large;
-font: 40px Arial, Helvetica, sans-serif;
-	font-weight:lighter;
-}
+	font-size: 2em;
+	font-family: "Arial Black";}
 
 th {
   border: 0px solid black;
@@ -47,12 +40,7 @@ th {
   background-color: #aa173a;
   color: white;
 }
-th.ultima{
-	border-top-right-radius:8px; 
-}
-th.primera{
-	border-top-left-radius: 8px;
-}
+
 
 td {
   border: 0px solid #ddd;
@@ -60,15 +48,9 @@ td {
 td.boton{
 	width: 40px;
 	background-color:transparent;
-	
 }
 
-tr.fila td {
-	background-color: #fff;
-}
-tr.fila td.boton {
-	background-color: transparent;
-}
+
 table tr.fila:hover td {background-color: #a2a2a214;}
 table tr.fila:hover td.boton{background-color: transparent !important;}
 #filtro {
@@ -93,8 +75,7 @@ div.paginas{
 	padding-top:3px;
 	margin-top:5px;
 	overflow: hidden; 
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: 25%;
 }
 
 div.tabla {

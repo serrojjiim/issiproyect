@@ -44,14 +44,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
-  <link rel="stylesheet" type="text/css" href="../css/muestraMaquinas.css" />
+  <link rel="stylesheet" type="text/css" href="../css/modificarForm.css" />
    <link rel="stylesheet" type="text/css" href="../css/popup3.css" />
   <script type="text/javascript" src="../js/filtro.js"></script>
-  <title>Lista de máquinas</title>
+  <title>Modificar Máquinas</title>
 </head>
 
 <body>
-
+<?php ?>
 
 <main>
 
@@ -74,10 +74,21 @@
 		
 	 	<div><h2 class="titulo">Selecciona empleados para añadirlos a la máquina <?php echo $maq ?></h2></div>
 	 </div>
-	<div style="display:inline-block" class="selectpag">
+	
+		
+	
+
+	<div class="bloque">
+		
+	<div  style="display:inline-block; width: 49%;" class ="tabla">
 	
 	
-	<form method="get" action="modificarMaquina.php">
+	
+		<div style="width: 90%;margin-left:auto;margin-right:auto;">
+			<div  class="selectpag">
+	
+	
+	<form class="formpag" method="get" action="modificarMaquina.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -88,8 +99,8 @@
 				min="1" max="<?php echo $total_registros;?>"
 
 				value="<?php echo $pag_tam;
-				$_SESSION['pag_tam']=$pag_tam; ?>" autofocus="autofocus" />
-
+							?>" autofocus="autofocus" />
+			
 			entradas de <?php echo $total_registros?>
 
 			<input type="submit" value="Cambiar">
@@ -97,17 +108,15 @@
 		</form>
 		
 		</div>
-			<a style="margin-left:25%" href="../muestra/muestraMaquinas.php"><img src="../img/back.png" width="50px" alt="Volver" height="30px" style="position: absolute"/></a>
-
-		<div class ="tabla">
 	 <table class="tabla" id="tablaMaquina">
-	 	
+	 	<thead>
 		<tr>
-    		<th>Nombre</th>
+    		<th class="primera">Nombre</th>
     		<th>Apellidos</th>
-    		<th>Cargo</th>
+    		<th class="ultima">Cargo</th>
   		</tr>
-
+	</thead>
+	<tbody>
 	<?php
 		$contador = 0;
 		foreach($filas as $fila) {
@@ -147,7 +156,7 @@
 									
 										$_SESSION['EMPLEADOMOD' . $contador] = $empleadoMod;	
 									?>
-									<img src="../img/addButton.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
+									<img title="Clic para que el empleado <?php echo $fila['NOMBRE'] ?> pase a la máquina <?php echo $maq ?> " style="cursor:pointer" src="../img/addButton.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
 									</button>
 								</td>
 							   
@@ -163,17 +172,16 @@
 							</form>
 									
 						</tr>
-						
 				<?php $contador++;} ?>
 
 				</div>
 			</div>
 		</form>
-	
+							</tbody>
+
 	 </table>
-	</div>
-	
-	<div class="paginas">
+	 </div>
+	 <div class="paginas">
 		<nav>
 			<div id="enlaces">
 			<?php
@@ -231,7 +239,41 @@
 		</div>
 		</nav>
 		</div>
+	</div>
 	
+	<div style="display:inline-block;float:right;width: 49%;">
+		<div style="width: 80%"  class="divMod">
+		<?php if(isset($_SESSION['mOkEditarMaq'])){
+	 	unset($_SESSION['mOkEditarMaq']);
+		echo "<div>
+		<div class=\"error\" style=\"width:80%\">
+		<div class=\"tick\"><img src=\"../img/tick.png\" /></div>
+		<div class=\"errortext\" style=\"display: inline-block; align-items: center;\" ><p>¡La maquina se ha editado correctamente!</p></div>
+		</div>";
+	 } ?>
+		<form method="post" action="../controladores/controlador_maquinas.php">
+		
+		<div class="linea">
+			<label for="DIRECCION" class="textoMod">Nombre de la Máquina</label></br>	
+			<input align="center" class="largo" id="NOMBREMAQUINA" name="NOMBREMAQUINA" type="text" value="<?php echo $maquina["NOMBRE"]; ?>" required/><br />
+		
+		</div>
+		<button style="margin-left:10%;margin-top: 4% " title="Guardar" id="guardar" name="guardar" type="submit" class="botonG">
+			<img src="../img/salvar.png" class="imagen" alt="Guardar">
+		</button>
+		</form>
+		
+	</div>
+	
+	</div>
+	
+	
+	</div>
+
+
+	
+		<a href="../muestra/muestraMaquinas.php"><img src="../img/atras.png" width="50px" alt="Volver" height="30px" style="margin-left: 47%;margin-top: 5%"/></a>
+
 </main>
 </body>
 </html>

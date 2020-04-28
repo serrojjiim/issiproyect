@@ -46,4 +46,25 @@ function ocultarC($conexion,$cif){
 		return $e->getMessage();
     }
 }
+function activarC($conexion,$cif){
+	try{
+	$consulta = "UPDATE CLIENTE SET OCULTO=0 WHERE (CLIENTE.CIF='$cif')";
+	$stmt = $conexion->prepare($consulta);
+	$stmt->execute();
+	return 1;
+		}catch(PDOException $e) {
+		return 0;
+    }
+}		
+
+function nuevoCliente($conexion,$nombre,$cif,$telefono,$direccion,$email){
+	try{
+	$consulta = "INSERT INTO CLIENTE(CLIENTE.NOMBRE,CLIENTE.CIF,CLIENTE.TELEFONO,CLIENTE.DIRECCION,CLIENTE.EMAIL) VALUES('$nombre','$cif','$telefono','$direccion','$email')";
+	$stmt = $conexion->prepare($consulta);
+	$stmt->execute();
+	return 1;
+		}catch(PDOException $e) {
+		return 0;
+    }		
+}
 ?>

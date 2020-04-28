@@ -1,7 +1,11 @@
 <?php
 
 	session_start();
-
+if($_SESSION['cargo']!="PRESIDENTE" and $_SESSION['cargo']!="VICEPRESIDENTE"){
+		echo "</p>No tienes permisos para acceder a esta página</p>";
+		
+	}else{
+	
     require_once("../gestionas/gestionBD.php");
     require_once("../consultaPaginada.php");
 	unset($_SESSION["paginacion"]);
@@ -19,7 +23,7 @@
 
 	$conexion = crearConexionBD();
 
-	$query = "SELECT * FROM CLIENTE ORDER BY OCULTO NULLS LAST";
+	$query = "SELECT * FROM CLIENTE";
 
 	
 	$total_registros = total_consulta($conexion,$query);
@@ -49,7 +53,7 @@
   <title>Lista de clientes</title>
 </head>
 
-<body>
+<body style="background-color:#dfdfdf7d;>
 
 
 <?php
@@ -63,7 +67,7 @@
 	<div class="selectpag">
 	
 	
-	<form method="get" action="muestraCliente.php">
+	<form style="display: inline-block" method="get" action="muestraCliente.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -80,7 +84,9 @@
 			<input type="submit" value="Cambiar">
 
 		</form>
-		
+		<button style="float:right;" onclick="window.location.href='../modificar/nuevoCliente.php'" class="anadir">
+		<img src="../img/anadir.png" width="25" height="25" >
+		</button>
 		</div>
 		
 		<div class ="tabla">
@@ -129,8 +135,8 @@
 									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
 								</button></td>
 						
-								<td class="boton" class ="boton"><button id="borrar" name="borrar" type="submit" class="vistacliente">
-									<img src="../img/papeleraBorrar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
+								<td class="boton" class ="boton"><button id="activar" name="activar" type="submit" class="vistacliente">
+									<img src="../img/activar.png" class="borrar_fila" alt="Papelera Borrar" height="34" width="34">
 								</button></td>
 							</form>
 						</tr>
@@ -242,3 +248,4 @@
 </main>
 </body>
 </html>
+<?php } ?>

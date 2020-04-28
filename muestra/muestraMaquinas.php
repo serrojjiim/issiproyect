@@ -45,11 +45,12 @@
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
   <link rel="stylesheet" type="text/css" href="../css/muestraMaquinas.css" />
    <link rel="stylesheet" type="text/css" href="../css/popupocultar.css" />
+   <link rel="stylesheet" type="text/css" href="../css/modificarForm.css" />
   <script type="text/javascript" src="../js/filtro.js"></script>
   <title>Lista de máquinas</title>
 </head>
 
-<body>
+<body style="background-color:#dfdfdf7d;">
 
 
 <?php
@@ -58,12 +59,21 @@
 <main>
 
 	<div class="titulotabla">
-	 	<div><h2 class="titulo">Listado de las máquinas</h2></div>
+	 	<div><p class="titulo">Listado de las máquinas</p></div>
 	 </div>
+	 
+	 <?php if(isset($_SESSION['mOkBorrarMaq'])){
+	 	unset($_SESSION['mOkBorrarMaq']);
+		echo "<div>
+	<div class=\"error\">
+		<div class=\"tick\"><img src=\"../img/tick.png\" /></div>
+		<div class=\"errortext\" style=\"display: inline-block; align-items: center;\" ><p>¡La maquina se ha eliminado correctamente!</p></div>
+	</div>";
+	 } ?>
 	<div class="selectpag">
 	
 	
-	<form method="get" action="muestraMaquinas.php">
+	<form class="formpag" method="get" action="muestraMaquinas.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -107,20 +117,20 @@
 					<input id="OID_MAQ" name="OID_MAQ" type="hidden" value="<?php echo $fila["OID_MAQ"]; ?>"/>
 					<input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $fila["NOMBRE"]; ?>"/>
 
-						<tr class="fila">
-							<td class="nombre" align="center"><p onclick="window.location='#popup<?php echo $contador; ?>';"><?php echo $fila['NOMBRE'] ?></p></td>
+						<tr class="fila" >
+							<td class="nombre" align="center" onclick="window.location='#popup<?php echo $contador; ?>';"><p><?php echo $fila['NOMBRE'] ?></p></td>
 							
 							
 								
 								<td class ="boton">
 									<button id="editar" name="editar" type="submit" class="vistacliente">
-									<img src="../img/lapizEditar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
+									<img src="../img/lapizEditar.png" class="boton" alt="Papelera Borrar" height="40" width="40">
 									</button>
 								</td>
 								
 								<td class ="boton">
 									<button id="borrar" name="borrar" type="button" class="vistacliente" onclick="window.location='#popup<?php echo $fila["NOMBRE"]; echo "Remove";?>';" >
-									<img src="../img/ocultar.png" class="borrar_fila" alt="Papelera Borrar" height="34" width="34">
+									<img src="../img/ocultar.png" class="boton" alt="Papelera Borrar" height="34" width="34">
 								</button>
 								</td>
 										

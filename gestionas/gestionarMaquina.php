@@ -19,7 +19,7 @@ function borrarMaq($conexion,$oid){
 	$consulta = "DELETE FROM MAQUINA WHERE (MAQUINA.OID_MAQ = '$oid')";
 	$stmt = $conexion->prepare($consulta);
 	$stmt->execute();
-	return "";
+	return 1;
 		}catch(PDOException $e) {
 		return $e->getMessage();
     }
@@ -49,6 +49,31 @@ function actualizarEmpleadoMaquina($conexion,$dni,$oid){
 	$stmt = $conexion->prepare($consulta);
 	$stmt->execute();
 	return 1;
+	}catch(PDOException $e){
+		return 0;
+	}
+}
+
+function actualizarMaquina($conexion,$oid,$nombre){
+	try{
+		$consulta="UPDATE MAQUINA SET MAQUINA.NOMBRE='$nombre' WHERE MAQUINA.OID_MAQ='$oid'";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->execute();
+		return 1;
+	}catch(PDOException $e){
+		return 0;
+	}
+	
+}
+function quitarEmpleadosMaquina($conexion,$oid){
+	try{
+		$consulta = "UPDATE EMPLEADO SET EMPLEADO.OID_MAQ=NULL WHERE EMPLEADO.OID_MAQ='$oid'";
+		$stmt = $conexion->prepare($consulta);
+		$stmt->execute();
+		$consulta2 = "UPDATE JEFEMAQUINA SET JEFEMAQUINA.OID_MAQ=NULL WHERE JEFEMAQUINA.OID_MAQ='$oid'";
+		$stmt2 = $conexion->prepare($consulta2);
+		$stmt2->execute();
+		return 1;
 	}catch(PDOException $e){
 		return 0;
 	}

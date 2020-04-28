@@ -14,15 +14,11 @@
 				
 		
 		$conexion = crearConexionBD();		
-		$excepcion = borrarMaq($conexion,$maquina['OID_MAQ']);
-		cerrarConexionBD($conexion);	
-		
-		if ($excepcion<>"") {
-			$_SESSION["excepcion"] = $excepcion;
-			$_SESSION["destino"] = "muestraMaquinas.php";
-			Header("Location: ../excepcion.php");
-		}
-		else Header("Location: ../muestra/muestraMaquinas.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM);
+		$oid =  $maquina['OID_MAQ'];
+		$error = quitarEmpleadosMaquina($conexion,$oid);
+		$error2 = borrarMaq($conexion,$oid);
+		if(($error and $error2)==1) $_SESSION['mOkBorrarMaq'] = "Ok";
+	 Header("Location: ../muestra/muestraMaquinas.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM);
 	}
-	else Header("Location: ../muestra/muestraMaquinas.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM); // Se ha tratado de acceder directamente a este PHP
+	else Header("Location: ../muestra/muestraMaquinas.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM); 
 ?>
