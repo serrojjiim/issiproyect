@@ -6,7 +6,8 @@
     require_once("../gestionas/gestionarMaquina.php");
     require_once("../consultaPaginada.php");
 	unset($_SESSION["paginacion"]);
-	
+	$maquina = $_SESSION['maquina'];
+	$oid=$maquina['OID_MAQ'];
 	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
 	$pagina_seleccionada = isset($_GET["PAG_NUM"])? (int)$_GET["PAG_NUM"]: (isset($paginacion)? (int)$paginacion["PAG_NUM"]: 1);
 
@@ -19,7 +20,7 @@
 
 	$conexion = crearConexionBD();
 
-	$query = "SELECT * FROM MAQUINA";
+	$query = "SELECT dni,nombre,apellidos,cargo FROM EMPLEADO WHERE EMPLEADO.OID_MAQ<>'$oid'";
 
 	
 	$total_registros = total_consulta($conexion,$query);
@@ -52,18 +53,31 @@
 <body>
 
 
-<?php
-	include_once ("header.php");
-	?>
 <main>
 
 	<div class="titulotabla">
-	 	<div><h2 class="titulo">Listado de las máquinas</h2></div>
+		<?php 
+	    if($oid==1) $maq = "Pintura";
+		else if($oid==2) $maq = "Fresadora";
+		else if($oid==3) $maq = "Serigrafiadora";
+		else if($oid==4) $maq = "Caldera";
+		else if($oid==5) $maq = "Robot";
+		else if($oid==6) $maq = "Bajeras";
+		else if($oid==7) $maq = "Robot2";
+		else if($oid==8) $maq = "Pintura2";
+		else if($oid==9) $maq = "Almacen1";
+		else if($oid==10) $maq = "Almacen2";
+		
+		
+		
+		?>
+		
+	 	<div><h2 class="titulo">Selecciona empleados para añadirlos a la máquina <?php echo $maq ?></h2></div>
 	 </div>
-	<div class="selectpag">
+	<div style="display:inline-block" class="selectpag">
 	
 	
-	<form method="get" action="muestraMaquinas.php">
+	<form method="get" action="modificarMaquina.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -74,8 +88,8 @@
 				min="1" max="<?php echo $total_registros;?>"
 
 				value="<?php echo $pag_tam;
-							?>" autofocus="autofocus" />
-			
+				$_SESSION['pag_tam']=$pag_tam; ?>" autofocus="autofocus" />
+
 			entradas de <?php echo $total_registros?>
 
 			<input type="submit" value="Cambiar">
@@ -83,17 +97,19 @@
 		</form>
 		
 		</div>
-		
+			<a style="margin-left:25%" href="../muestra/muestraMaquinas.php"><img src="../img/back.png" width="50px" alt="Volver" height="30px" style="position: absolute"/></a>
+
 		<div class ="tabla">
 	 <table class="tabla" id="tablaMaquina">
 	 	
 		<tr>
     		<th>Nombre</th>
+    		<th>Apellidos</th>
+    		<th>Cargo</th>
   		</tr>
 
 	<?php
-		$contador=0;
-		$contador2=0;
+		$contador = 0;
 		foreach($filas as $fila) {
 
 	?>
@@ -103,97 +119,56 @@
 			<div class="fila_maquina">
 
 				<div class="datos_maquina">
-
-					<input id="OID_MAQ" name="OID_MAQ" type="hidden" value="<?php echo $fila["OID_MAQ"]; ?>"/>
+						
+					<input id="DNI" name="DNI" type="hidden" value="<?php echo $fila["DNI"]; ?>"/>
 					<input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $fila["NOMBRE"]; ?>"/>
+					<input id="APELLIDOS" name="APELLIDOS" type="hidden" value="<?php echo $fila["APELLIDOS"]; ?>"/>
+					<input id="CARGO" name="CARGO" type="hidden" value="<?php echo $fila["CARGO"]; ?>"/>
 
 						<tr class="fila">
-							<td class="nombre" align="center"><p onclick="window.location='#popup<?php echo $contador; ?>';"><?php echo $fila['NOMBRE'] ?></p></td>
+							<td class="nombre" align="center"><p><?php echo $fila['NOMBRE'] ?></p></td>
 							
 							
+							
+							<td align="center"><?php echo $fila['APELLIDOS'] ?></td>
+							<td align="center"><?php echo $fila['CARGO'] ?></td>
+							
+							
+							
+							<form method="post" action="../controladores/controlador_maquinas.php">
 								
 								<td class ="boton">
-									<button id="editar" name="editar" type="submit" class="vistacliente">
-									<img src="../img/lapizEditar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
+									<button id="add<?php echo $contador ?>" name="add<?php echo $contador ?>" type="submit" class="vistacliente">
+										<?php 
+										$empleadoMod['DNI'] = $fila['DNI'];
+										$empleadoMod['NOMBRE'] = $fila['NOMBRE'];
+										$empleadoMod['APELLIDOS'] = $fila['APELLIDOS'];
+										$empleadoMod['CARGO'] = $fila['CARGO'];
+									
+										$_SESSION['EMPLEADOMOD' . $contador] = $empleadoMod;	
+									?>
+									<img src="../img/addButton.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
 									</button>
 								</td>
-								
-								<td class ="boton">
-									<button id="borrar" name="borrar" type="button" class="vistacliente" onclick="window.location='#popup<?php echo $fila["NOMBRE"]; echo "Remove";?>';" >
-									<img src="../img/papeleraBorrar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
-								</button>
-								</td>
-										
-							<form action="post" action="../controladores/controlador_maquinas.php">
-								
-								<div id="popup<?php echo $fila["NOMBRE"]; echo "Remove"; ?>" class="overlay" align="left">
-									<div class="popup">
-										<a class="close" href="#">X</a>
-										<p align="center">¿Seguro que quieres borrar la máquina: <?php echo $fila['NOMBRE'];?>?</p>
-									</br>
-										<button id="borrar" name="borrar" type="submit" class="bPop">Borrar</button>
-									</div>
-								</div>
+							   
 							
+								
+								
+								
+								
+								
+							
+								
+								
 							</form>
-								
-								
-						</tr>
-								
-								</form>	
-								
-								
-								<div id="popup<?php echo $contador; ?>" class="overlay" align="left">
-									<div class="popup">
-										<a class="close" href="#">X</a>
-										<div class="dJefe" align="center">
-
-										<label class="jefMaq"><?php 
-												$conexion=crearConexionBD();
-	
-												$jefe = getJefeMaquina2($conexion,$fila['OID_MAQ']);
-												cerrarConexionBD($conexion);
-
-												echo $jefe['NOMBRE']; echo " "; echo $jefe['APELLIDOS']; echo " "; echo "</br>";
-											
-										
-										?>
-										</label>
-										</div>
-										<div class="dPeones" align="center">
-
-										<label class="peones"><?php 
-												$conexion=crearConexionBD();
-	
-												$peones = getEmpleadosMaquina($conexion,$fila['OID_MAQ']);
-												cerrarConexionBD($conexion);
-
-
-												foreach($peones as $peon){
-													if($peon['NOMBRE']==$jefe['NOMBRE'] and $peon['APELLIDOS']==$jefe['APELLIDOS']){
-														
-													}else{
-														echo $peon['NOMBRE']; echo " "; echo $peon['APELLIDOS']; echo " "; echo "</br>";								
-													}
-													
-												}
-											
-										
-										?>
-										</label>
-										</div>
-										
-									</br>
-									</div>
 									
-								</div>
-								
+						</tr>
 						
-						
-				<?php $contador++;$contador2++; } ?>
+				<?php $contador++;} ?>
 
 				</div>
 			</div>
+		</form>
 	
 	 </table>
 	</div>
@@ -210,7 +185,7 @@
 
 			<?php }	else { ?>
 
-						<a href="muestraMaquinas.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+						<a href="modificarMaquina.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
 
 			<?php }
 			 }
@@ -223,7 +198,7 @@
 
 			<?php }	else { ?>
 
-						<a href="muestraMaquinas.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+						<a href="modificarMaquina.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
 
 			<?php }
 			 }
@@ -235,7 +210,7 @@
 
 			<?php }	else { ?>
 
-						<a href="muestraMaquinas.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+						<a href="modificarMaquina.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
 
 			<?php } 
 				}
@@ -247,7 +222,7 @@
 
 			<?php }	else { ?>
 
-						<a href="muestraMaquinas.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+						<a href="modificarMaquina.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
 
 			<?php } 
 				} ?>

@@ -1,12 +1,39 @@
 <?php
-    require_once("gestionBD.php");
-    require_once("consultarTablas.php");
-    $conexion = crearConexionBD();
-    $empleados = consultarEmpleados($conexion);
-    $maquinas = consultarMaquinas($conexion);
-    $materiales = consultarMateriales($conexion);
-    $camiones = consultarCamiones($conexion);
-    $nominas = consultarNominas($conexion);
+
+	session_start();
+
+    require_once("gestionas/gestionBD.php");
+    require_once("gestionas/gestionarMaquina.php");
+    require_once("consultaPaginada.php");
+	unset($_SESSION["paginacion"]);
+	
+	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
+	$pagina_seleccionada = isset($_GET["PAG_NUM"])? (int)$_GET["PAG_NUM"]: (isset($paginacion)? (int)$paginacion["PAG_NUM"]: 1);
+
+	$pag_tam = isset($_GET["PAG_TAM"])? (int)$_GET["PAG_TAM"]: (isset($paginacion)? (int)$paginacion["PAG_TAM"]: 5);
+
+	if ($pagina_seleccionada < 1) $pagina_seleccionada = 1;
+	if ($pag_tam < 1) $pag_tam = 5;
+
+	unset($_SESSION["paginacion"]);
+
+	$conexion = crearConexionBD();
+
+	$query = "SELECT nombre,apellidos,cargo FROM EMPLEADO WHERE EMPLEADO.OID_MAQ<>'1'";
+
+	
+	$total_registros = total_consulta($conexion,$query);
+	$total_paginas = (int) ($total_registros / $pag_tam);
+
+	if ($total_registros % $pag_tam > 0) $total_paginas++;
+	if ($pagina_seleccionada > $total_paginas) $pagina_seleccionada = $total_paginas;
+
+	$paginacion["PAG_NUM"] = $pagina_seleccionada;
+	$paginacion["PAG_TAM"] = $pag_tam;
+	$_SESSION["paginacion"] = $paginacion;
+	
+	$filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
+	
     cerrarConexionBD($conexion);
 ?>
 
@@ -14,73 +41,250 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Gestión de biblioteca: Lista de Libros</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" type="text/css" href="css/muestraTabla.css" />
+  <link rel="stylesheet" type="text/css" href="css/muestraMaquinas.css" />
+   <link rel="stylesheet" type="text/css" href="css/popup3.css" />
+  <script type="text/javascript" src="js/filtro.js"></script>
+  <title>Lista de máquinas</title>
 </head>
 
 <body>
+
+
 <main>
-<?php
-	echo "<h2>Empleados:</h2> \n<table><tr><th>Nombre</th><th>Apellidos</th><th>DNI</th><th>OID_MAQ</th>";
-        foreach($empleados as $fila) {
-        	        echo "<tr><td>".$fila["NOMBRE"]."</td><td>".$fila["APELLIDOS"]."</td><td>".$fila["DNI"]."</td><td>".$fila["OID_MAQ"]."</td></tr>";
+
+	<div class="titulotabla">
+	 	<div><h2 class="titulo">Listado de las máquinas</h2></div>
+	 </div>
+	<div class="selectpag">
+	
+	
+	<form method="get" action="muestraMaquinas.php">
+
+			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
+
+			Mostrando
+
+			<input id="PAG_TAM" name="PAG_TAM" type="number"
+
+				min="1" max="<?php echo $total_registros;?>"
+
+				value="<?php echo $pag_tam?>" autofocus="autofocus" />
+
+			entradas de <?php echo $total_registros?>
+
+			<input type="submit" value="Cambiar">
+
+		</form>
+		
+		</div>
+		
+		<div class ="tabla">
+	 <table class="tabla" id="tablaMaquina">
+	 	
+		<tr>
+    		<th>Nombre</th>
+    		<th>Apellidos</th>
+    		<th>Cargo</th>
+  		</tr>
+
+	<?php
+		$contador=0;
+		$contador2=0;
+		foreach($filas as $fila) {
+
+	?>
+
+		<form method="post" action="controladores/controlador_maquinas.php">
+
+			<div class="fila_maquina">
+
+				<div class="datos_maquina">
+
+					<input id="OID_MAQ" name="OID_MAQ" type="hidden" value="<?php echo $fila["OID_MAQ"]; ?>"/>
+					<input id="NOMBRE" name="NOMBRE" type="hidden" value="<?php echo $fila["NOMBRE"]; ?>"/>
+
+						<tr class="fila">
+							<td class="nombre" align="center"><p onclick="window.location='#popup<?php echo $contador; ?>';"><?php echo $fila['NOMBRE'] ?></p></td>
+							
+							
+							
+							<td align="center"><?php echo $fila['APELLIDOS'] ?></td>
+							<td align="center"><?php echo $fila['CARGO'] ?></td>
+							
+							
+							
+							<form action="controladores/controlador_maquinas.php">
+								
+								<td class ="boton">
+									<button id="add" name="add" type="submit" class="vistacliente">
+									<img src="img/addButton.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
+									</button>
+								</td>
+								
+								
+								
+								
+								
+								
+								
+								<div id="popup<?php echo $fila["NOMBRE"]; echo "Remove"; ?>" class="overlay" align="left">
+									<div class="popup">
+										<a class="close" href="#">X</a>
+										<p align="center">¿Seguro que quieres borrar la máquina: <?php echo $fila['NOMBRE'];?>?</p>
+									</br>
+										<button id="borrar" name="borrar" type="submit" class="bPop">Borrar</button>
+									</div>
+								</div>
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								<!-- <div id="popup<?php echo $fila["NOMBRE"]; echo "Add"; ?>" class="overlay" align="left">
+									<div class="popup">
+										<a class="close" href="#">X</a>
+										<
+										<?php $conexion = crearConexionBD(); 
+											  $empleadosNM = getEmpleadosNoEnMaquina($conexion,$fila['OID_MAQ']);
+											  foreach($empleadosNM as $empleado){
+											  	
+											  
+										
+										?>
+										<p align="center"><?php echo $empleado['NOMBRE']; ?></p>
+										<?php } ?>
+										<
+									</div>
+								</div> -->
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								<div id="popup<?php echo $contador; ?>" class="overlay" align="left">
+									<div class="popup">
+										<a class="close" href="#">X</a>
+										<div class="dJefe" align="center">
+
+										<label class="jefMaq"><?php 
+												$conexion=crearConexionBD();
+	
+												$jefe = getJefeMaquina2($conexion,$fila['OID_MAQ']);
+												cerrarConexionBD($conexion);
+
+												echo $jefe['NOMBRE']; echo " "; echo $jefe['APELLIDOS']; echo " "; echo "</br>";
+											
+										
+										?>
+										</label>
+										</div>
+										<div class="dPeones" align="center">
+
+										<label class="peones"><?php 
+												$conexion=crearConexionBD();
+	
+												$peones = getEmpleadosMaquina($conexion,$fila['OID_MAQ']);
+												cerrarConexionBD($conexion);
+
+
+												foreach($peones as $peon){
+													echo $peon['NOMBRE']; echo " "; echo $peon['APELLIDOS']; echo " "; echo "</br>";
+												}
+											
+										
+										?>
+										</label>
+										</div>
+										
+									</br>
+									</div>
+								</div>
+								
+								
+							</form>
+						</tr>
+						
+				<?php $contador++;$contador2++; } ?>
+
+				</div>
+			</div>
+		</form>
+	
+	 </table>
+	</div>
+	
+	<div class="paginas">
+		<nav>
+			<div id="enlaces">
+			<?php
 			
-    ?>
-    
-    <!-- <p></p><?php echo "Nombre: ".$fila["NOMBRE"]." ";
-			  echo "Apellidos: ".$fila["APELLIDOS"]." ";
-			  echo "DNI: ".$fila["DNI"]." ";
-			  echo "OID_MAQ: ".$fila["OID_MAQ"]; ?></p> -->
-    
-<?php } echo "</table></br>"; ?>
+				if($total_paginas <=6){
+					 for( $pagina = 1; $pagina <= $total_paginas; $pagina++ )
+						if ( $pagina == $pagina_seleccionada) { 	?>
+							<span class="current"><?php echo $pagina; ?></span>
 
-<?php
-	echo "<h2>Maquinas:</h2> \n<table><tr><th>Nombre</th><th>OID_MAQ</th>";
-        foreach($maquinas as $fila) {
-        	echo "<tr><td>".$fila["NOMBRE"]."</td><td>".$fila["OID_MAQ"]."</td></tr>";
-    ?>
-    
-    <!-- <p><?php echo "Nombre: ".$fila["NOMBRE"]." ";
-			 echo "OID_MAQ: ".$fila["OID_MAQ"]; ?></p> -->
-    
-<?php } echo "</table></br>"; ?>
+			<?php }	else { ?>
 
-<?php
-	echo "<h2>Materiales:</h2> \n<table><tr><th>Nombre</th><th>Stock</th><th>OID_MAT</th>";
-        foreach($materiales as $fila) {
-        	echo "<tr><td>".$fila["NOMBRE"]."</td><td>".$fila["STOCK"]."</td><td>".$fila["OID_MAT"]."</td></tr>";
-    ?>
-    
-    
-    <!-- <p><?php echo "Nombre: ".$fila["NOMBRE"]." ";
-			 echo "Stock: ".$fila["STOCK"]. " ";
-			 echo "OID_MAT: ".$fila["OID_MAT"]; ?></p> -->
-    
-<?php } echo "</table></br>"; ?>
+						<a href="muestraMaquinas.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
 
-<?php
-	echo "<h2>Camiones:</h2> \n<table><tr><th>Matricula</th><th>OID_CAM</th>";
-        foreach($camiones as $fila) {
-        	echo "<tr><td>".$fila["MATRICULA"]."</td><td>".$fila["OID_CAM"]."</td></tr>";
-    ?>
-    
-    <!-- <p><?php echo "Matricula: ".$fila["MATRICULA"]." ";
-			 echo "OID_CAM: ".$fila["OID_CAM"]; ?></p> -->
-    
-<?php } echo "</table></br>"; ?>
+			<?php }
+			 }
+				
+				else if($pagina_seleccionada >= $total_paginas-3) {
+					 for( $pagina = $pagina_seleccionada-(6-($total_paginas-$pagina_seleccionada)); $pagina <= $total_paginas; $pagina++ )
+						if ( $pagina == $pagina_seleccionada) { 	?>
 
-<?php
-	echo "<h2>Nóminas:</h2> \n<table><tr><th>Año</th><th>Salario</th><th>OID_EMP</th><th>OID_NOM</th>";
-        foreach($nominas as $fila) {
-        	echo "<tr><td>".$fila["AÑO"]."</td><td>".$fila["SALARIO"]."</td><td>".$fila["OID_EMP"]."</td><td>".$fila["OID_NOM"]."</td></tr>";
-    ?>
-    
-    <!-- <p><?php echo "Mes: ".$fila["MES"]." ";
-			 echo "Año: ".$fila["AÑO"]." ";
-			 echo "Salario: ".$fila["SALARIO"]." ";
-			 echo "OID_EMP: ".$fila["OID_EMP"]." ";
-			 echo "OID_NOM: ".$fila["OID_NOM"]; ?></p> -->
-    
-<?php } echo "</table></br>"; ?>
+						<span class="current"><?php echo $pagina; ?></span>
+
+			<?php }	else { ?>
+
+						<a href="muestraMaquinas.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+			<?php }
+			 }
+				else if($pagina_seleccionada <= 4) { 
+					for( $pagina = 1; $pagina <= $pagina_seleccionada+(7-$pagina_seleccionada); $pagina++ )
+					if ( $pagina == $pagina_seleccionada) { 	?>
+
+						<span class="current"><?php echo $pagina; ?></span>
+
+			<?php }	else { ?>
+
+						<a href="muestraMaquinas.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+			<?php } 
+				}
+				else {
+					for( $pagina = $pagina_seleccionada-3; $pagina <= $pagina_seleccionada+3; $pagina++ )
+				if ( $pagina == $pagina_seleccionada) { 	?>
+
+						<span class="current"><?php echo $pagina; ?></span>
+
+			<?php }	else { ?>
+
+						<a href="muestraMaquinas.php?PAG_NUM=<?php echo $pagina; ?>&PAG_TAM=<?php echo $pag_tam; ?>"><?php echo $pagina; ?></a>
+
+			<?php } 
+				} ?>
+			
+
+		</div>
+		</nav>
+		</div>
+	
 </main>
 </body>
 </html>

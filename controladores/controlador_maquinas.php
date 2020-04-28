@@ -5,14 +5,33 @@
 	$PAG_NUM = $infoPag['PAG_NUM'];
 	$PAG_TAM = $infoPag['PAG_TAM'];
 		
-	if (isset($_REQUEST["OID_MAQ"])){
-		$empleado["OID_MAQ"] = $_REQUEST["OID_MAQ"];
-		$empleado["NOMBRE"] = $_REQUEST["NOMBRE"];
-		
-		
+	if (isset($_REQUEST["OID_MAQ"]) or isset($_REQUEST['DNI'])){
+				
+		if(!isset($_REQUEST['DNI'])){
+		$maquina["OID_MAQ"] = $_REQUEST["OID_MAQ"];
+		$maquina["NOMBRE"] = $_REQUEST["NOMBRE"];
 		$_SESSION["maquina"] = $maquina;
+			}
+		
+		
+		
+		$condic = false;
+
 			
-		if(isset($_REQUEST['borrar'])) Header("Location: ../accions/accion_borrar_maquina.php");
+			for ($i = 0; $i <= $_SESSION['pag_tam']; $i++) {
+				if(isset($_REQUEST['add' . $i])){
+					$_SESSION['empleadoMod'] = $_SESSION['EMPLEADOMOD' . $i];
+					$condic = true;
+			
+				}
+			}
+
+			
+			
+	
+			if(isset($_REQUEST["borrar"])) Header("Location: ../accions/accion_borrar_maquina.php");
+		else if(isset($_REQUEST['editar'])) Header("Location: ../modificar/modificarMaquina.php");
+		else if($condic) Header("Location: ../accions/accion_anadir_EmpleadoMaquina.php");
 	}
 	else 
 		Header("Location: ../modificar/modificarMaquina.php");
