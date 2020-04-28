@@ -42,7 +42,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
-  <link rel="stylesheet" type="text/css" href="../css/popup2.css" />
+  <link rel="stylesheet" type="text/css" href="../css/popup3.css" />
   <script type="text/javascript" src="../js/filtro.js"></script>
   <title>Lista de clientes</title>
 </head>

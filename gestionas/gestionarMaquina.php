@@ -43,5 +43,14 @@ function getJefeMaquina2($conexion,$oid){
 	return $stmt->fetch();
 }
 
-
+function actualizarEmpleadoMaquina($conexion,$dni,$oid){
+	try{
+		$consulta = "UPDATE EMPLEADO SET EMPLEADO.OID_MAQ='$oid' WHERE(EMPLEADO.DNI='$dni')";
+	$stmt = $conexion->prepare($consulta);
+	$stmt->execute();
+	return 1;
+	}catch(PDOException $e){
+		return 0;
+	}
+}
 ?>

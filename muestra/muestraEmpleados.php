@@ -23,7 +23,7 @@
 
 	$conexion = crearConexionBD();
 
-	$query = "SELECT * FROM EMPLEADO ORDER BY OCULTO NULLS LAST"; 
+	$query = "SELECT * FROM EMPLEADO"; 
 
 	$total_registros = total_consulta($conexion,$query);
 	$total_paginas = (int) ($total_registros / $pag_tam);
@@ -46,7 +46,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
-  <link rel="stylesheet" type="text/css" href="../css/popup2.css" />
+  <link rel="stylesheet" type="text/css" href="../css/popup3.css" />
   <title>Lista de Empleados</title>
  
 
@@ -177,7 +177,8 @@
 						
 								<td class ="boton"><button id="borrar" name="borrar" type="submit" class="vistacliente">
 									<img src="../img/papeleraBorrar.png" class="borrar_fila" alt="Papelera Borrar" height="40" width="40">
-								</button></td>
+								</button>
+								</td>
 							</form>
 						</tr>
 					<?php }else{ ?>

@@ -5,6 +5,8 @@
 	$PAG_NUM = $infoPag['PAG_NUM'];
 	$PAG_TAM = $infoPag['PAG_TAM'];
 	
+	
+	
 	if (isset($_REQUEST["DNI"])){
 		$empleado["OID_EMP"] = $_REQUEST["OID_EMP"];
 		$empleado["DNI"] = $_REQUEST["DNI"];
