@@ -48,18 +48,18 @@
 	
 	<div class="linea">
 			<label for="NOMBRE" class="textoMod">Nombre</label></br>	
-			<input align="center" class="largo" id="NOMBRE" name="NOMBRE" type="text" value=""/><br />
+			<input align="center" class="largo" id="NOMBRE" name="NOMBRE" type="text" value="" required/><br />
 	</div>
 	
 	<div class="linea2">
 	<div class="dividido">
 	<label class="textoMod">Cif</label></br>		
-	<input class="corto" pattern="^[a-zA-Z]{1}[0-9]{7}[a-zA-Z]{1}" id="CIF" name="CIF" type="text" value=""/><br />
+	<input class="corto" pattern="^[a-zA-Z]{1}[0-9]{7}[a-zA-Z]{1}" id="CIF" name="CIF" type="text" value="" required/><br />
 	</div>
 	
 	<div class="dividido">
 	<label class="textoMod">Teléfono</label></br>	
-	<input class="corto" pattern="^[0-9]{9}" id="TELEFONO" name="TELEFONO" type="text" value=""/><br />
+	<input class="corto" pattern="^[0-9]{9}" id="TELEFONO" name="TELEFONO" type="text" value="" required/><br />
 	</div>
 	</div>
 	
@@ -68,12 +68,12 @@
 	
 	<div class="linea">
 	<label class="textoMod">Direccion</label></br>	
-	<input class="largo" id="DIRECCION" name="DIRECCION" type="text" value=""/><br />
+	<input class="largo" id="DIRECCION" name="DIRECCION" type="text" value="" required/><br />
 	</div>
 	
 	<div class="linea">
 	<label class="textoMod">Email</label></br>	
-	<input class="largo" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" id="EMAIL" name="EMAIL" type="text" value=""/><br />
+	<input class="largo" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" id="EMAIL" name="EMAIL" type="text" value="" required/><br />
 	</div>
 		
     	
