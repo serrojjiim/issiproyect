@@ -1,0 +1,15 @@
+div.footerbase{
+	background-color: #333333;
+	width: 100%;
+	height: 60px;
+	bottom: 0;
+	position: absolute;
+}
+
+div.telefono{
+	height:30px;
+	width: 15%;
+	padding-top: 15px;
+    padding-left: 20px;
+
+}
