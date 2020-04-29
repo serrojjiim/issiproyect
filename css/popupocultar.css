@@ -17,7 +17,7 @@
 .popup {
   margin: 70px auto;
   padding: 0px;
-  background: #333;
+  background: #fff;
   border-radius: 5px;
   width: 30%;
   position: relative;
@@ -36,10 +36,10 @@
   transition: all 200ms;
   font-weight: bold;
   text-decoration: none;
-  color: #ffffff;
+  color: #000;
 }
 .popup .close:hover {
-  color:#ffffff;
+  color:#AA173A;
 }
 p.textp{
 	padding-top:3%;

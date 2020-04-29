@@ -1,7 +1,7 @@
 <?php
 
 	session_start();
-if($_SESSION['cargo']!="PRESIDENTE" and $_SESSION['cargo']!="VICEPRESIDENTE"){
+	if(!isset($_SESSION["cargo"]) or ($_SESSION['cargo']!="CAMIONERO" and $_SESSION['cargo']!="PRESIDENTE" and $_SESSION['cargo']!="VICEPRESIDENTE" and $_SESSION['cargo']!="GERENTEVENTAS")){
 		echo "</p>No tienes permisos para acceder a esta página</p>";
 		
 	}else{
@@ -62,12 +62,12 @@ if($_SESSION['cargo']!="PRESIDENTE" and $_SESSION['cargo']!="VICEPRESIDENTE"){
 <main>
 
 	<div class="titulotabla">
-	 	<div><h2 class="titulo">Listado de los clientes</h2></div>
+	 	<div><p class="titulo">Listado de los clientes</p></div>
 	 </div>
 	<div class="selectpag">
 	
 	
-	<form style="display: inline-block" method="get" action="muestraCliente.php">
+	<form class ="formpag" style="display: inline-block" method="get" action="muestraCliente.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -81,7 +81,7 @@ if($_SESSION['cargo']!="PRESIDENTE" and $_SESSION['cargo']!="VICEPRESIDENTE"){
 
 			entradas de <?php echo $total_registros?>
 
-			<input type="submit" value="Cambiar">
+			<input style="cursor: pointer;" type="submit" value="Cambiar">
 
 		</form>
 		<button style="float:right;" onclick="window.location.href='../modificar/nuevoCliente.php'" class="anadir">

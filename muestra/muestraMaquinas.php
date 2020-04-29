@@ -1,7 +1,10 @@
 <?php
 
 	session_start();
-
+		if(!isset($_SESSION["cargo"]) or ($_SESSION['cargo']!="JEFEPERSONAL" and $_SESSION['cargo']!="PRESIDENTE" and  $_SESSION['cargo']!="VICEPRESIDENTE")){
+		echo "</p>No tienes permisos para acceder a esta página</p>";
+		
+	}else{
     require_once("../gestionas/gestionBD.php");
     require_once("../gestionas/gestionarMaquina.php");
     require_once("../consultaPaginada.php");
@@ -269,4 +272,5 @@
 	
 </main>
 </body>
+<?php } ?>
 </html>

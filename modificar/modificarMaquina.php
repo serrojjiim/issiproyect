@@ -1,6 +1,10 @@
 <?php
 
 	session_start();
+		if(!isset($_SESSION["cargo"]) or ($_SESSION['cargo']!="JEFEPERSONAL")){
+		echo "</p>No tienes permisos para acceder a esta página</p>";
+		
+	}else{
 
     require_once("../gestionas/gestionBD.php");
     require_once("../gestionas/gestionarMaquina.php");
@@ -51,7 +55,10 @@
 </head>
 
 <body>
-<?php ?>
+<?php
+	include_once ("../muestra/header.php");
+
+ ?>
 
 <main>
 
@@ -72,7 +79,7 @@
 		
 		?>
 		
-	 	<div><h2 class="titulo">Selecciona empleados para añadirlos a la máquina <?php echo $maq ?></h2></div>
+	 	<div><p class="titulo">Selecciona empleados para añadirlos a la máquina <?php echo $maq ?></p></div>
 	 </div>
 	
 		
@@ -242,7 +249,7 @@
 	</div>
 	
 	<div style="display:inline-block;float:right;width: 49%;">
-		<div style="width: 80%"  class="divMod">
+		<div style="width: 80%;margin-top: 53px;"  class="divMod">
 		<?php if(isset($_SESSION['mOkEditarMaq'])){
 	 	unset($_SESSION['mOkEditarMaq']);
 		echo "<div>
@@ -276,4 +283,5 @@
 
 </main>
 </body>
+<?php } ?>
 </html>
