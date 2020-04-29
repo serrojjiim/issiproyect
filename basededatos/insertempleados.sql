@@ -12,7 +12,6 @@ INSERT INTO maquina (nombre) VALUES ('Pintura2');
 INSERT INTO maquina (nombre) VALUES ('Almacen1');
 INSERT INTO maquina (nombre) VALUES ('Almacen2');
 
-DELETE FROM MAQUINA WHERE OID_MAQ=5;
 
 --EMPLEADOS
 --Presidente

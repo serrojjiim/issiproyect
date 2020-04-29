@@ -97,11 +97,11 @@
 	 	
 		<tr>
 			<?php if($_SESSION['cargo']=="GERENTEVENTAS" or $_SESSION['cargo']=="PRESIDENTE" or $_SESSION['cargo']=="VICEPRESIDENTE") { ?>
-    		<th>CIF</th>
+    		<th class="primera">CIF</th>
     		<th>Nombre</th>
     		<th>Dirección</th>
     		<th>Teléfono</th>
-    		<th>Email</th>
+    		<th class="ultima">Email</th>
     		<?php }else if($_SESSION['cargo']=="CAMIONERO"){?>
     		<th>Nombre</th>
     		<th>Dirección</th>
