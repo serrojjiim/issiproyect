@@ -5,6 +5,11 @@ function consultarClientes($conexion) {
 	return $conexion->query($consulta);
 }
 
+function consultarClientesNoOcultos($conexion) {
+ 	$consulta = "SELECT * FROM CLIENTE WHERE CLIENTE.OCULTO=0";
+	return $conexion->query($consulta);
+}
+
 function actualizarDatosCliente($conexion, $oidcli,$cif,$nombre,$direccion,$telefono,$email){
 	try {
 		$stmt=$conexion->prepare('CALL ACTUALIZARCLIENTE(:oidcli,:cif,:nombre,:direccion,:telefono,:email)');

@@ -12,7 +12,6 @@ INSERT INTO maquina (nombre) VALUES ('Pintura2');
 INSERT INTO maquina (nombre) VALUES ('Almacen1');
 INSERT INTO maquina (nombre) VALUES ('Almacen2');
 
-
 --EMPLEADOS
 --Presidente
 INSERT INTO EMPLEADO (dni,nombre,apellidos,telefono,direccion,cargo,capitalsocial,fechacontratacion,diasvacaciones,oid_maq) VALUES ('11111111J','Mariano','Torrado Sanchez','657159434','7719 Turpis Avenida',1,97191,'04/05/19',25,null);

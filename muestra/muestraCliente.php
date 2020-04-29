@@ -98,7 +98,7 @@
 		<tr>
 			<?php if($_SESSION['cargo']=="GERENTEVENTAS" or $_SESSION['cargo']=="PRESIDENTE" or $_SESSION['cargo']=="VICEPRESIDENTE") { ?>
     		<th class="primera">CIF</th>
-    		<th>Nombre</th>
+    		<th >Nombre</th>
     		<th>Dirección</th>
     		<th>Teléfono</th>
     		<th class="ultima">Email</th>
@@ -143,7 +143,7 @@
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['DIRECCION'] ?></p></td>
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['TELEFONO'] ?></p></td>
 							<?php } ?>
-							<?php if($_SESSION['cargo']=="PRESIDENTE") { ?>
+							<?php if($_SESSION['cargo']=="GERENTEVENTAS") { ?>
 							<form action="../controladores/controlador_clientes.php">
 								
 								<td class="boton" class ="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
