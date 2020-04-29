@@ -18,7 +18,7 @@
 		$condic = false;
 
 			
-			for ($i = 0; $i <= $_SESSION['pag_tam']; $i++) {
+			for ($i = 0; $i <= $PAG_TAM; $i++) {
 				if(isset($_REQUEST['add' . $i])){
 					$_SESSION['empleadoMod'] = $_SESSION['EMPLEADOMOD' . $i];
 					$condic = true;

@@ -1,4 +1,4 @@
-wCL SCR;
+CL SCR;
 SET SERVEROUTPUT ON;
 --####################################################################################
 --                             FUNCIONES
@@ -422,7 +422,9 @@ BEGIN
 
 END;
 /
+
 --Eliminar pedido cliente
+
 CREATE OR REPLACE PROCEDURE QUITAR_PC (W_OID_PEDCLI IN PEDIDOPROVEEDOR.OID_PEDPROV%TYPE) AS
 BEGIN
   
@@ -431,4 +433,6 @@ BEGIN
  
 
 END;
+
 /
+

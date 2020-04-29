@@ -47,7 +47,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
   <link rel="stylesheet" type="text/css" href="../css/muestraMaquinas.css" />
-   <link rel="stylesheet" type="text/css" href="../css/popupocultar.css" />
+   <link rel="stylesheet" type="text/css" href="../css/popupocultar2.css" />
    <link rel="stylesheet" type="text/css" href="../css/modificarForm.css" />
   <script type="text/javascript" src="../js/filtro.js"></script>
   <title>Lista de máquinas</title>
@@ -123,7 +123,7 @@
 						<tr class="fila" >
 							<td class="nombre" align="center" onclick="window.location='#popup<?php echo $contador; ?>';"><p><?php echo $fila['NOMBRE'] ?></p></td>
 							
-							
+							<?php if($_SESSION['cargo']=="JEFEPERSONAL"){ ?>
 								
 								<td class ="boton">
 									<button id="editar" name="editar" type="submit" class="vistacliente">
@@ -136,7 +136,7 @@
 									<img src="../img/ocultar.png" class="boton" alt="Papelera Borrar" height="34" width="34">
 								</button>
 								</td>
-										
+								<?php } ?>
 							<form action="post" action="../controladores/controlador_maquinas.php">
 								
 								<div id="popup<?php echo $fila["NOMBRE"]; echo "Remove"; ?>" class="overlay" align="left">

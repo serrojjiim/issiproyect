@@ -52,7 +52,7 @@
   <title>Lista de pedidos de clientes</title>
 </head>
 
-<body>
+<body style="background-color:#dfdfdf7d;>
 
 
 <?php
@@ -90,14 +90,14 @@
 	 <table id="tablaClientes">
 
 		<tr>
-    		<th>Fecha del pedido</th>
+    		<th class="primera">Fecha del pedido</th>
     		<th>Fin de fabricación</th>
     		<th>Fecha de envío</th>
     		<th>Fecha de llegada</th>
     		<th>Fecha de pago</th>
     		<th>Coste total</th>
     		<th>Cliente</th>
-    		<th>Empleado</th>
+    		<th class="ultima">Empleado</th>
   		</tr>
 
 	<?php
@@ -111,11 +111,19 @@
 		<div id="popup<?php echo $fila["OID_PEDCLI"]; ?>" class="overlay" align="left">
 	<div class="popup">
 		<a class="close" href="#">&times;</a>
+				<div>
+				<p style="display: inline-block">CANTIDAD</p>
+				<p style="display: inline-block;margin-left: 30%">PRECIO</p>
+				<p style="display: inline-block;margin-left: 30%">NOMBRE</p></br>
+				</div>
 		<?php foreach($lineas as $linea) { 
 			$nombrePro = obtenerProducto($conexion,$linea["OID_PROD"]);
 			?>
-			<p>CANTIDAD: <?php echo $linea["CANTIDAD"]; ?> PRECIO(UNITARIO):<?php echo $linea["PRECIO"]; ?> MATERIAL:<?php echo $nombrePro["NOMBRE"];?></p>
-
+				<div>
+				<p style="display: inline-block;margin-left:3%"><?php echo $linea["CANTIDAD"]; ?> uds</p>
+				<p style="display: inline-block;margin-left: 32.5%"><?php echo $linea["PRECIO"]; ?>€/ud</p>
+				<p style="display: inline-block;margin-left: 33%"><?php echo $nombrePro["NOMBRE"];?></p></br>
+				</div>
 	<?php
 	
 	 } ?>
@@ -151,17 +159,20 @@
 					$cliente= getClienteOid($conexion, $fila['OID_CLI']);
 					$empleado = obtener_empleado_oid($conexion, $fila['OID_EMP']);?>
 
-						<tr class="fila" onclick="window.location='#popup<?php echo $fila["OID_PEDCLI"]; ?>';">
-							<td align="center"><?php echo $fila['FECHAPEDIDO'] ?></td>
-							<td align="center"><?php echo $fila['FECHAFINFABRICACION'] ?></td>
-							<td align="center"><?php echo $fila['FECHAENVIO'] ?></td>
-							<td align="center"><?php echo $fila['FECHALLEGADA'] ?></td>
-							<td align="center"><?php echo $fila['FECHAPAGO'] ?></td>
-							<td align="center"><?php echo $fila['COSTETOTAL']."€"?></td>
-							<td align="center"><?php echo $cliente['NOMBRE']?></td>
-							<td align="center"><?php echo $empleado['NOMBRE']." ".$empleado['APELLIDOS']?></td>
-    						<td class="boton"><a href="#"><img src="../img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></a></td>
-							<td class="boton"><a href="#"><img src="../img/ocultar.png" alt="Papelera Borrar" height="34" width="34"></a></td>
+						<tr class="fila" >
+							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDCLI"]; ?>';"><?php echo $fila['FECHAPEDIDO'] ?></td>
+							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDCLI"]; ?>';"><?php echo $fila['FECHAFINFABRICACION'] ?></td>
+							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDCLI"]; ?>';"><?php echo $fila['FECHAENVIO'] ?></td>
+							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDCLI"]; ?>';"><?php echo $fila['FECHALLEGADA'] ?></td>
+							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDCLI"]; ?>';"><?php echo $fila['FECHAPAGO'] ?></td>
+							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDCLI"]; ?>';"><?php echo $fila['COSTETOTAL']."€"?></td>
+							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDCLI"]; ?>';"><?php echo $cliente['NOMBRE']?></td>
+							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDCLI"]; ?>';"><?php echo $empleado['NOMBRE']." ".$empleado['APELLIDOS']?></td>
+    						<td class="boton"><button class="vistacliente" id="editar" name="editar" type="submit"><img src="../img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></button></td>
+							
+							<?php if($fila['FECHAFINFABRICACION']==NULL){?> 
+							<td class="boton"><button  class="vistacliente"  id="borrar" name="borrar" type="submit"><img src="../img/ocultar.png" alt="Papelera Borrar" height="34" width="34"></button></td>
+							<?php } ?>
 						</tr>
 						
 				<?php } ?>
