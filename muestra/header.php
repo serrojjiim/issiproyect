@@ -19,6 +19,7 @@ if(!isset($_SESSION["cargo"])){
   <li class="right"><a href="../logout.php">
 <img border="0" alt="Logout" src="../img/header/logout.png" width="22" height="22">
 </a></li>
+</ul>
    <?php }else if($_SESSION['cargo']=="GERENTECOMPRAS"){ ?>
 <ul class="topnav">
   <li class="logo"><a href="index1.php"><img border="0" alt="Logout" src="../img/header/logocoenca.png" width="40" height="30"></a></li>
@@ -42,6 +43,7 @@ if(!isset($_SESSION["cargo"])){
   <li class="logo"><a href="index1.php"><img border="0" alt="Logout" src="../img/header/logocoenca.png" width="40" height="30"></a></li>
   <li class="letras"><a class="letras" href="../muestra/muestraCamiones.php">CAMIONES</a></li>
   <li class="letras"><a class="letras" href="../muestra/peticiondias.php">SOLICITAR DIAS</a></li>
+  <li class="letras"><a class="letras" href="../muestra/muestraCliente.php">CLIENTES</a></li>
   <li class="right"><a href="../logout.php">
 <img border="0" alt="Logout" src="../img/header/logout.png" width="22" height="22">
 </a></li>

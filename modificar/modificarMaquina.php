@@ -23,8 +23,8 @@
 	unset($_SESSION["paginacion"]);
 
 	$conexion = crearConexionBD();
-
-	$query = "SELECT dni,nombre,apellidos,cargo FROM EMPLEADO WHERE EMPLEADO.OID_MAQ<>'$oid'";
+	
+	$query = "SELECT dni,nombre,apellidos,cargo FROM EMPLEADO WHERE(EMPLEADO.OID_MAQ<>'$oid' OR (EMPLEADO.OID_MAQ IS NULL AND EMPLEADO.CARGO=10))";
 
 	
 	$total_registros = total_consulta($conexion,$query);
