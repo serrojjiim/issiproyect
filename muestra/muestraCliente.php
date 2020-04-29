@@ -84,20 +84,29 @@
 			<input style="cursor: pointer;" type="submit" value="Cambiar">
 
 		</form>
+									<?php if($_SESSION['cargo']=="GERENTEVENTAS") { ?>
+
 		<button style="float:right;" onclick="window.location.href='../modificar/nuevoCliente.php'" class="anadir">
 		<img src="../img/anadir.png" width="25" height="25" >
 		</button>
+		<?php } ?>
 		</div>
 		
 		<div class ="tabla">
 	 <table  id="tablaClientes">
 	 	
 		<tr>
+			<?php if($_SESSION['cargo']=="GERENTEVENTAS" or $_SESSION['cargo']=="PRESIDENTE" or $_SESSION['cargo']=="VICEPRESIDENTE") { ?>
     		<th>CIF</th>
     		<th>Nombre</th>
     		<th>Dirección</th>
     		<th>Teléfono</th>
     		<th>Email</th>
+    		<?php }else if($_SESSION['cargo']=="CAMIONERO"){?>
+    		<th>Nombre</th>
+    		<th>Dirección</th>
+    		<th>Teléfono</th>
+    		<?php } ?>
   		</tr>
 
 	<?php
@@ -123,12 +132,18 @@
 				if ($fila["OCULTO"] == 1)  {?>
 					
 						<tr class="fila">
+							<?php if($_SESSION['cargo']=="GERENTEVENTAS" or $_SESSION['cargo']=="PRESIDENTE" or $_SESSION['cargo']=="VICEPRESIDENTE") { ?>
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['CIF'] ?></p></td>
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['NOMBRE'] ?></p></td>
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['DIRECCION'] ?></p></td>
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['TELEFONO'] ?></p></td>
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['EMAIL']?></p></td>
-							
+							<?php }else if($_SESSION['cargo']=="CAMIONERO"){?>
+							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['NOMBRE'] ?></p></td>
+							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['DIRECCION'] ?></p></td>
+							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['TELEFONO'] ?></p></td>
+							<?php } ?>
+							<?php if($_SESSION['cargo']=="PRESIDENTE") { ?>
 							<form action="../controladores/controlador_clientes.php">
 								
 								<td class="boton" class ="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
@@ -139,17 +154,28 @@
 									<img src="../img/activar.png" class="borrar_fila" alt="Papelera Borrar" height="34" width="34">
 								</button></td>
 							</form>
+							<?php } ?>
 						</tr>
 						
 				<?php } else { ?>
 
 						<tr class="fila">
-							<td align="center"><?php echo $fila['CIF'] ?></td>
+							<?php if($_SESSION['cargo']=="GERENTEVENTAS" or $_SESSION['cargo']=="PRESIDENTE"  or $_SESSION['cargo']=="VICEPRESIDENTE") { ?>
+
+							<td align="center"><p><?php echo $fila['CIF'] ?></p></td>
 							<td align="center"><?php echo $fila['NOMBRE'] ?></td>
 							<td align="center"><?php echo $fila['DIRECCION'] ?></td>
 							<td align="center"><?php echo $fila['TELEFONO'] ?></td>
 							<td align="center"><?php echo $fila['EMAIL']?></td>
-							
+							<?php } else if($_SESSION['cargo']=="CAMIONERO"){?>
+							<td align="center"><p><?php echo $fila['NOMBRE'] ?></p></td>
+							<td align="center"><?php echo $fila['DIRECCION'] ?></td>
+							<td align="center"><?php echo $fila['TELEFONO'] ?></td>
+								
+								<?php } ?>
+
+														<?php if($_SESSION['cargo']=="GERENTEVENTAS") { ?>
+
 							<form action="../controladores/controlador_clientes.php">
 								
 								<td class ="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
@@ -170,6 +196,7 @@
 									</div>
 								</div>
 							</form>
+							<?php } ?>
 						</tr>
 						
 				<?php } ?>

@@ -23,13 +23,22 @@
   position: relative;
   transition: all 5s ease-in-out;
 }
+.popup2 {
+  margin: 70px auto;
+  padding: 0px;
+  background: #333;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
 
-.popup h2 {
+.popup,.popup2 h2 {
   margin-top: 0;
   color: #333;
   font-family: Tahoma, Arial, sans-serif;
 }
-.popup .close {
+.popup,.popup2 .close {
   position: absolute;
   top: 0px;
   right:0px;
@@ -41,11 +50,14 @@
 .popup .close:hover {
   color:#AA173A;
 }
+.popup2 .close:hover {
+  color:#fff;
+}
 p.textp{
 	padding-top:3%;
 	font: 14px Arial, sans-serif;
 }
-.popup .content {
+.popup,.popup2 .content {
   max-height: 30%;
   overflow: auto;
 }

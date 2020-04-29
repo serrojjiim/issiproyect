@@ -123,7 +123,7 @@
 						<tr class="fila" >
 							<td class="nombre" align="center" onclick="window.location='#popup<?php echo $contador; ?>';"><p><?php echo $fila['NOMBRE'] ?></p></td>
 							
-							
+							<?php if($_SESSION['cargo']=="JEFEPERSONAL"){ ?>
 								
 								<td class ="boton">
 									<button id="editar" name="editar" type="submit" class="vistacliente">
@@ -136,11 +136,11 @@
 									<img src="../img/ocultar.png" class="boton" alt="Papelera Borrar" height="34" width="34">
 								</button>
 								</td>
-										
+								<?php } ?>
 							<form action="post" action="../controladores/controlador_maquinas.php">
 								
 								<div id="popup<?php echo $fila["NOMBRE"]; echo "Remove"; ?>" class="overlay" align="left">
-									<div class="popup">
+									<div class="popup2">
 										<a class="close" href="#">X</a>
 										<p class="textp" align="center">¿Seguro que quieres ocultar la máquina <?php echo $fila['NOMBRE'];?>?</p>
 									</br>
@@ -157,7 +157,7 @@
 								
 								
 								<div id="popup<?php echo $contador; ?>" class="overlay" align="left">
-									<div class="popup">
+									<div class="popup2">
 										<a class="close" href="#">X</a>
 										<div class="dJefe" align="center">
 
