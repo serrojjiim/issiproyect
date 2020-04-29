@@ -47,7 +47,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
   <link rel="stylesheet" type="text/css" href="../css/muestraMaquinas.css" />
-   <link rel="stylesheet" type="text/css" href="../css/popupocultar.css" />
+   <link rel="stylesheet" type="text/css" href="../css/popupocultar2.css" />
    <link rel="stylesheet" type="text/css" href="../css/modificarForm.css" />
   <script type="text/javascript" src="../js/filtro.js"></script>
   <title>Lista de máquinas</title>
@@ -140,7 +140,7 @@
 							<form action="post" action="../controladores/controlador_maquinas.php">
 								
 								<div id="popup<?php echo $fila["NOMBRE"]; echo "Remove"; ?>" class="overlay" align="left">
-									<div class="popup2">
+									<div class="popup">
 										<a class="close" href="#">X</a>
 										<p class="textp" align="center">¿Seguro que quieres ocultar la máquina <?php echo $fila['NOMBRE'];?>?</p>
 									</br>
@@ -157,7 +157,7 @@
 								
 								
 								<div id="popup<?php echo $contador; ?>" class="overlay" align="left">
-									<div class="popup2">
+									<div class="popup">
 										<a class="close" href="#">X</a>
 										<div class="dJefe" align="center">
 
