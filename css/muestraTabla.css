@@ -1,4 +1,3 @@
-
 table {
   font: 14px Arial, sans-serif;
   border-collapse: collapse;
@@ -183,7 +182,6 @@ span.current{
 }
 
 .popup {
-  left: -40%;
   position: absolute;
   display: block;
   cursor: pointer;

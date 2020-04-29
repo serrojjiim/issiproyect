@@ -142,12 +142,12 @@
 					$empleado = obtener_empleado_oid($conexion, $fila['OID_EMP']);?>
 					
 	
-						<tr class="fila" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';">
-							<td align="center"><?php echo $fila['FECHAPEDIDO'] ?></td>
-							<td align="center"><?php echo $fila['FECHAPAGO'] ?></td>
-							<td align="center"><?php echo $fila['COSTETOTAL']."€" ?></td>
-							<td align="center"><?php echo $proveedor["NOMBRE"]?></td>
-							<td align="center"><?php echo $empleado['NOMBRE']." ".$empleado['APELLIDOS']?></td>
+						<tr class="fila">
+							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';"><?php echo $fila['FECHAPEDIDO'] ?></td>
+							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';"><?php echo $fila['FECHAPAGO'] ?></td>
+							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';"><?php echo $fila['COSTETOTAL']."€" ?></td>
+							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';"><?php echo $proveedor["NOMBRE"]?></td>
+							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';"><?php echo $empleado['NOMBRE']." ".$empleado['APELLIDOS']?></td>
     						<td class ="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
 									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
 								</button></td>
