@@ -71,17 +71,6 @@ tr.fila td.boton {
 }
 table tr.fila:hover td {background-color: #a2a2a214;}
 table tr.fila:hover td.boton{background-color: transparent !important;}
-#filtro {
-  background-image: url("../img/lupa.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 20%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-}
-
 
 p.fOculto{
 	color:#94929847;
@@ -175,3 +164,47 @@ span.current{
        }
 }
 
+.filtro {
+  background-image: url("../img/lupa.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 80%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+
+.filterIcon {
+	height: 15px;
+	width: 15px;
+	cursor: pointer;
+}
+
+.popup {
+  left: -40%;
+  position: absolute;
+  display: block;
+  cursor: pointer;
+}
+
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+  width: 400px;
+}
+
+.popup .show {
+  visibility: visible;
+}
