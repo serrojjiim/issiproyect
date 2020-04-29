@@ -46,7 +46,7 @@ p.textp{
 	font: 14px Arial, sans-serif;
 }
 .popup .content {
-  max-height: 30%;
+  max-height: 20%;
   overflow: auto;
 }
 button.bPop{
