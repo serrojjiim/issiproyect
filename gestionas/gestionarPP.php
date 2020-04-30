@@ -12,6 +12,19 @@ function eliminarPP($conexion,$oid_pedprov) {
     }
 }
 
+function consultarMaterial($conexion){
+	$consulta = "SELECT * FROM PEDIDOPROVEEDOR";
+		
+    return $conexion->query($consulta); 
+}
+
+function consultarPP($conexion){
+	$consulta = "SELECT * FROM PEDIDOPROVEEDOR";
+		
+    return $conexion->query($consulta);
+}
+
+
 function modificarPP($conexion,$oid,$fp,$fpa,$ct,$oidprov,$oidemp){
 	if($fpa==null){
 			try{
@@ -35,10 +48,36 @@ function modificarPP($conexion,$oid,$fp,$fpa,$ct,$oidprov,$oidemp){
 	
 }
 
+function getCantidadMaterial($conexion,$oidmat){
+	$consulta = "SELECT * FROM MATERIAL WHERE MATERIAL.OID_MAT='$oidmat'";
+		
+    return $conexion->query($consulta);
+}
 
 function lineaspedidoP($conexion,$oid_pedprov) {
 	$consulta = "SELECT * FROM LINEAPEDIDOPROVEEDOR WHERE(OID_PEDPROV='$oid_pedprov')";
 		
     return $conexion->query($consulta);
+}
+
+function actualizarAnadir($conexion,$oid_pedprov) {
+	try{
+	$consulta = "UPDATE LINEAPEDIDOPROVEEDOR SET LINEAPEDIDOPROVEEDOR.ANADIDO=1 WHERE(OID_PEDPROV='$oid_pedprov')";
+	$stmt = $conexion->prepare($consulta);
+	$stmt->execute();
+	return 1;
+		}catch(PDOException $e){
+			return $e->getMessage();
+		}
+}
+function insertarMaterial($conexion,$oidmat,$cantidad){
+	try{
+	$consulta = "UPDATE MATERIAL SET MATERIAL.STOCK='$cantidad' WHERE MATERIAL.OID_MAT='$oidmat'";
+	$stmt = $conexion->prepare($consulta);
+	$stmt->execute();
+	return 1;
+		}catch(PDOException $e){
+			return $e->getMessage();
+		}
 }
 ?>

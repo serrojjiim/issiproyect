@@ -178,6 +178,7 @@ CREATE TABLE lineapedidoproveedor (
     precio           INTEGER,
     oid_pedprov      INTEGER,
     oid_mat          INTEGER ,
+    anadido         INTEGER DEFAULT 0,
     PRIMARY KEY ( oid_linpedprov ),
     FOREIGN KEY ( oid_pedprov ) REFERENCES pedidoproveedor,
     FOREIGN KEY ( oid_mat ) REFERENCES material    
