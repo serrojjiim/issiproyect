@@ -1,6 +1,5 @@
 function popup(n) {
 	var popup = document.getElementsByClassName("popuptext")[n];
-	var popuptext = document.getElementsByClassName("popuptext")[n];
 	var th = document.getElementsByTagName("th")[n];
 	var offset = $(th).offset();
 	event.stopPropagation();
@@ -10,5 +9,5 @@ function popup(n) {
 		top : topOf - 60,
 		left : leftOf
 	});
-	popuptext.classList.toggle("show");
+	popup.classList.toggle("show");
 }

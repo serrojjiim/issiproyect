@@ -176,11 +176,11 @@
 							
 							<form action="../controladores/controlador_clientes.php">
 								
-								<td class="boton" class ="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
+								<td class="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
 									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
 								</button></td>
 						
-								<td class="boton" class ="boton"><button id="activar" name="activar" type="submit" class="vistacliente">
+								<td class="boton"><button id="activar" name="activar" type="submit" class="vistacliente">
 									<img src="../img/activar.png" class="borrar_fila" alt="Papelera Borrar" height="34" width="34">
 								</button></td>
 								
@@ -222,7 +222,7 @@
 								<div id="popup<?php echo $fila["OID_CLI"]; ?>" class="overlay" align="left">
 									<div class="popup">
 										<a class="close" href="#">X</a>
-										<p class="textp" align="center">¿Seguro que quieres dar de baja a <?php echo $fila['NOMBRE'];?>?</p>
+										<p class="textp" align="center">¿Seguro que quieres dar de baja al cliente <?php echo $fila['NOMBRE'];?>?</p>
 									</br>
 										<button id="borrar" name="borrar" type="submit" class="bPop"><img src="../img/ocultar.png" width="30px" height="30px"/></button>
 									</div>

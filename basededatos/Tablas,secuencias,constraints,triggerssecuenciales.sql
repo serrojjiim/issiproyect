@@ -149,8 +149,9 @@ CREATE TABLE proveedor (
     direccion   VARCHAR(50),
     telefono    NUMBER(9),
     email       VARCHAR(50),
+    oculto      INTEGER DEFAULT 0,
     PRIMARY KEY ( oid_prov )
-);
+); 
 
 CREATE TABLE pedidoproveedor (
     oid_pedprov   INTEGER NOT NULL,
