@@ -287,7 +287,7 @@ INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,url
 INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,urlfoto) VALUES ('caja8', 53, 17, 32, 13, 'Madera con logo empresa','http://www.coenca.org/wp-content/uploads/2018/11/caja_02-150x150.png');
 INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,urlfoto) VALUES ('caja9', 23, 23, 12, 43, 'Madera','http://www.coenca.org/wp-content/uploads/2018/11/caja_07-150x150.png');
 INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,urlfoto) VALUES ('caja10', 53, 43, 32, 13, 'Madera','http://www.coenca.org/wp-content/uploads/2018/11/caja_04-150x150.png');
-INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,urlfoto) VALUES ('palet', 67, 18, 12, 43, 'Madera con logo empresa','http://www.coenca.org/wp-content/uploads/2018/11/caja_05-150x150.png');
+INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,urlfoto) VALUES ('palet', 67, 18, 12, 43, 'Madera con logo empresa','../img/palet.png');
 INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,urlfoto) VALUES ('caja11', 53, 43, 32, 13, 'Madera','http://www.coenca.org/wp-content/uploads/2018/11/caja_07-150x150.png');
 
 --LINEASPEDIDOCLIENTES
