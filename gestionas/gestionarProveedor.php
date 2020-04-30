@@ -12,4 +12,12 @@ function obtener_proveedor_oid($conexion, $oidprov){
 	return $stmt->fetch();
 }
 
+function consultarProveedoresNoOcultos($conexion){
+	$consulta = "SELECT * FROM PROVEEDOR";
+	return $conexion->query($consulta);
+}
+function gerenteVentas($conexion){
+	$consulta = "SELECT * FROM EMPLEADO WHERE EMPLEADO.CARGO=6";
+	return $conexion->query($consulta);
+}
 ?>
