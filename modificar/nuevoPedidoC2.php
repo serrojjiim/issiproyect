@@ -66,7 +66,7 @@
 												<input id="OID_PROD" name="OID_PROD" type="hidden" value="<?php echo $prod1["OID_PROD"]?>"/>
 												<input id="OID_PEDCLI" name="OID_PEDCLI" type="hidden" value="<?php echo $_SESSION["oid_pedcli"]?>"/>
 												<button class="botonproducto"  id="elegir" name="elegir" type="button" onclick="window.location='#popup<?php echo $prod1["OID_PROD"]; ?>';">
-													<img class="imagenprod" src="https://www.todocesped.es/wp-content/uploads/clavos-para-instalar-cesped-artificial-sobre-tierra.jpg" />
+													<img class="imagenprod" src="<?php echo $prod1["URLFOTO"];?>" />
 												</button>
 												
 												
@@ -89,7 +89,7 @@
 												<input id="OID_PROD" name="OID_PROD" type="hidden" value="<?php echo $prod2["OID_PROD"]?>"/>
 												<input id="OID_PEDCLI" name="OID_PEDCLI" type="hidden" value="<?php echo $_SESSION["oid_pedcli"]?>"/>
 												<button class="botonproducto"  id="elegir" name="elegir" type="button" onclick="window.location='#popup<?php echo $prod2["OID_PROD"]; ?>';">
-													<img class="imagenprod" src="https://www.todocesped.es/wp-content/uploads/clavos-para-instalar-cesped-artificial-sobre-tierra.jpg" />
+													<img class="imagenprod" src="<?php echo $prod2["URLFOTO"];?>" />
 												</button>
 												
 												
@@ -112,7 +112,7 @@
 												<input id="OID_PROD" name="OID_PROD" type="hidden" value="<?php echo $prod3["OID_PROD"]?>"/>
 												<input id="OID_PEDCLI" name="OID_PEDCLI" type="hidden" value="<?php echo $_SESSION["oid_pedcli"]?>"/>
 												<button class="botonproducto"  id="elegir" name="elegir" type="button" onclick="window.location='#popup<?php echo $prod3["OID_PROD"]; ?>';">
-													<img class="imagenprod" src="https://www.todocesped.es/wp-content/uploads/clavos-para-instalar-cesped-artificial-sobre-tierra.jpg" />
+													<img class="imagenprod" src="<?php echo $prod3["URLFOTO"];?>" />
 												</button>
 												
 												
@@ -135,7 +135,7 @@
 												<input id="OID_PROD" name="OID_PROD" type="hidden" value="<?php echo $prod4["OID_PROD"]?>"/>
 												<input id="OID_PEDCLI" name="OID_PEDCLI" type="hidden" value="<?php echo $_SESSION["oid_pedcli"]?>"/>
 												<button class="botonproducto"  id="elegir" name="elegir" type="button" onclick="window.location='#popup<?php echo $prod4["OID_PROD"]; ?>';">
-													<img class="imagenprod" src="https://www.todocesped.es/wp-content/uploads/clavos-para-instalar-cesped-artificial-sobre-tierra.jpg" />
+													<img class="imagenprod" src="<?php echo $prod4["URLFOTO"];?>" />
 												</button>
 												
 												

@@ -83,6 +83,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
   <link rel="stylesheet" type="text/css" href="../css/amoal_lio.css" />
+   <link rel="stylesheet" type="text/css" href="../css/footer.css" />
 
   <title>Lista de materiales</title>
 </head>
@@ -96,7 +97,7 @@
 <main>
 	
 	<div class="titulotabla">
-	 	<div><p class="titulo">Listado de los clientes</p></div>
+	 	<div><p class="titulo">ALMACÉN DE MATERIALES</p></div>
 	 </div>
 	 
 	<div class="selectpag">
@@ -143,11 +144,11 @@
 	
 							<?php if($fila['STOCK']<=1500){ ?> 
 
-							<tr class="tmuerto" style="border: 2px solid #e53440" class="fila">
+							<tr class="tmuerto" style="border-bottom: 2px solid #e53440" class="fila">
 							<?php }else if($fila['STOCK']>1500 and $fila['STOCK']<=5000 ) { ?>
-							<tr class="tmuerto" style="border: 2px solid #f4964a" class="fila">
+							<tr class="tmuerto" style="border-bottom: 2px solid #f4964a" class="fila">
 							<?php }else { ?>
-							<tr class="tmuerto" style="border: 2px solid #73b887" class="fila">
+							<tr class="tmuerto" style="border-bottom: 2px solid #73b887" class="fila">
 							<?php } ?>
 
 								<td align="center"><p><?php echo $fila['NOMBRE'] ?></p></td>
@@ -225,7 +226,9 @@
 		</div>
 		</nav>
 		</div>
-
+<?php
+	include_once ("footer.php");
+	?>
 </main>
 
 </body>

@@ -48,6 +48,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
   <link rel="stylesheet" type="text/css" href="../css/popup.css" />
+   <link rel="stylesheet" type="text/css" href="../css/footer.css" />
   <script type="text/javascript" src="../js/filtro.js"></script>
   <title>Lista de pedidos de clientes</title>
 </head>
@@ -60,7 +61,7 @@
 	?>
 <main>
 	<div class="titulotabla">
-	 	<div><p class="titulo">Listado de los pedidos de clientes</p></div>
+	 	<div><p class="titulo">PEDIDOS DE CLIENTES</p></div>
 	 </div>
 	 
 	<div class="selectpag">
@@ -247,7 +248,9 @@
 		</div>
 		</nav>
 		</div>
-	
+	<?php
+	include_once ("footer.php");
+	?>
 </main>
 </body>
 </html>

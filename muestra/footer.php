@@ -11,7 +11,7 @@
 <div class="footerbase">
 	<div class="telefono">
 		<div style="display: inline-block;vertical-align: middle;"><img src="../img/footer/llamada.png" width="30" height="30"/></div>
-		<div style="display: inline-block;vertical-align: middle;">954 839 903</div>
+		<div style="display: inline-block;vertical-align: middle;margin-left: 10px;">954 839 903</div>
 	</div>
 	
 </div>

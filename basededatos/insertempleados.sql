@@ -277,18 +277,18 @@ INSERT INTO material (nombre, stock) VALUES ('Repuestos máquina pintura', 1600);
 
 --PRODUCTOS (12)
 
-INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado) VALUES ('caja1', 40, 23, 12, 43, 'Madera');
-INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado) VALUES ('caja2', 53, 43, 32, 13, 'Madera barnizada');
-INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado) VALUES ('caja3', 60, 14, 12, 43, 'Madera pintada');
-INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado) VALUES ('caja4', 53, 43, 32, 13, 'Madera con logo empresa');
-INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado) VALUES ('caja5', 56, 15, 12, 43, 'Madera natural');
-INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado) VALUES ('caja6', 53, 43, 32, 13,'Madera con logo empresa');
-INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado) VALUES ('caja7', 46, 23, 12, 43, 'Madera');
-INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado) VALUES ('caja8', 53, 17, 32, 13, 'Madera con logo empresa');
-INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado) VALUES ('caja9', 23, 23, 12, 43, 'Madera');
-INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado) VALUES ('caja10', 53, 43, 32, 13, 'Madera');
-INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado) VALUES ('palet', 67, 18, 12, 43, 'Madera con logo empresa');
-INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado) VALUES ('caja11', 53, 43, 32, 13, 'Madera');
+INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,urlfoto) VALUES ('caja1', 40, 23, 12, 43, 'Madera','http://www.coenca.org/wp-content/uploads/2018/11/caja_08-150x150.png');
+INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,urlfoto) VALUES ('caja2', 53, 43, 32, 13, 'Madera barnizada','http://www.coenca.org/wp-content/uploads/2018/11/caja_07-150x150.png');
+INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,urlfoto) VALUES ('caja3', 60, 14, 12, 43, 'Madera pintada','http://www.coenca.org/wp-content/uploads/2018/11/caja_05-150x150.png');
+INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,urlfoto) VALUES ('caja4', 53, 43, 32, 13, 'Madera con logo empresa','http://www.coenca.org/wp-content/uploads/2018/11/caja_06-150x150.png');
+INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,urlfoto) VALUES ('caja5', 56, 15, 12, 43, 'Madera natural','http://www.coenca.org/wp-content/uploads/2018/11/caja_03-150x150.png');
+INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,urlfoto) VALUES ('caja6', 53, 43, 32, 13,'Madera con logo empresa','http://www.coenca.org/wp-content/uploads/2018/11/caja_01-150x150.png');
+INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,urlfoto) VALUES ('caja7', 46, 23, 12, 43, 'Madera','http://www.coenca.org/wp-content/uploads/2018/11/caja_04-150x150.png');
+INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,urlfoto) VALUES ('caja8', 53, 17, 32, 13, 'Madera con logo empresa','http://www.coenca.org/wp-content/uploads/2018/11/caja_02-150x150.png');
+INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,urlfoto) VALUES ('caja9', 23, 23, 12, 43, 'Madera','http://www.coenca.org/wp-content/uploads/2018/11/caja_07-150x150.png');
+INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,urlfoto) VALUES ('caja10', 53, 43, 32, 13, 'Madera','http://www.coenca.org/wp-content/uploads/2018/11/caja_04-150x150.png');
+INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,urlfoto) VALUES ('palet', 67, 18, 12, 43, 'Madera con logo empresa','http://www.coenca.org/wp-content/uploads/2018/11/caja_05-150x150.png');
+INSERT INTO producto (nombre, precio, longitud, profundidad, altura, acabado,urlfoto) VALUES ('caja11', 53, 43, 32, 13, 'Madera','http://www.coenca.org/wp-content/uploads/2018/11/caja_07-150x150.png');
 
 --LINEASPEDIDOCLIENTES
 

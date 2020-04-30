@@ -49,6 +49,7 @@
   <link rel="stylesheet" type="text/css" href="../css/muestraMaquinas.css" />
    <link rel="stylesheet" type="text/css" href="../css/popupocultar2.css" />
    <link rel="stylesheet" type="text/css" href="../css/modificarForm.css" />
+    <link rel="stylesheet" type="text/css" href="../css/footer.css" />
   <script type="text/javascript" src="../js/filtro.js"></script>
   <title>Lista de máquinas</title>
 </head>
@@ -62,7 +63,7 @@
 <main>
 
 	<div class="titulotabla">
-	 	<div><p class="titulo">Listado de las máquinas</p></div>
+	 	<div><p class="titulo">MÁQUINAS</p></div>
 	 </div>
 	 
 	 <?php if(isset($_SESSION['mOkBorrarMaq'])){
@@ -269,7 +270,9 @@
 		</div>
 		</nav>
 		</div>
-	
+	<?php
+	include_once ("footer.php");
+	?>
 </main>
 </body>
 <?php } ?>

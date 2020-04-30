@@ -65,7 +65,7 @@
 <main> 	
 	<!-- <input type="text" id="filtro" onkeyup="filtrar()" placeholder="Filtrar por acabado.." title="Escribe un acabado"> -->
 	<div class="titulotabla">
-	 	<div><p class="titulo">LISTADO DE EMPLEADOS</p></div>
+	 	<div><p class="titulo">EMPLEADOS</p></div>
 	 </div>
 	<div class="selectpag">
 	

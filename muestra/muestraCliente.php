@@ -48,7 +48,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
   <link rel="stylesheet" type="text/css" href="../css/popupocultar.css" />
-
+ <link rel="stylesheet" type="text/css" href="../css/footer.css" />
   <script type="text/javascript" src="../js/filtro.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <title>Lista de clientes</title>
@@ -63,7 +63,7 @@
 <main>
 	
 	<div class="titulotabla">
-	 	<div><p class="titulo">Listado de los clientes</p></div>
+	 	<div><p class="titulo">CLIENTES</p></div>
 	 </div>
 	 
 	<div class="selectpag">
@@ -305,7 +305,9 @@
 		</div>
 		</nav>
 		</div>
-
+<?php
+	include_once ("footer.php");
+	?>
 </main>
 <script>
 	var $filas = $('#tablaClientes tr:gt(0)');

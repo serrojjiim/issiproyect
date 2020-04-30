@@ -58,6 +58,7 @@ if(!isset($_SESSION["cargo"]) or $_SESSION['cargo']!="JEFEPERSONAL"){
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />    
   <link rel="stylesheet" type="text/css" href="../css/popupocultar.css" />  	
+   <link rel="stylesheet" type="text/css" href="../css/footer.css" />
   <title>Lista de solicitudes</title>
 </head>
 
@@ -242,7 +243,9 @@ if(!isset($_SESSION["cargo"]) or $_SESSION['cargo']!="JEFEPERSONAL"){
 		</div>
 		</nav>
 		</div>
-
+<?php
+	include_once ("footer.php");
+	?>
 </main>
 </body>
 </html>

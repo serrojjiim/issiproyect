@@ -48,6 +48,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
   <link rel="stylesheet" type="text/css" href="../css/popup.css" />
+   <link rel="stylesheet" type="text/css" href="../css/footer.css" />
 
   <script type="text/javascript" src="../js/filtro.js"></script>
   <title>Lista de proveedores</title>
@@ -62,7 +63,7 @@
 <main>
 
 	<div class="titulotabla">
-	 	<div><p class="titulo">Listado de los pedidos a proveedores</p></div>
+	 	<div><p class="titulo">PEDIDOS A PROVEEDORES</p></div>
 	 </div>
 	<div class="selectpag">
 	
@@ -229,7 +230,9 @@
 		</nav>
 		</div>
 	
-	
+	<?php
+	include_once ("footer.php");
+	?>
 </main>
 
 </body>

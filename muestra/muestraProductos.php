@@ -60,7 +60,7 @@
 <main>
 
 	<div class="titulotabla">
-	 	<div><h2 class="titulo">Listado de los productos</h2></div>
+	 	<div><h2 class="titulo">PRODUCTOS</h2></div>
 	 </div>
 	<div class="selectpag">
 	
