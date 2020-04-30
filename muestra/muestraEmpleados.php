@@ -333,10 +333,11 @@
 		</div>
 		</nav>
 		</div>
-
-<?php
+	<footer><?php
 	include_once ("footer.php");
 	?>
+	</footer>
+
 </main>
 
 </body>

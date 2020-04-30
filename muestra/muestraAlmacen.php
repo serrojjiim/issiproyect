@@ -226,9 +226,11 @@
 		</div>
 		</nav>
 		</div>
-<?php
-	include_once ("footer.php");
-	?>
+		<footer><?php
+		include_once ("footer.php");
+		?>
+		</footer>
+
 </main>
 
 </body>

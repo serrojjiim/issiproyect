@@ -27,7 +27,9 @@ if(!isset($_SESSION["cargo"])){
 <p>Hola <?php echo $_SESSION['cargo']?></p>
 <p>Hola <?php echo $_SESSION['oid_emp']?></p>
 <p>Hola <?php echo $_SESSION['oid_maq']?></p>
-
+<footer>
+	<?php include("../muestra/footer.php");?>
+</footer>
 </body>
 </html>
 

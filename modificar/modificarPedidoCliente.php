@@ -130,7 +130,9 @@
 
 
 	</form>
-
+<footer>
+	<?php include("../muestra/footer.php");?>
+</footer>
 </main>
 </body>
 </html>

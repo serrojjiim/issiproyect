@@ -243,9 +243,12 @@ if(!isset($_SESSION["cargo"]) or $_SESSION['cargo']!="JEFEPERSONAL"){
 		</div>
 		</nav>
 		</div>
-<?php
-	include_once ("footer.php");
-	?>
+		<footer>
+			<?php
+			include_once ("footer.php");
+			?>
+		</footer>
+
 </main>
 </body>
 </html>

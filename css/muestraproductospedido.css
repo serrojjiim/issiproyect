@@ -24,6 +24,7 @@ div.fotoprodult{
 }
 div.productosycarrito{
 	margin-bottom: 100px;
+	overflow: hidden;
 }
 div.filalinea{
 	display: inline-block;
