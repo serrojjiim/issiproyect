@@ -38,14 +38,14 @@ END;
 /
 --RN09A
 CREATE OR REPLACE TRIGGER precioPedido_AIU
-    AFTER INSERT OR UPDATE  ON lineaPedidoCliente
+    AFTER INSERT OR UPDATE OR DELETE  ON lineaPedidoCliente
 BEGIN
     UPDATE pedidoCliente SET costetotal = precio_pedCli(oid_pedcli);
 END;
 /
 --RN08
 CREATE OR REPLACE TRIGGER precioProveedor_AIU
-    AFTER INSERT OR UPDATE  ON lineaPedidoProveedor
+    AFTER INSERT OR UPDATE OR DELETE  ON lineaPedidoProveedor
 BEGIN
     UPDATE pedidoProveedor SET costetotal = precio_pedProv(oid_pedprov);
 END;

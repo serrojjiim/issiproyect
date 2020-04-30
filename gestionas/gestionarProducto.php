@@ -2,7 +2,10 @@
 
 function consultarProductos($conexion) {
  	$consulta = "SELECT * FROM PRODUCTO";
-	return $conexion->query($consulta);
+	$stmt = $conexion->prepare($consulta);
+	$stmt->execute();
+	return $stmt->fetchAll();
+	
 }
 function obtenerProducto($conexion,$oid_prod) {
  	$consulta = "SELECT * FROM PRODUCTO WHERE(OID_PROD = '$oid_prod')";

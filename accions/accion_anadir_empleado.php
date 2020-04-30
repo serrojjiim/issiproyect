@@ -17,11 +17,6 @@
 		$excepcion = anadirempleado($conexion,$nempleado["DNI"],$nempleado["NOMBRE"],$nempleado["APELLIDOS"],$nempleado["TELEFONO"],$nempleado["DIRECCION"]
 		,$nempleado["CAPITALSOCIAL"],$nempleado["FECHACONTRATACION"],$nempleado["DIASVACACIONES"],$nempleado["OID_MAQ"]);
 		
-
-		
-	
-		
-		
 		cerrarConexionBD($conexion);
 		if ($excepcion<>"") {
 			$_SESSION["excepcion"] = $excepcion;

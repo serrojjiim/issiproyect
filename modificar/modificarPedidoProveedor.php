@@ -69,7 +69,7 @@
 		cerrarConexionBD($conexion);	
 		?>
 		<?php foreach($cs as $c){ ?>
-    	<option value="<?php echo $pedprov['OID_PROV']?>" <?php if($c['OID_PROV']==$pedprov['OID_PROV']) echo "selected"; ?>><?php echo $c['NOMBRE']; echo " "; ?></option> 
+    	<option value="<?php echo $c['OID_PROV']?>" <?php if($c['OID_PROV']==$pedprov['OID_PROV']) echo "selected"; ?>><?php echo $c['NOMBRE']; echo " "; ?></option> 
     	<?php } ?>
     	</select>
   
@@ -87,7 +87,7 @@
 				
 		?>
 		<?php foreach($cs as $c){ ?>
-    	<option value=<?php echo $pedprov['OID_EMP']?> <?php if($c['OID_EMP']==$pedprov['OID_EMP']) echo "selected"; ?>><?php echo $c['NOMBRE']; echo " "; echo $c['APELLIDOS'] ?></option> 
+    	<option value=<?php echo $c['OID_EMP']?> <?php if($c['OID_EMP']==$pedprov['OID_EMP']) echo "selected"; ?>><?php echo $c['NOMBRE']; echo " "; echo $c['APELLIDOS'] ?></option> 
     	<?php } ?>
     	</select>
   

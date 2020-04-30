@@ -8,7 +8,7 @@
 	require_once("../gestionas/gestionarPC.php");
 	require_once("../gestionas/gestionarProducto.php");
 	unset($_SESSION["paginacion"]);
-	
+	unset($_SESSION["oid_pedcli"]);
     require_once("../consultaPaginada.php");
 	
 	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
@@ -59,14 +59,13 @@
 	include_once ("header.php");
 	?>
 <main>
-
 	<div class="titulotabla">
-	 	<div><h2 class="titulo">Listado de los pedidos de clientes</h2></div>
+	 	<div><p class="titulo">Listado de los pedidos de clientes</p></div>
 	 </div>
+	 
 	<div class="selectpag">
-	
-	
-	<form method="get" action="muestraPedidosClientes.php">
+	<div style="display: inline-block;width: 50%;">
+	<form class="formpag" method="get" action="muestraPedidosClientes.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -83,6 +82,17 @@
 			<input type="submit" value="Cambiar">
 
 		</form>
+		</div>
+		<?php if ($_SESSION['cargo']=="GERENTEVENTAS") { ?>
+			<div style="display: inline-block;float:right;">
+			
+
+			<button onclick="window.location.href='../modificar/nuevoPedidoC1.php'" id="nuevo" name="nuevo" type="button" class="anadir">
+			<img src="../img/neworder1.png" class="" alt="Nuevo pedido" height="30" width="30">
+			</button>
+			
+		</div>
+		<?php } ?>
 		
 		</div>
 		
@@ -146,21 +156,13 @@
 					<input id="OID_CLI" name="OID_CLI" type="hidden" value="<?php echo $fila["OID_CLI"]; ?>"/>
 					<input id="OID_EMP" name="OID_EMP" type="hidden" value="<?php echo $fila["OID_EMP"]; ?>"/>
 
-				<?php
-
-					if (isset($pedcli) and ($pedcli["OID_PEDCLI"] == $fila["OID_PEDCLI"])) { ?>
-						
-						<tr>
-							<td align="center"<?php echo $fila['FECHAPEDIDO'] ?></td>
-						</tr>
-
-				<?php }	else {
-											
+			
+					<?php				
 					$cliente= getClienteOid($conexion, $fila['OID_CLI']);
 					$empleado = obtener_empleado_oid($conexion, $fila['OID_EMP']);?>
-
+					
 						<tr class="fila" >
-							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDCLI"]; ?>';"><?php echo $fila['FECHAPEDIDO'] ?></td>
+							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDCLI"]; ?>';"><p><?php echo $fila['FECHAPEDIDO'] ?></p></td>
 							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDCLI"]; ?>';"><?php echo $fila['FECHAFINFABRICACION'] ?></td>
 							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDCLI"]; ?>';"><?php echo $fila['FECHAENVIO'] ?></td>
 							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDCLI"]; ?>';"><?php echo $fila['FECHALLEGADA'] ?></td>
@@ -168,14 +170,15 @@
 							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDCLI"]; ?>';"><?php echo $fila['COSTETOTAL']."€"?></td>
 							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDCLI"]; ?>';"><?php echo $cliente['NOMBRE']?></td>
 							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDCLI"]; ?>';"><?php echo $empleado['NOMBRE']." ".$empleado['APELLIDOS']?></td>
+    						<?php if ($_SESSION['cargo']=="GERENTEVENTAS") { ?>
     						<td class="boton"><button class="vistacliente" id="editar" name="editar" type="submit"><img src="../img/lapizEditar.png" alt="Lapiz Editar" height="40" width="40"></button></td>
-							
 							<?php if($fila['FECHAFINFABRICACION']==NULL){?> 
 							<td class="boton"><button  class="vistacliente"  id="borrar" name="borrar" type="submit"><img src="../img/ocultar.png" alt="Papelera Borrar" height="34" width="34"></button></td>
 							<?php } ?>
+							<?php } ?>
 						</tr>
 						
-				<?php } ?>
+				
 
 				</div>
 			</div>

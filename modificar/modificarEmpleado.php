@@ -62,7 +62,7 @@
 	<div class="linea2">
 	<div class="dividido">
 	<label class="textoMod">Dni</label></br>	
-	<input class="corto" pattern="^[0-9]{8}[A-Z]" id="DNI" name="DNI" type="text" value="<?php echo $empleado["DNI"]; ?> "required/><br />
+	<input class="corto" pattern="^[0-9]{8}[A-Z]" id="DNI" name="DNI" type="text" value="<?php echo $empleado["DNI"]; ?>"required/><br />
 	</div>
 	<div class="dividido">
 	<label class="textoMod">Telefono</label></br>	

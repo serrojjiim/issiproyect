@@ -1,6 +1,6 @@
 <?php	
 	session_start();	
-	if( !isset($_SESSION["cargo"]) or ($_SESSION['cargo']!="PRESIDENTE" and $_SESSION['cargo']!="VICEPRESIDENTE")){
+	if( !isset($_SESSION["cargo"]) or $_SESSION['cargo']!="GERENTEVENTAS"){
 		echo "</p>No tienes permisos para acceder a esta página</p>";
 		
 	}else{
@@ -88,7 +88,7 @@
 		cerrarConexionBD($conexion);	
 		?>
 		<?php foreach($cs as $c){ ?>
-    	<option value="<?php echo $pedcli['OID_CLI']?>" <?php if($c['OID_CLI']==$pedcli['OID_CLI']) echo "selected"; ?>><?php echo $c['NOMBRE']; echo " "; ?></option> 
+    	<option value="<?php echo $c['OID_CLI']?>" <?php if($c['OID_CLI']==$pedcli['OID_CLI']) echo "selected"; ?>><?php echo $c['NOMBRE']; echo " "; ?></option> 
     	<?php } ?>
     	</select>
   

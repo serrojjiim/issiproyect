@@ -128,6 +128,7 @@ CREATE TABLE producto (
     profundidad     INTEGER,
     altura          INTEGER,
     acabado         VARCHAR(40),
+    urlfoto         VARCHAR(500),
     PRIMARY KEY ( oid_prod )
 );
 

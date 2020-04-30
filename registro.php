@@ -19,7 +19,9 @@ if (isset($_POST['submit'])) {
 		if ($salida = true) {
 			$_SESSION['login'] = $usuario['DNI'];
 			$_SESSION['nombre'] = $usuario['NOMBRE'];
+			$_SESSION['apellidos']=$usuario['APELLIDOS'];
 			$_SESSION['cargo'] = getCargoString($usuario['CARGO']);
+			$_SESSION['oid_emp']=$usuario['OID_EMP'];
 			Header("Location: muestra/index1.php");
 
 		} else {

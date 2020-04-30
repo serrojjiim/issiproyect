@@ -101,7 +101,7 @@
 	 <table class="tabla" id="tablaMaquina">
 	 	
 		<tr>
-    		<th>Nombre</th>
+    		<th class="primerault">Nombre</th>
   		</tr>
 
 	<?php

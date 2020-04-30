@@ -126,15 +126,15 @@
 	 	
 		<tr id="cabecera">
 			<?php if($_SESSION['cargo']=="CAMIONERO"){ ?>
-			<th>Nombre <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(1)"></th>
+			<th class="primera">Nombre <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(1)"></th>
     		<th>Dirección <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(2)"></th>
-    		<th>Teléfono <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(3)"></th>
+    		<th class="ultima">Teléfono <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(3)"></th>
 			<?php  }else{ ?>
-    		<th>CIF <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(0)"></th>
+    		<th class="primera">CIF <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(0)"></th>
     		<th>Nombre <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(1)"></th>
     		<th>Dirección <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(2)"></th>
     		<th>Teléfono <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(3)"></th>
-    		<th>Email <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(4)"></th>
+    		<th class="ultima">Email <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(4)"></th>
     		<?php } ?>
   		</tr>
 
