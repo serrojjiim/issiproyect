@@ -62,7 +62,7 @@
 <main>
 	
 	<div class="titulotabla">
-	 	<div><p class="titulo">PROVEEDORES</p></div>
+	 	<div><p class="titulo">Listado de los proveedores</p></div>
 	 </div>
 	 
 	<div class="selectpag">
@@ -181,7 +181,7 @@
 							<?php } ?>
 							<?php if($_SESSION['cargo']=="GERENTECOMPRAS") {?>
 							
-							<form action="../controladores/controlador_proveedores.php">
+							<form action="post" action="../controladores/controlador_proveedores.php">
 								
 								<td class="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
 									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
