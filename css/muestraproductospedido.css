@@ -23,7 +23,7 @@ div.fotoprodult{
 	
 }
 div.productosycarrito{
-	margin-bottom: 50px;
+	margin-bottom: 100px;
 }
 div.filalinea{
 	display: inline-block;
@@ -72,11 +72,10 @@ div.totalmuestraproductos{
 }
 
 div.totalcompra{
-		background-color: #fff;
+	background-color: #fff;
 	display:inline-block;
-	border: 2px solid #aa173a;
+	border: 1.5px solid #aa173a;
 	border-radius: 8px;
-	
 	width:350px;
 	vertical-align: top;
 	margin-top: 25px;
@@ -87,4 +86,5 @@ img.imagenprod{
 	width: 179px;
 	height: 179px;
 	border-radius: 8px;
+	border: 1.5px solid #978e8e;
 }

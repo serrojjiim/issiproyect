@@ -4,7 +4,7 @@ div.footerbase{
 	height: 60px;
 	bottom: 0;
 	clear:both;
-	position:fixed;
+	position:relative;
 	font: 15px Arial, sans-serif;
 	color:#fff;
 }
