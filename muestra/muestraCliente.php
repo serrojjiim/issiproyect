@@ -48,6 +48,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
   <link rel="stylesheet" type="text/css" href="../css/popupocultar.css" />
+
   <script type="text/javascript" src="../js/filtro.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <title>Lista de clientes</title>
@@ -83,11 +84,13 @@
 			<input style="cursor: pointer;" type="submit" value="Cambiar">
 
 		</form>
-		
+		<?php if($_SESSION['cargo']=="GERENTEVENTAS") {?>
 		<button style="float:right;" onclick="window.location.href='../modificar/nuevoCliente.php'" class="anadir">
 		<img src="../img/anadir.png" width="25" height="25" >
 		</button>
+		<?php } ?>
 		</div>
+		
 		
 		<div class="popup">
 			<span class="popuptext" id="filtroCIF">
@@ -114,16 +117,25 @@
 				<input type="text" class="filtro" id="input5" placeholder="Filtrar por email..." title="Escribe un email">
 			</span>
 		</div>
-		<div class ="tabla">
+	
+	
+	
+	<div class ="tabla">
 			
 	 <table  id="tablaClientes">
 	 	
 		<tr id="cabecera">
+			<?php if($_SESSION['cargo']=="CAMIONERO"){ ?>
+			<th>Nombre <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(1)"></th>
+    		<th>Dirección <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(2)"></th>
+    		<th>Teléfono <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(3)"></th>
+			<?php  }else{ ?>
     		<th>CIF <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(0)"></th>
     		<th>Nombre <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(1)"></th>
     		<th>Dirección <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(2)"></th>
     		<th>Teléfono <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(3)"></th>
     		<th>Email <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(4)"></th>
+    		<?php } ?>
   		</tr>
 
 	<?php
@@ -149,11 +161,18 @@
 				if ($fila["OCULTO"] == 1)  {?>
 					
 						<tr class="fila">
+							<?php if($_SESSION['cargo']=="CAMIONERO"){ ?>
+							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['NOMBRE'] ?></p></td>
+							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['DIRECCION'] ?></p></td>
+							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['TELEFONO'] ?></p></td>
+							<?php  }else{?>
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['CIF'] ?></p></td>
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['NOMBRE'] ?></p></td>
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['DIRECCION'] ?></p></td>
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['TELEFONO'] ?></p></td>
 							<td class="oculto" align="center"><p class="fOculto"><?php echo $fila['EMAIL']?></p></td>
+							<?php } ?>
+							<?php if($_SESSION['cargo']=="GERENTEVENTAS") {?>
 							
 							<form action="../controladores/controlador_clientes.php">
 								
@@ -164,17 +183,30 @@
 								<td class="boton" class ="boton"><button id="activar" name="activar" type="submit" class="vistacliente">
 									<img src="../img/activar.png" class="borrar_fila" alt="Papelera Borrar" height="34" width="34">
 								</button></td>
+								
 							</form>
+							<?php } ?>
 						</tr>
 						
 				<?php } else { ?>
 
 						<tr class="fila">
-							<td align="center"><?php echo $fila['CIF'] ?></td>
+							<?php if($_SESSION['cargo']=="CAMIONERO"){ ?>
+
+							<td align="center"><p><?php echo $fila['NOMBRE'] ?></p></td>
+							<td align="center"><?php echo $fila['DIRECCION'] ?></td>
+							<td align="center"><?php echo $fila['TELEFONO'] ?></td>
+							
+							<?php }else{ ?>
+							<td align="center"><p><?php echo $fila['CIF'] ?></p></td>
 							<td align="center"><?php echo $fila['NOMBRE'] ?></td>
 							<td align="center"><?php echo $fila['DIRECCION'] ?></td>
 							<td align="center"><?php echo $fila['TELEFONO'] ?></td>
 							<td align="center"><?php echo $fila['EMAIL']?></td>
+							<?php }?>
+							
+							<?php if($_SESSION['cargo']=="GERENTEVENTAS") {?>
+
 							
 							<form action="../controladores/controlador_clientes.php">
 								
@@ -196,6 +228,9 @@
 									</div>
 								</div>
 							</form>
+							
+							<?php } ?>
+							
 						</tr>
 						
 				<?php } ?>
