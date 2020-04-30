@@ -138,7 +138,7 @@
     		<th>Teléfono <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(3)"></th>
     		<th>Email <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(4)"></th>
     		<th class="boton"><button id="borrarFiltros" name="editar" type="submit" class="vistacliente" onclick="limpiarFiltros()">
-				<img src="../img/limpiarFiltros.png" class="limpiar_filtro" alt="Limpiar filtros" height="40" width="40">
+			<img src="../img/limpiarFiltros.png" class="limpiar_filtro" alt="Limpiar filtros" height="40" width="40">
 			</button></th>
     		<?php } ?>
   		</tr>
