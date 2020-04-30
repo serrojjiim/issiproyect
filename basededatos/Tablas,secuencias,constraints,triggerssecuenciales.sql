@@ -103,7 +103,7 @@ CREATE TABLE cliente (
     oculto      INTEGER DEFAULT 0,
     PRIMARY KEY ( oid_cli )
 );
-
+ 
 CREATE TABLE pedidocliente (
     oid_pedcli            INTEGER NOT NULL,
     fechapedido           TIMESTAMP (0) WITH TIME ZONE NOT NULL,
