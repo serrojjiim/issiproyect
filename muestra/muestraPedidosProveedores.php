@@ -139,7 +139,7 @@
 				<?php
 
 				
-					$proveedor = obtener_proveedor_oid($conexion, $fila['OID_PROV']);
+					$proveedor = obtener_proveedor_oid2($conexion, $fila['OID_PROV']);
 					$empleado = obtener_empleado_oid($conexion, $fila['OID_EMP']);?>
 					
 	

@@ -8,9 +8,15 @@ function consultarProveedor($conexion) {
 function obtener_proveedor_oid($conexion, $oidprov){
 	$consulta = "SELECT * FROM PROVEEDOR WHERE (PROVEEDOR.OID_PROV = '$oidprov')";
 	 
-	return $conexion->query($consulta);;
+	return $conexion->query($consulta);
 }
 
+function obtener_proveedor_oid2($conexion, $oidprov){
+	$consulta = "SELECT * FROM PROVEEDOR WHERE (PROVEEDOR.OID_PROV = '$oidprov')";
+	  $stmt = $conexion->prepare($consulta);
+	$stmt->execute();
+	return $stmt->fetch();
+}
 function consultarProveedoresNoOcultos($conexion){
 	$consulta = "SELECT * FROM PROVEEDOR";
 	return $conexion->query($consulta);
