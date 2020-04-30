@@ -16,7 +16,7 @@ function consultarProveedoresNoOcultos($conexion){
 	$consulta = "SELECT * FROM PROVEEDOR";
 	return $conexion->query($consulta);
 }
-function gerenteVentas($conexion){
+function gerenteCompras($conexion){
 	$consulta = "SELECT * FROM EMPLEADO WHERE EMPLEADO.CARGO=6";
 	return $conexion->query($consulta);
 }
@@ -54,10 +54,10 @@ function nuevoProveedor($conexion,$nombre,$cif,$telefono,$direccion,$email){
     }		
 }
 
-function actualizarDatosProveedor($conexion, $oidcli,$cif,$nombre,$direccion,$telefono,$email){
+function actualizarDatosProveedor($conexion, $oidprov,$cif,$nombre,$direccion,$telefono,$email){
 	try {
-		$stmt=$conexion->prepare('CALL ACTUALIZARPROVEEDOR(:oidcli,:cif,:nombre,:direccion,:telefono,:email)');
-		$stmt->bindParam(':oidcli',$oidcli);
+		$stmt=$conexion->prepare('CALL ACTUALIZARPROVEEDOR(:oidprov,:cif,:nombre,:direccion,:telefono,:email)');
+		$stmt->bindParam(':oidprov',$oidprov);
 		$stmt->bindParam(':cif',$cif);
 		$stmt->bindParam(':nombre',$nombre);
 		$stmt->bindParam(':direccion',$direccion);

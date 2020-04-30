@@ -85,7 +85,7 @@
 			<img src="../img/salvar.png" class="imagen" alt="Guardar">
 	</button>
 	
-	<button title="Volver a la tabla" id="patras" name="patras" type="submit" class="botonG2">
+	<button title="Volver a la tabla" id="patras" name="patras" type="submit" class="botonG2" formnovalidate="">
 			<img src="../img/atras.png" class="imagen" alt="Volver">
 	</button>
 	
