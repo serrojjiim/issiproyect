@@ -49,6 +49,10 @@ th {
 th.ultima{
 	border-top-right-radius:8px; 
 }
+th.primerault{
+	border-top-right-radius:8px; 
+	border-top-left-radius: 8px;
+}
 th.primera{
 	border-top-left-radius: 8px;
 }

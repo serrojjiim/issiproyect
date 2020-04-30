@@ -17,7 +17,8 @@ function gerenteCompras($conexion){
 function modificarPC($conexion,$oid,$fp,$ff,$fe,$fl,$fpa,$ct,$oidcli,$oidemp){
 	if($ff==null){
 			try{
-	$consulta = "UPDATE PEDIDOCLIENTE SET PEDIDOCLIENTE.FECHAPEDIDO='$fp',PEDIDOCLIENTE.FECHAFINFABRICACION=NULL,PEDIDOCLIENTE.FECHAENVIO=NULL,PEDIDOCLIENTE.FECHALLEGADA=NULL,PEDIDOCLIENTE.FECHAPAGO=NULL,PEDIDOCLIENTE.COSTETOTAL='$ct',PEDIDOCLIENTE.OID_CLI='$oidcli',PEDIDOCLIENTE.OID_EMP='$oidemp'  WHERE PEDIDOCLIENTE.OID_PEDCLI='$oid'";
+	$consulta = "UPDATE PEDIDOCLIENTE SET PEDIDOCLIENTE.FECHAPEDIDO='$fp',PEDIDOCLIENTE.FECHAFINFABRICACION=NULL,PEDIDOCLIENTE.FECHAENVIO=NULL,PEDIDOCLIENTE.FECHALLEGADA=NULL,PEDIDOCLIENTE.FECHAPAGO=NULL
+	,PEDIDOCLIENTE.COSTETOTAL='$ct',PEDIDOCLIENTE.OID_CLI='$oidcli',PEDIDOCLIENTE.OID_EMP='$oidemp'  WHERE PEDIDOCLIENTE.OID_PEDCLI='$oid'";
 	$stmt = $conexion->prepare($consulta);
 	$stmt->execute();
 	return 1;
@@ -116,7 +117,7 @@ function eliminarlpc($conexion,$oid_linpedcli){
 		$consulta = " DELETE FROM LINEAPEDIDOCLIENTE WHERE OID_LINPEDCLI = $oid_linpedcli";
 		$stmt=$conexion->prepare($consulta);
 		$stmt->execute();
-		return 1;
+		return $stmt;
 	} catch(PDOException $e) {
 		return $e->getMessage();
     }

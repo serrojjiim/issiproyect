@@ -53,7 +53,7 @@
   <title>Lista de proveedores</title>
 </head>
 
-<body>
+<body style="background-color: #dfdfdf7d">
 
 
 <?php
@@ -62,12 +62,12 @@
 <main>
 
 	<div class="titulotabla">
-	 	<div><h2 class="titulo">Listado de los pedidos a proveedores</h2></div>
+	 	<div><p class="titulo">Listado de los pedidos a proveedores</p></div>
 	 </div>
 	<div class="selectpag">
 	
 	
-	<form method="get" action="muestraPedidosProveedores.php">
+	<form class="formpag" method="get" action="muestraPedidosProveedores.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -90,11 +90,11 @@
 		<div class ="tabla">
 	 <table id="tablaPedidosProveedores">
 		<tr>
-    		<th>Fecha pedido</th>
+    		<th class="primera">Fecha pedido</th>
     		<th>Fecha pago</th>
     		<th>Coste total</th>
     		<th>Proveedor</th>
-    		<th>Empleado</th>
+    		<th class="ultima">Empleado</th>
   		</tr>
 
 	<?php
@@ -143,11 +143,12 @@
 					
 	
 						<tr class="fila">
-							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';"><?php echo $fila['FECHAPEDIDO'] ?></td>
+							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';"><p><?php echo $fila['FECHAPEDIDO'] ?></p></td>
 							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';"><?php echo $fila['FECHAPAGO'] ?></td>
 							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';"><?php echo $fila['COSTETOTAL']."€" ?></td>
 							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';"><?php echo $proveedor["NOMBRE"]?></td>
 							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';"><?php echo $empleado['NOMBRE']." ".$empleado['APELLIDOS']?></td>
+    						<?php if ($_SESSION['cargo']=="GERENTECOMPRAS") { ?>
     						<td class ="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
 									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
 								</button></td>
@@ -155,7 +156,7 @@
 								<td class ="boton"><button id="borrar" name="borrar" type="submit" class="vistacliente">
 									<img src="../img/ocultar.png" class="borrar_fila" alt="Papelera Borrar" height="34" width="34">
 								</button></td>
-								
+								<?php } ?>
 						</tr>
 						
 				

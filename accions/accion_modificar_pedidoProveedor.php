@@ -24,10 +24,10 @@
 	
 		if($error==1){
 		$_SESSION['mOkModPedProv'] = "Ok";
-		Header("Location: ../modificar/modificarPedidoProveedor.php");
+		Header("Location: ../muestra/muestraPedidosProveedores.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM);
 	}
 	}
-		else Header("Location: ../modificar/modificarPedidoProveedor.php"); // Se ha tratado de acceder directamente a este PHP
+		else Header("Location: ../muestra/muestraPedidosProveedores.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM); // Se ha tratado de acceder directamente a este PHP
 	
 		
 
