@@ -8,7 +8,7 @@
 	require_once("../gestionas/gestionarPC.php");
 	require_once("../gestionas/gestionarProducto.php");
 	unset($_SESSION["paginacion"]);
-	
+	unset($_SESSION["oid_pedcli"]);
     require_once("../consultaPaginada.php");
 	
 	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
@@ -59,14 +59,13 @@
 	include_once ("header.php");
 	?>
 <main>
-
 	<div class="titulotabla">
-	 	<div><h2 class="titulo">Listado de los pedidos de clientes</h2></div>
+	 	<div><p class="titulo">Listado de los pedidos de clientes</p></div>
 	 </div>
+	 
 	<div class="selectpag">
-	
-	
-	<form method="get" action="muestraPedidosClientes.php">
+	<div style="display: inline-block;width: 50%;">
+	<form class="formpag" method="get" action="muestraPedidosClientes.php">
 
 			<input id="PAG_NUM" name="PAG_NUM" type="hidden" value="<?php echo $pagina_seleccionada?>"/>
 
@@ -83,7 +82,15 @@
 			<input type="submit" value="Cambiar">
 
 		</form>
-		
+		</div>
+		<div style="display: inline-block;float:right;">
+			
+
+			<button onclick="window.location.href='../modificar/nuevoPedidoC1.php'" id="nuevo" name="nuevo" type="button" class="anadir">
+			<img src="../img/neworder1.png" class="" alt="Nuevo pedido" height="30" width="30">
+			</button>
+			
+		</div>
 		</div>
 		
 		<div class ="tabla">

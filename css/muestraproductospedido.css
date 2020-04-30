@@ -1,0 +1,90 @@
+div.fotoprod{
+	display: inline-block;
+	width: 180px;
+	height: 180px;
+	
+	margin-right:30px;
+	margin-bottom: 25px;
+	
+	
+}
+button.botonproducto{
+	border: none;
+	background-color: transparent;
+	outline: none;
+}
+div.fotoprodult{
+	display: inline-block;
+	width: 180px;
+	height: 180px;
+	
+	margin-bottom: 25px;
+	
+	
+}
+div.productosycarrito{
+	margin-bottom: 50px;
+}
+div.filalinea{
+	display: inline-block;
+	font: 15px Arial, sans-serif;
+	width: 80px;
+	height: auto;
+	margin-left: 15px;
+	
+}
+
+button.listo{
+	background:linear-gradient(to bottom, #f82558 5%, #AA173A 100%);
+	background-color:#AA173A;
+	border-radius:8px;
+	border:none;
+	cursor:pointer;
+	padding-top:4px;
+	padding-bottom:4px;
+	color:#ffffff;
+	font: 15px Arial, sans-serif;
+
+}
+div.filalineatotal{
+	
+	font: 15px Arial, sans-serif;
+	width: 100%;
+	height: auto;
+	
+	margin-top:15px;
+	margin-bottom: 15px;
+}
+
+
+div.iconoquitar{
+	display: inline-block;
+	margin-left: 15px;
+	width: 20px;
+}
+div.totalmuestraproductos{
+
+	display:inline-block;
+	padding-top: 25px;
+	margin-left:8%;
+	margin-right: auto;
+	width: 835px;
+}
+
+div.totalcompra{
+		background-color: #fff;
+	display:inline-block;
+	border: 2px solid #aa173a;
+	border-radius: 8px;
+	
+	width:350px;
+	vertical-align: top;
+	margin-top: 25px;
+	float:right;
+	margin-right: 8%;
+}
+img.imagenprod{
+	width: 179px;
+	height: 179px;
+	border-radius: 8px;
+}
