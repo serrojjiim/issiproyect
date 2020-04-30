@@ -32,7 +32,7 @@ if(!isset($_SESSION["cargo"])){
   <?php }else if($_SESSION['cargo']=="PEON" or $_SESSION['cargo']=="JEFEMAQUINA"){ ?>
 <ul class="topnav">
   <li class="logo"><a href="index1.php"><img border="0" alt="Logout" src="../img/header/logocoenca.png" width="40" height="30"></a></li>
-  <li class="letras"><a class="letras" href="#news">MI MAQUINA</a></li>
+  <li class="letras"><a class="letras" href="miMaquina.php">MI MAQUINA</a></li>
   <li class="letras"><a class="letras" href="../muestra/peticiondias.php">SOLICITAR DIAS</a></li>
    <li class="right"><a href="../logout.php">
 <img border="0" alt="Logout" src="../img/header/logout.png" width="22" height="22">
@@ -81,7 +81,6 @@ if(!isset($_SESSION["cargo"])){
   <li class="letras"><a class="letras" href="../muestra/muestraCamiones.php">CAMIONES</a></li>
   <li class="letras"><a class="letras" href="../muestra/muestraAlmacen.php">ALMACÉN</a></li>
   <li class="letras"><a class="letras" href="../muestra/peticiondias.php">PETICION DIAS</a></li>
-
   <li class="right"><a href="../logout.php">
 <img border="0" alt="Logout" src="../img/header/logout.png" width="22" height="22">
 </a></li>

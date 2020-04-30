@@ -36,7 +36,7 @@ function getEmpleadosMaquina($conexion,$oid){
 	return $conexion->query($consulta);
 }
 function getJefeMaquina2($conexion,$oid){
-	$consulta = "SELECT nombre,apellidos,cargo FROM EMPLEADO WHERE EMPLEADO.OID_MAQ='$oid' AND EMPLEADO.CARGO=9";
+	$consulta = "SELECT * FROM EMPLEADO WHERE EMPLEADO.OID_MAQ='$oid' AND EMPLEADO.CARGO=9";
 	$stmt = $conexion->prepare($consulta);
 	$stmt->execute();
 	
