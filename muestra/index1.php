@@ -56,6 +56,7 @@ window.onclick = function(event) {
 <p>Hola <?php echo $_SESSION['dni']?></p>
 <p>Hola <?php echo $_SESSION['cargo']?></p>
 <p>Hola <?php echo $_SESSION['oid_emp']?></p>
+<p>Hola <?php echo $_SESSION['oid_maq']?></p>
 </body>
 </html>
 

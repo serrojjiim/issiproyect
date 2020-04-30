@@ -22,6 +22,8 @@ if (isset($_POST['submit'])) {
 			$_SESSION['apellidos']=$usuario['APELLIDOS'];
 			$_SESSION['cargo'] = getCargoString($usuario['CARGO']);
 			$_SESSION['oid_emp']=$usuario['OID_EMP'];
+			$_SESSION['oid_maq']=$usuario['OID_MAQ'];
+			
 			Header("Location: muestra/index1.php");
 
 		} else {
