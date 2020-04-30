@@ -10,7 +10,7 @@
 	$conexion = crearConexionBD();
 	
 	
-	$error = activarP($conexion,$provedor['CIF']);
+	$error = activarP($conexion,$proveedor['CIF']);
 	
 	echo $error;
 	if($error==1){

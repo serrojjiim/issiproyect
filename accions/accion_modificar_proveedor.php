@@ -7,16 +7,16 @@
 	
 	if(isset($_SESSION['proveedor'])){
 		$proveedor = $_SESSION['proveedor'];
-		unset($_SESSION['proveedor']);
 	
 	require_once("../gestionas/gestionBD.php");
 	require_once("../gestionas/gestionarProveedor.php");
  
+ 
 	$conexion = crearConexionBD();
 	$actualizaProv = actualizarDatosProveedor($conexion,$proveedor['OID_PROV'],$proveedor['CIF'],$proveedor['NOMBRE']
-	,$proveedor['DIRECCION'],$proveedor['TELEFONO'],$proveedor['EMAIL'],$proveedor['OCULTO']);
+	,$proveedor['DIRECCION'],$proveedor['TELEFONO'],$proveedor['EMAIL']);
+			
 	
-	$_SESSION['proveedor'] = getProveedorOid($conexion, $proveedor['OID_PROV']);
 	cerrarConexionBD($conexion);
 	if($actualizaProv<>""){
 		$_SESSION["excepcion"] = $actualizaProv;

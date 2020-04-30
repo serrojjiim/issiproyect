@@ -181,7 +181,7 @@
 							<?php } ?>
 							<?php if($_SESSION['cargo']=="GERENTECOMPRAS") {?>
 							
-							<form action="../controladores/controlador_proveedores.php">
+							<form action="post" action="../controladores/controlador_proveedores.php">
 								
 								<td class="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
 									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">

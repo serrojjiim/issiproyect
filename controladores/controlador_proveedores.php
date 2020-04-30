@@ -6,12 +6,12 @@
 	$PAG_TAM = $infoPag['PAG_TAM'];
 	
 	if (isset($_REQUEST["CIF"])){
-		$cliente["OID_PROV"] = $_REQUEST["OID_PROV"];
-		$cliente["CIF"] = $_REQUEST["CIF"];
-		$cliente["NOMBRE"] = $_REQUEST["NOMBRE"];
-		$cliente["DIRECCION"] = $_REQUEST["DIRECCION"];
-		$cliente["TELEFONO"] = $_REQUEST["TELEFONO"];
-		$cliente["EMAIL"] = $_REQUEST["EMAIL"];
+		$proveedor["OID_PROV"] = $_REQUEST["OID_PROV"];
+		$proveedor["CIF"] = $_REQUEST["CIF"];
+		$proveedor["NOMBRE"] = $_REQUEST["NOMBRE"];
+		$proveedor["DIRECCION"] = $_REQUEST["DIRECCION"];
+		$proveedor["TELEFONO"] = $_REQUEST["TELEFONO"];
+		$proveedor["EMAIL"] = $_REQUEST["EMAIL"];
 		
 		$_SESSION["proveedor"] = $proveedor;
 			

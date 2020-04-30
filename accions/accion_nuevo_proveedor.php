@@ -10,6 +10,7 @@
 		$cif = $nempleado['CIF'];$nombre = $nempleado['NOMBRE'];$telefono = $nempleado['TELEFONO'];$direccion = $nempleado['DIRECCION'];$email = $nempleado['EMAIL'];
 		$error = nuevoProveedor($conexion,$nombre,$cif,$telefono,$direccion,$email);
 		if($error==1) $_SESSION['mOkAnadeProveedor'] = "Ok";
+		else if($error==0) $_SESSION['mOkAnadeProveedor'] =0;
 		Header('Location: ../modificar/nuevoProveedor.php');
 		
 	}else

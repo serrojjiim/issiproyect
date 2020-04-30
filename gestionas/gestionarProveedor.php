@@ -7,9 +7,8 @@ function consultarProveedor($conexion) {
 
 function obtener_proveedor_oid($conexion, $oidprov){
 	$consulta = "SELECT * FROM PROVEEDOR WHERE (PROVEEDOR.OID_PROV = '$oidprov')";
-	  $stmt = $conexion->prepare($consulta);
-	$stmt->execute();
-	return $stmt->fetch();
+	 
+	return $conexion->query($consulta);;
 }
 
 function consultarProveedoresNoOcultos($conexion){
@@ -56,14 +55,17 @@ function nuevoProveedor($conexion,$nombre,$cif,$telefono,$direccion,$email){
 
 function actualizarDatosProveedor($conexion, $oidprov,$cif,$nombre,$direccion,$telefono,$email){
 	try {
-		$stmt=$conexion->prepare('CALL ACTUALIZARPROVEEDOR(:oidprov,:cif,:nombre,:direccion,:telefono,:email)');
-		$stmt->bindParam(':oidprov',$oidprov);
-		$stmt->bindParam(':cif',$cif);
-		$stmt->bindParam(':nombre',$nombre);
-		$stmt->bindParam(':direccion',$direccion);
-		$stmt->bindParam(':telefono',$telefono);
-		$stmt->bindParam(':email',$email);	
+		$consulta = "UPDATE PROVEEDOR SET PROVEEDOR.CIF='$cif', PROVEEDOR.NOMBRE='$nombre',PROVEEDOR.DIRECCION='$direccion',PROVEEDOR.TELEFONO='$telefono',PROVEEDOR.EMAIL='$email' WHERE PROVEEDOR.OID_PROV='$oidprov'";
+		$stmt = $conexion->prepare($consulta);
 		$stmt->execute();
+		// $stmt=$conexion->prepare('CALL ACTUALIZARPROVEEDOR(:oidprov,:cif,:nombre,:direccion,:telefono,:email)');
+		// $stmt->bindParam(':oidprov',$oidprov);
+		// $stmt->bindParam(':cif',$cif);
+		// $stmt->bindParam(':nombre',$nombre);
+		// $stmt->bindParam(':direccion',$direccion);
+		// $stmt->bindParam(':telefono',$telefono);
+		// $stmt->bindParam(':email',$email);	
+		// $stmt->execute();
 		return "";
 	} catch(PDOException $e) {
 		return $e->getMessage();

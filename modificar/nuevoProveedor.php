@@ -22,7 +22,7 @@
 <main>
 	
 		 <?php 
-	if (isset($_SESSION["mOkAnadeProveedor"])) {
+	if (isset($_SESSION["mOkAnadeProveedor"]) and $_SESSION["mOkAnadeProveedor"]=="Ok") {
 			unset($_SESSION["mOkAnadeProveedor"]);
 			
 		echo "<div>
@@ -31,7 +31,9 @@
 		<div class=\"errortext\" style=\"display: inline-block; align-items: center;\" ><p>¡El proveedor ha sido añadido correctamente!</p></div>
 	</div>";
 		
-	}else{
+	}else if(isset($_SESSION["mOkAnadeProveedor"]) and $_SESSION["mOkAnadeProveedor"]==0 ){
+	unset($_SESSION["mOkAnadeProveedor"]);
+		
 		echo "<div>
 	<div class=\"error2\">
 		<div class=\"tick\"><img src=\"../img/no.png\" style=\"width:70px;height:70px;padding:5px; \"/></div>
