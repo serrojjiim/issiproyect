@@ -1,6 +1,6 @@
 <?php	
 	session_start();	
-		if(!isset($_SESSION["cargo"]) or ($_SESSION['cargo']!="GERENTEVENTAS")){
+		if(!isset($_SESSION["cargo"]) or ($_SESSION['cargo']!="GERENTECOMPRAS")){
 		echo "</p>No tienes permisos para acceder a esta página</p>";
 		
 	}else{
@@ -22,29 +22,27 @@
 <main>
 	
 		 <?php 
-	if (isset($_SESSION["mOkAnadeCliente"])) {
-			unset($_SESSION["mOkAnadeCliente"]);
+	if (isset($_SESSION["mOkAnadeProveedor"])) {
+			unset($_SESSION["mOkAnadeProveedor"]);
 			
 		echo "<div>
 	<div class=\"error\">
 		<div class=\"tick\"><img src=\"../img/tick.png\" /></div>
-		<div class=\"errortext\" style=\"display: inline-block; align-items: center;\" ><p>¡El cliente ha sido añadido correctamente!</p></div>
+		<div class=\"errortext\" style=\"display: inline-block; align-items: center;\" ><p>¡El proveedor ha sido añadido correctamente!</p></div>
 	</div>";
 		
 	}else{
 		echo "<div>
 	<div class=\"error2\">
 		<div class=\"tick\"><img src=\"../img/no.png\" style=\"width:70px;height:70px;padding:5px; \"/></div>
-		<div class=\"errortext\" style=\"display: inline-block; align-items: center;\" ><p>¡El cliente NO se ha podido añadir!</p></div>
+		<div class=\"errortext\" style=\"display: inline-block; align-items: center;\" ><p>¡El proveedor NO se ha podido añadir!</p></div>
 	</div>";
 	}  
 	?>
 	
 	<div class="divMod">
 	
-	<form method="post" action="../controladores/controlador_anadircliente.php">
-	
-	
+	<form method="post" action="../controladores/controlador_anadirproveedor.php">
 	
 	<div class="linea">
 			<label for="NOMBRE" class="textoMod">Nombre</label></br>	
@@ -63,9 +61,6 @@
 	</div>
 	</div>
 	
-	
-	
-	
 	<div class="linea">
 	<label class="textoMod">Direccion</label></br>	
 	<input class="largo" id="DIRECCION" name="DIRECCION" type="text" value="" required/><br />
@@ -76,7 +71,6 @@
 	<input class="largo" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" id="EMAIL" name="EMAIL" type="text" value="" required/><br />
 	</div>
 		
-    	
    	<br />
   	<div class="linea2">
 		<button title="Guardar" id="guardar" name="guardar" type="submit" class="botonG">
@@ -89,10 +83,6 @@
 	
    	</div>
    	</div>
-   	
-
-
-
 
 	</form>
 
