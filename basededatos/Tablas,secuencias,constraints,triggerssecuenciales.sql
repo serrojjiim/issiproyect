@@ -149,8 +149,9 @@ CREATE TABLE proveedor (
     direccion   VARCHAR(50),
     telefono    NUMBER(9),
     email       VARCHAR(50),
+    oculto      INTEGER DEFAULT 0,
     PRIMARY KEY ( oid_prov )
-);
+); 
 
 CREATE TABLE pedidoproveedor (
     oid_pedprov   INTEGER NOT NULL,
@@ -178,6 +179,7 @@ CREATE TABLE lineapedidoproveedor (
     precio           INTEGER,
     oid_pedprov      INTEGER,
     oid_mat          INTEGER ,
+    anadido      INTEGER DEFAULT 0,
     PRIMARY KEY ( oid_linpedprov ),
     FOREIGN KEY ( oid_pedprov ) REFERENCES pedidoproveedor,
     FOREIGN KEY ( oid_mat ) REFERENCES material    

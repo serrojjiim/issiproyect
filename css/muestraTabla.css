@@ -206,3 +206,8 @@ span.current{
 .popup .show {
   visibility: visible;
 }
+
+th.boton{
+	background: transparent;
+    border: none !important;
+}
