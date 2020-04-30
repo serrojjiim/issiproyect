@@ -1,4 +1,4 @@
-
+ 
 
 --MAQUINAS
 INSERT INTO maquina (nombre) VALUES ('Pintura');

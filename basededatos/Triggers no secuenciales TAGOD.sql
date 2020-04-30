@@ -49,7 +49,7 @@ CREATE OR REPLACE TRIGGER precioProveedor_AIU
 BEGIN
     UPDATE pedidoProveedor SET costetotal = precio_pedProv(oid_pedprov);
 END;
-/
+/ 
 
 CREATE OR REPLACE TRIGGER precioproducto
     BEFORE INSERT OR UPDATE ON lineaPedidoCliente
