@@ -1,6 +1,6 @@
 <?php	
 	session_start();	
-	if( !isset($_SESSION["cargo"]) or ($_SESSION['cargo']!="PRESIDENTE" and $_SESSION['cargo']!="VICEPRESIDENTE")){
+	if( !isset($_SESSION["cargo"]) or ($_SESSION['cargo']!="GERENTECOMPRAS")){
 		echo "</p>No tienes permisos para acceder a esta página</p>";
 		
 	}else{
@@ -103,7 +103,8 @@
 			<img src="../img/atras.png" class="imagen" alt="Volver">
 	</button>
 	
-   	</div>
+   </div>
+   
    	</div>
    	
 

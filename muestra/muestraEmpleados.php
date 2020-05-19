@@ -293,7 +293,7 @@
 			 }
 				
 				else if($pagina_seleccionada >= $total_paginas-3) {
-					 for( $pagina = $pagina_seleccionada-(6-($total_paginas-$pagina_seleccionada)); $pagina <= $total_paginas; $pagina++ )
+					 for( $pagina = $pagina_seleccionada-(5-($total_paginas-$pagina_seleccionada)); $pagina <= $total_paginas; $pagina++ )
 						if ( $pagina == $pagina_seleccionada) { 	?>
 
 						<span class="current"><?php echo $pagina; ?></span>
