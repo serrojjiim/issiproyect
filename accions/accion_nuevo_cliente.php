@@ -10,6 +10,7 @@
 		$cif = $nempleado['CIF'];$nombre = $nempleado['NOMBRE'];$telefono = $nempleado['TELEFONO'];$direccion = $nempleado['DIRECCION'];$email = $nempleado['EMAIL'];
 		$error = nuevoCliente($conexion,$nombre,$cif,$telefono,$direccion,$email);
 		if($error==1) $_SESSION['mOkAnadeCliente'] = "Ok";
+		if($error==0) $_SESSION['mOkAnadeCliente'] = "NOk";
 		Header('Location: ../modificar/nuevoCliente.php');
 		
 	}else

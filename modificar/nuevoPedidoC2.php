@@ -218,9 +218,11 @@
 		</div>
 	</div>
 	</div>
-	
+	<footer>
+		<?php include("../muestra/footer.php");?>
+	</footer>
 </main>
-<?php include("../muestra/footer.php");?>
+
 </body>
 </html>
 <?php } ?>

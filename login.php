@@ -45,7 +45,7 @@
 
 <body>
 	
-	<a href="#"><img src="img/back.png" width="50px" alt="Volver" height="30px" style="position: absolute"/></a>
+	<a href="index.php"><img src="img/back.png" width="50px" alt="Volver" height="30px" style="position: absolute"/></a>
 	
 	<div align="center" class="login">
 

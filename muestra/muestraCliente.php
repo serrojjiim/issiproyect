@@ -54,7 +54,7 @@
   <title>Lista de clientes</title>
 </head>
 
-<body style="background-color:#dfdfdf7d;>
+<body style="background-color:#dfdfdf7d;overflow:hidden;>
 
 
 <?php
@@ -305,9 +305,12 @@
 		</div>
 		</nav>
 		</div>
-<?php
+		<footer>
+			<?php
 	include_once ("footer.php");
 	?>
+		</footer>
+
 </main>
 <script>
 	var $filas = $('#tablaClientes tr:gt(0)');

@@ -22,7 +22,7 @@
 <main>
 	
 		 <?php 
-	if (isset($_SESSION["mOkAnadeCliente"])) {
+	if (isset($_SESSION["mOkAnadeCliente"]) and $_SESSION["mOkAnadeCliente"]=='Ok') {
 			unset($_SESSION["mOkAnadeCliente"]);
 			
 		echo "<div>
@@ -31,7 +31,8 @@
 		<div class=\"errortext\" style=\"display: inline-block; align-items: center;\" ><p>¡El cliente ha sido añadido correctamente!</p></div>
 	</div>";
 		
-	}else{
+	}else if(isset($_SESSION["mOkAnadeCliente"]) and $_SESSION["mOkAnadeCliente"]=='NOk'){
+		unset($_SESSION["mOkAnadeCliente"]);
 		echo "<div>
 	<div class=\"error2\">
 		<div class=\"tick\"><img src=\"../img/no.png\" style=\"width:70px;height:70px;padding:5px; \"/></div>

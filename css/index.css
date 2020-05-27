@@ -1,3 +1,49 @@
 body {
 	background-color: #dfdfdf7d;
+	 
+}
+
+div.imagen {
+	margin-top:100px;
+	display: inline-block;
+	width: 43.5%;
+	
+	
+}
+
+div.texto {
+	margin-top:100px;
+	display: inline-block;
+	width: 54.5%;
+	vertical-align: top;
+}
+
+
+span.bienvenido{
+	font: 25px Arial, sans-serif;
+	margin-left: 25%;
+
+}
+
+.ident {
+	margin-top:50px;
+	margin-left: 25%;
+	background-color:#aa1739;
+	border-radius:28px;
+	border:1px solid #b8183d;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Verdana;
+	font-size:17px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #eb0c40;
+}
+.ident:hover {
+	background-color:#eb0c40;
+}
+.ident:active {
+	position:relative;
+	top:1px;
 }

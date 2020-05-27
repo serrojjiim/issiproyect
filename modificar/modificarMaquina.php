@@ -280,7 +280,9 @@
 
 	
 		<a href="../muestra/muestraMaquinas.php"><img src="../img/atras.png" width="50px" alt="Volver" height="30px" style="margin-left: 47%;margin-top: 5%"/></a>
-
+<footer>
+	<?php include("../muestra/footer.php");?>
+</footer>
 </main>
 </body>
 <?php } ?>

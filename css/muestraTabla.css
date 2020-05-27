@@ -5,8 +5,11 @@ table {
   margin-left:auto; 
   margin-right:auto;
 
-
   
+}
+
+body{
+	padding-bottom: 80px;
 }
 input[type=submit]{
 	border-radius: 8px;
