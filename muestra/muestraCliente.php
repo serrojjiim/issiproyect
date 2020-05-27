@@ -92,31 +92,31 @@
 		</div>
 		
 		
-		<div class="popup">
+		<!-- <div class="popupFiltro">
 			<span class="popuptext" id="filtroCIF">
 				<input type="text" class="filtro" id="input1" placeholder="Filtrar por CIF..." title="Escribe un CIF">
 			</span>
 		</div>
-		<div class="popup">
+		<div class="popupFiltro">
 			<span class="popuptext" id="filtroNombre">
 				<input type="text" class="filtro" id="input2" placeholder="Filtrar por nombre..." title="Escribe un nombre">
 			</span>
 		</div>
-		<div class="popup">
+		<div class="popupFiltro">
 			<span class="popuptext" id="filtroDireccion">
 				<input type="text" class="filtro" id="input3" placeholder="Filtrar por direccion..." title="Escribe un direccion">
 			</span>
 		</div>
-		<div class="popup">
+		<div class="popupFiltro">
 			<span class="popuptext" id="filtroTelefono">
 				<input type="text" class="filtro" id="input4" placeholder="Filtrar por telefono..." title="Escribe un telefono">
 			</span>
 		</div>
-		<div class="popup">
+		<div class="popupFiltro">
 			<span class="popuptext" id="filtroEmail">
 				<input type="text" class="filtro" id="input5" placeholder="Filtrar por email..." title="Escribe un email">
 			</span>
-		</div>
+		</div> -->
 	
 	
 	
@@ -126,15 +126,15 @@
 	 	
 		<tr id="cabecera">
 			<?php if($_SESSION['cargo']=="CAMIONERO"){ ?>
-			<th class="primera">Nombre <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(1)"></th>
-    		<th>Dirección <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(2)"></th>
-    		<th class="ultima">Teléfono <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(3)"></th>
+			<th class="primera">Nombre <!-- <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(1)"> --></th>
+    		<th>Dirección <!-- <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(2)"> --></th>
+    		<th class="ultima">Teléfono <!-- <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(3)"> --></th>
 			<?php  }else{ ?>
-    		<th class="primera">CIF <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(0)"></th>
-    		<th>Nombre <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(1)"></th>
-    		<th>Dirección <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(2)"></th>
-    		<th>Teléfono <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(3)"></th>
-    		<th class="ultima">Email <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(4)"></th>
+    		<th class="primera">CIF <!-- <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(0)"> --></th>
+    		<th>Nombre <!-- <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(1)"> --></th>
+    		<th>Dirección <!-- <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(2)"> --></th>
+    		<th>Teléfono <!-- <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(3)"> --></th>
+    		<th class="ultima">Email 	</th>
     		<?php } ?>
   		</tr>
 

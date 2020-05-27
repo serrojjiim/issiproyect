@@ -22,6 +22,9 @@
 	if($error==1){
 		$_SESSION['mOkModPedCli'] = "Ok";
 		Header("Location: ../muestra/muestraPedidosClientes.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM);
+	}else{
+		Header("Location: ../muestra/muestraPedidosClientes.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM);
+		
 	}
 	}
 		else Header("Location: ../muestra/muestraPedidosClientes.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM); // Se ha tratado de acceder directamente a este PHP
