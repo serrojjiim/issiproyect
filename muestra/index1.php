@@ -20,23 +20,24 @@ if(!isset($_SESSION["cargo"])){
 
 	<div>
 		<div class="index11"><h1>¡BIENVENIDO <?php echo $_SESSION['nombre']?>!</h1><br />
-			<h3>TUS DATOS:</h3>
+			
 		</div>
 		<div class="index12">
-			<div class="lineadatos">
-			<div style="display: inline-block;width: 30%;">Nombre y apellidos: <?php echo $user['NOMBRE'];echo" ";echo $user['APELLIDOS'];?></div>
-			<div style="display: inline-block;width: 30%;">DNI: <?php echo $user['DNI']?></div>
-			<div style="display: inline-block;width: 30%;">Teléfono: <?php echo $user['TELEFONO']?></div>
+			<h3 class="lineadatos1">TUS DATOS:</h3>
+			<div class="lineadatos" >
+			<div class="dato" style="display: inline-block;width: 30%;">Nombre y apellidos: <?php echo $user['NOMBRE'];echo" ";echo $user['APELLIDOS'];?></div>
+			<div class="dato" style="display: inline-block;width: 30%;">DNI: <?php echo $user['DNI']?></div>
+			<div class="dato" style="display: inline-block;width: 30%;">Teléfono: <?php echo $user['TELEFONO']?></div>
 			</div>
-			<div class="lineadatos">
-			<div style="display: inline-block;width: 30%;">Dirección: <?php echo $user['DIRECCION'];?></div>
-			<div style="display: inline-block;width: 30%;">Cargo: <?php echo $_SESSION['cargo']?></div>
-			<div style="display: inline-block;width: 30%;">Capital social: <?php echo $user['CAPITALSOCIAL']?> €</div>
+			<div class="lineadatos" >
+			<div class="dato" style="display: inline-block;width: 30%;">Dirección: <?php echo $user['DIRECCION'];?></div>
+			<div class="dato" style="display: inline-block;width: 30%;">Cargo: <?php echo $_SESSION['cargo']?></div>
+			<div class="dato" style="display: inline-block;width: 30%;">Capital social: <?php echo $user['CAPITALSOCIAL']?> €</div>
 			</div>
-			<div class="lineadatos">
-			<div style="display: inline-block;width: 30%;">Fecha de contratación: <?php echo $user['FECHACONTRATACION'];?></div>
-			<div style="display: inline-block;width: 30%;">Dias de vacaciones: <?php echo $user['DIASVACACIONES']?></div>
-			<div style="display: inline-block;width: 30%;">Máquina asignada: <?php 
+			<div class="lineadatos" >
+			<div class="dato" style="display: inline-block;width: 30%;">Fecha de contratación: <?php echo $user['FECHACONTRATACION'];?></div>
+			<div class="dato" style="display: inline-block;width: 30%;">Dias de vacaciones: <?php echo $user['DIASVACACIONES']?></div>
+			<div class="dato" style="display: inline-block;width: 30%;">Máquina asignada: <?php 
 								if($user['OID_MAQ']==""){ echo "Ninguna" ;}else{
 									echo $user['OID_MAQ'];
 								}?></div>

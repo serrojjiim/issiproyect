@@ -90,17 +90,17 @@
 	
 	<div class="linea">
 	<label class="textoMod">Fecha de contratacion</label></br>	
-	<input class="largo"  id="FECHACONTRATACION" name="FECHACONTRATACION" type="text" value="<?php if (isset($errores)) echo $emperrores["FECHACONTRATACION"];?>" required/><br />
+	<input class="largo" pattern="[0-9]{2}/[0-9]{2}/[0-9]{2}"  id="FECHACONTRATACION" name="FECHACONTRATACION" type="text" value="<?php if (isset($errores)) echo $emperrores["FECHACONTRATACION"];?>" required/><br />
 	</div>
 	
 	<div class="linea">
 	<label class="textoMod">Capital Social</label></br>	
-	<input class="largo" id="CAPITALSOCIAL" name="CAPITALSOCIAL" type="text" value="<?php if (isset($errores)) echo $emperrores["CAPITALSOCIAL"];?>" required/><br />
+	<input class="largo" pattern="[0-9]+" id="CAPITALSOCIAL" name="CAPITALSOCIAL" type="text" value="<?php if (isset($errores)) echo $emperrores["CAPITALSOCIAL"];?>" required/><br />
 	</div>
 	
 	<div class="linea">
 	<label class="textoMod">Dias de vacaciones</label></br>	
-	<input class="largo" id="DIASVACACIONES" name="DIASVACACIONES" type="text" value="<?php if (isset($errores)) echo $emperrores["DIASVACACIONES"];?>" required/><br/>
+	<input class="largo" pattern="[0-9]+" id="DIASVACACIONES" name="DIASVACACIONES" type="text" value="<?php if (isset($errores)) echo $emperrores["DIASVACACIONES"];?>" required/><br/>
 	</div>
 	
 	 	<div class="linea">

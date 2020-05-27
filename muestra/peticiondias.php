@@ -139,7 +139,7 @@
 			<input id="DNI" name="DNI" type="hidden" value="<?php echo $_SESSION["dni"]; ?>"/>
 			<div class="linea">
 				
-				<input class="diasapedir" id="DIASAPEDIR" name="DIASAPEDIR" type="text" placeholder="INTRODUZCA EL NÚMERO DE DÍAS" value="<?php if(isset($petierror)) echo $petierror["DIASAPEDIR"]?>"/>
+				<input class="diasapedir"  pattern="[0-9]+" id="DIASAPEDIR" name="DIASAPEDIR" type="text" placeholder="INTRODUZCA EL NÚMERO DE DÍAS" value="<?php if(isset($petierror)) echo $petierror["DIASAPEDIR"]?>"/>
 			</div>
 			<div class="linea">
 				

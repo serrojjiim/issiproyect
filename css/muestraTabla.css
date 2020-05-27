@@ -82,6 +82,18 @@ p.fOculto{
 	color:#94929847;
 }
 
+tr.poco{
+	background-color: #fff;
+	border-bottom: 2px solid #e53440;
+}
+tr.regular{
+	background-color: #fff;
+	border-bottom: 2px solid #f4964a;
+}
+tr.bien{
+	background-color: #fff;
+	border-bottom: 2px solid #73b887;
+}
 div.paginas{
 	width:200px;
 	height:30px;

@@ -40,26 +40,18 @@
 	
 	foreach($filas1 as $fila1){
 		if($fila1['FECHAPAGO']!=null){
-				
-			//echo $fila['OID_PEDPROV']; echo "</br>";
-			
+
 			$filas2 = lineaspedidoP($conexion,$fila1['OID_PEDPROV']);
-			
-			//echo "---------------------";echo "</br>";
-			
+
 			foreach($filas2 as $fila2){
-				
-				//echo $fila2['CANTIDAD'] . "</br>";
-				//echo $fila2['ANADIDO'] . "</br>";
-				
+
 			$material= getCantidadMaterial($conexion,$fila2['OID_MAT']);
 			 foreach($material as $m){
 			 
 				 if($fila2['ANADIDO']==0){
-				 	//echo $m['NOMBRE'] . " : " . $m['STOCK'] . "</br>";
+
 					$suma = $m['STOCK'] +$fila2['CANTIDAD'];
-					//echo $suma . "</br>" . "---------</br>"; 
-					
+
 					$error = insertarMaterial($conexion,$m['OID_MAT'],$suma);
 					$errar = actualizarAnadir($conexion,$fila2['OID_PEDPROV']);
 				 } 
@@ -67,8 +59,7 @@
 			
 				
 			}
-			
-			//echo "---------------------";echo "</br>";
+		
 			
 			
 		}
@@ -82,7 +73,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
-  <link rel="stylesheet" type="text/css" href="../css/amoal_lio.css" />
    <link rel="stylesheet" type="text/css" href="../css/footer.css" />
 
   <title>Lista de materiales</title>
@@ -144,11 +134,11 @@
 	
 							<?php if($fila['STOCK']<=1500){ ?> 
 
-							<tr class="tmuerto" style="border-bottom: 2px solid #e53440" class="fila">
+							<tr class="poco">
 							<?php }else if($fila['STOCK']>1500 and $fila['STOCK']<=5000 ) { ?>
-							<tr class="tmuerto" style="border-bottom: 2px solid #f4964a" class="fila">
+							<tr class="regular" >
 							<?php }else { ?>
-							<tr class="tmuerto" style="border-bottom: 2px solid #73b887" class="fila">
+							<tr class="bien">
 							<?php } ?>
 
 								<td align="center"><p><?php echo $fila['NOMBRE'] ?></p></td>
