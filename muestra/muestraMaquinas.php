@@ -124,7 +124,7 @@
 						<tr class="fila" >
 							<td class="nombre" align="center" onclick="window.location='#popup<?php echo $contador; ?>';"><p><?php echo $fila['NOMBRE'] ?></p></td>
 							
-							<?php if($_SESSION['cargo']=="JEFEPERSONAL" or $_SESSION['cargo']=="PRESIDENTE"){ ?>
+							<?php if($_SESSION['cargo']=="JEFEPERSONAL"){ ?>
 								
 								<td class ="boton">
 									<button id="editar" name="editar" type="submit" class="vistacliente">

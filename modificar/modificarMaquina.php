@@ -1,7 +1,7 @@
 <?php
 
 	session_start();
-		if(!isset($_SESSION["cargo"]) or ($_SESSION['cargo']!="JEFEPERSONAL" && $_SESSION['cargo']!="PRESIDENTE")){
+		if(!isset($_SESSION["cargo"]) or ($_SESSION['cargo']!="JEFEPERSONAL")){
 		echo "</p>No tienes permisos para acceder a esta página</p>";
 		
 	}else{

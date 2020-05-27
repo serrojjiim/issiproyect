@@ -149,7 +149,7 @@
 							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';"><?php echo $fila['COSTETOTAL']."€" ?></td>
 							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';"><?php echo $proveedor["NOMBRE"]?></td>
 							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';"><?php echo $empleado['NOMBRE']." ".$empleado['APELLIDOS']?></td>
-    						<?php if ($_SESSION['cargo']=="GERENTECOMPRAS") { ?>
+    						<?php if ($_SESSION['cargo']=="GERENTECOMPRAS" or $_SESSION['cargo']=="PRESIDENTE" ) { ?>
     						<td class ="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
 									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
 								</button></td>

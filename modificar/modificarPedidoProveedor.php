@@ -1,6 +1,6 @@
 <?php	
 	session_start();	
-	if( !isset($_SESSION["cargo"]) or ($_SESSION['cargo']!="GERENTECOMPRAS")){
+	if( !isset($_SESSION["cargo"]) or ($_SESSION['cargo']!="GERENTECOMPRAS" && $_SESSION['cargo']!="PRESIDENTE")){
 		echo "</p>No tienes permisos para acceder a esta página</p>";
 		
 	}else{
@@ -32,7 +32,20 @@
 		<div class=\"errortext\" style=\"display: inline-block; align-items: center;\" ><p>¡El pedido proveedor ha sido modificado correctamente!</p></div>
 	</div>";
 		
-	}  
+	}
+	  if(isset($_SESSION["errores"])){
+		$errores = $_SESSION["errores"];
+		unset($_SESSION["errores"]);
+	}
+	
+		 if (isset($errores) && count($errores)>0) { 
+	    	echo "<div id=\"div_errores\" class=\"error2\">";
+			echo "<h4> Errores en el formulario:</h4>";
+    		foreach($errores as $error){
+    			echo $error;
+			} 
+    		echo "</div>";
+  		}
 	?>
 	
 		<div class="divMod">
@@ -47,7 +60,7 @@
 	</div>
 	<div class="dividido">
 	<label class="textoMod">Fecha de pago</label></br>	
-	<input class="corto"  id="FECHAPAGO" name="FECHAPAGO" type="text" value="<?php echo $pedprov["FECHAPAGO"]; ?>"/><br />
+	<input class="corto" pattern="([0-9]{2}/[0-9]{2}/[0-9]{2}"  id="FECHAPAGO" name="FECHAPAGO" type="text" value="<?php echo $pedprov["FECHAPAGO"]; ?>"/><br />
 	</div>
 	</div>	
 
@@ -55,7 +68,7 @@
 	
 	<div class="linea">
 	<label class="textoMod">Coste total</label></br>	
-	<input class="largo" pattern="[0-9]{2.}" id="COSTETOTAL" name="COSTETOTAL" type="text" value="<?php echo $pedprov["COSTETOTAL"]; ?>" required/><br />
+	<input class="largo" pattern="[0-9]{1,100}" id="COSTETOTAL" name="COSTETOTAL" type="text" value="<?php echo $pedprov["COSTETOTAL"]; ?>" required/><br />
 	</div>
 	
 	<div class="linea">
