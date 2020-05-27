@@ -10,7 +10,7 @@
 	if(isset($_SESSION['pedidoprov'])){
 		$pedprov = $_SESSION['pedidoprov'];
 	
-	require_once("../gestionas/gestionBD.php");
+	require_once("../gestionas/gestionBD.php");	
 	require_once("../gestionas/gestionarPP.php");
  
 	if($pedprov['FECHAPAGO']==" ") $pedprov['FECHAPAGO']=NULL;

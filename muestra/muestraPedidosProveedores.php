@@ -110,11 +110,19 @@
 		<div id="popup<?php echo $fila["OID_PEDPROV"]; ?>" class="overlay" align="left">
 	<div class="popup">
 		<a class="close" href="#">&times;</a>
+				<div>
+				<p style="display: inline-block">CANTIDAD</p>
+				<p style="display: inline-block;margin-left: 20%">PRECIO</p>
+				<p style="display: inline-block;margin-left: 30%">MATERIAL</p></br>
+				</div>
 		<?php foreach($lineas as $linea) { 
 			$nombreMat = obtenerMaterial($conexion,$linea["OID_MAT"]);
 			?>
-			<p>CANTIDAD: <?php echo $linea["CANTIDAD"]; ?> PRECIO(UNITARIO):<?php echo $linea["PRECIO"]; ?> MATERIAL:<?php echo $nombreMat["NOMBRE"];?></p>
-
+ 				<div>
+				<p style="display: inline-block;margin-left:3%"><?php echo $linea["CANTIDAD"]; ?> uds</p>
+				<p style="display: inline-block;margin-left: 20%"><?php echo $linea["PRECIO"]; ?>€/ud</p>
+				<p style="display: inline-block;margin-left: 33%"><?php echo $nombreMat["NOMBRE"];?></p></br>
+				</div>
 	<?php
 	
 	 } ?>
@@ -149,7 +157,7 @@
 							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';"><?php echo $fila['COSTETOTAL']."€" ?></td>
 							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';"><?php echo $proveedor["NOMBRE"]?></td>
 							<td align="center" onclick="window.location='#popup<?php echo $fila["OID_PEDPROV"]; ?>';"><?php echo $empleado['NOMBRE']." ".$empleado['APELLIDOS']?></td>
-    						<?php if ($_SESSION['cargo']=="GERENTECOMPRAS" or $_SESSION['cargo']=="PRESIDENTE" ) { ?>
+    						<?php if ($_SESSION['cargo']=="GERENTECOMPRAS") { ?>
     						<td class ="boton"><button id="editar" name="editar" type="submit" class="vistacliente">
 									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
 								</button></td>
