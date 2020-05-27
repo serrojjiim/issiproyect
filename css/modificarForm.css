@@ -101,6 +101,18 @@ div.error{
     font: 15px Arial, sans-serif;
 
 }
+div.error2{
+	border-radius:20px;
+    margin-top:2%;
+    margin-left:auto;
+    margin-right:auto;
+    background-color:#ff36004a;
+    width:37%;
+    font: 15px Arial, sans-serif;
+    padding:15px;
+
+}
+
 
 div.tick{
 display:inline-block;

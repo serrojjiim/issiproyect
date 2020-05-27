@@ -9,7 +9,7 @@
 		
 		$_SESSION["newpedidocliente"] = $pedidocli;
 			
-		if (isset($_REQUEST["comprar"])) Header("Location: ../accions/accion_nuevoPedidoC1.php"); 
+		if (isset($_REQUEST["comprar"])) Header("Location: ../validaciones/validacion_pedido_cliente.php"); 
 		
 	}
 	else 

@@ -16,6 +16,7 @@
 		}else{
 		$_SESSION['user'] = $usuario;
 		$_SESSION['login'] = $usuario['DNI'];	
+		$_SESSION['vacas'] = $usuario['DIASVACACIONES'];	
 		$_SESSION['nombre'] = $usuario['NOMBRE'];
 		$_SESSION['apellidos']=$usuario['APELLIDOS'];	
 		$_SESSION['cargo']=getCargoString($usuario['CARGO']);

@@ -4,8 +4,16 @@
 		echo "</p>No tienes permisos para acceder a esta página</p>";
 		
 	}else{
+		if (isset($_SESSION["errores"])){
+		$pedidoerror = $_SESSION["pedidoerror"];
+		$errores = $_SESSION["errores"];
+		unset($_SESSION["errores"]);
+	unset($_SESSION["pedidoerror"]);
+	}
 	if (isset($_SESSION["pedcli"])) {
 		$pedcli = $_SESSION["pedcli"];
+		
+	
 
 ?>
 <?php } ?>
@@ -21,20 +29,18 @@
 	include_once ("../muestra/header.php");
 	?>
 <main>
-	<!-- 
+
 		<?php 
-	if (isset($_SESSION["mOkModPedCli"])) {
-			unset($_SESSION["mOkModPedCli"]);
-			
-		echo "<div>
-	<div class=\"error\">
-		<div class=\"tick\"><img src=\"../img/tick.png\" /></div>
-		<div class=\"errortext\" style=\"display: inline-block; align-items: center;\" ><p>¡El pedido cliente ha sido modificado correctamente!</p></div>
-	</div>";
-		
-	}  
-	?> -->
 	
+		if (isset($errores) && count($errores)>0) { 
+	    	echo "<div id=\"div_errores\" class=\"error2\">";
+			echo "<h4> Se han encontrado errores en el formulario:</h4>";
+    		foreach($errores as $error){
+    			echo $error;
+			} 
+    		echo "</div>";
+  		}
+	?>
 		<div class="divMod">
 	
 	<form method="post" action="../controladores/controlador_nuevopedidoC1.php">
@@ -42,7 +48,7 @@
 	
 	<div class="linea">
 	<label class="textoMod">Fecha del pedido</label></br>	
-	<input class="largo" id="FECHAPEDIDO" name="FECHAPEDIDO" type="text" 
+	<input class="largo" pattern="([0-9]{2}/[0-9]{2}/[0-9]{4}" id="FECHAPEDIDO" name="FECHAPEDIDO" type="text" 
 	value="<?php
 			$hoy = getdate();
 			echo $hoy['mday'];echo"/";echo $hoy['mon'];echo"/";echo $hoy['year'];?>" disabled/><br />
@@ -61,7 +67,7 @@
 		cerrarConexionBD($conexion);	
 		?>
 		<?php foreach($cs as $c){ ?>
-    	<option value="<?php echo $c['OID_CLI']?>"><?php echo $c['NOMBRE']; echo " "; ?></option> 
+    	<option value="<?php echo $c['OID_CLI']?>" <?php if(isset($pedidoerror) and ($pedidoerror["OID_CLI"]==$c['OID_CLI'])) echo "selected"?>><?php echo $c['NOMBRE']; echo " "; ?></option> 
     	<?php } ?>
     	</select>
   

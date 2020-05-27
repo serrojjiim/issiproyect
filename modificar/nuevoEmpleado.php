@@ -1,10 +1,16 @@
 <?php	
+	
 	session_start();	
 	if( !isset($_SESSION["cargo"]) or ($_SESSION['cargo']!="PRESIDENTE" and $_SESSION['cargo']!="VICEPRESIDENTE") ){
 		echo "</p>No tienes permisos para acceder a esta página</p>";
 		
 	}else{
-	
+	if (isset($_SESSION["errores"])){
+		$errores = $_SESSION["errores"];
+		$emperrores = $_SESSION["emplerror"];
+		unset($_SESSION["errores"]);
+		unset($_SESSION["emplerror"]);
+	}
 
 ?>
 
@@ -33,7 +39,19 @@
 		
 	}  
 	?>
+	<?php 
 	
+		if (isset($errores) && count($errores)>0) { 
+	    	echo "<div id=\"div_errores\" class=\"error2\">";
+			echo "<h4> Se han encontrado errores en el formulario:</h4>";
+    		foreach($errores as $error){
+    			echo $error;
+			} 
+    		echo "</div>";
+  		}
+	?>
+	
+
 		<div class="divMod">
 	
 	<form method="post" action="../controladores/controlador_anadirempleados.php">
@@ -41,18 +59,18 @@
 	<div class="linea2">
 	<div class="dividido">
 	<label class="textoMod">Nombre</label></br>		
-	<input class="corto" id="NOMBRE" name="NOMBRE" type="text" value="" required/><br />
+	<input class="corto" id="NOMBRE" name="NOMBRE" type="text" value="<?php if (isset($errores)){ echo $emperrores["NOMBRE"];}?>" required/><br />
 	</div>
 	
 	<div class="dividido">
 	<label class="textoMod">Apellidos</label></br>	
-	<input class="corto" id="APELLIDOS" name="APELLIDOS" type="text" value="" required/><br />
+	<input class="corto" id="APELLIDOS" name="APELLIDOS" type="text" value="<?php if (isset($errores)) echo $emperrores["APELLIDOS"];?>" required/><br />
 	</div>
 	</div>
 	
 	<div class="linea">
 			<label for="DIRECCION" class="textoMod">Direccion</label></br>	
-			<input align="center" class="largo" id="DIRECCION" name="DIRECCION" type="text" value="" required/><br />
+			<input align="center" class="largo" id="DIRECCION" name="DIRECCION" type="text" value="<?php if (isset($errores)) echo $emperrores["DIRECCION"];?>" required/><br />
 	</div>
 	
 	
@@ -60,11 +78,11 @@
 	<div class="linea2">
 	<div class="dividido">
 	<label class="textoMod">Dni</label></br>	
-	<input class="corto" pattern="^[0-9]{8}[A-Z]" id="DNI" name="DNI" type="text" value="" required/><br />
+	<input class="corto" pattern="^[0-9]{8}[A-Z]" id="DNI" name="DNI" type="text" value="<?php if (isset($errores)) echo $emperrores["DNI"];?>" required/><br />
 	</div>
 	<div class="dividido">
 	<label class="textoMod">Telefono</label></br>	
-	<input class="corto" pattern="^[0-9]{9}" id="TELEFONO" name="TELEFONO" type="text" value="" required/><br />
+	<input class="corto" pattern="^[0-9]{9}" id="TELEFONO" name="TELEFONO" type="text" value="<?php if (isset($errores)) echo $emperrores["TELEFONO"];?>" required/><br />
 	</div>
 	</div>	
 
@@ -72,17 +90,17 @@
 	
 	<div class="linea">
 	<label class="textoMod">Fecha de contratacion</label></br>	
-	<input class="largo"  id="FECHACONTRATACION" name="FECHACONTRATACION" type="text" value="DD/MM/YYYY" required/><br />
+	<input class="largo"  id="FECHACONTRATACION" name="FECHACONTRATACION" type="text" value="<?php if (isset($errores)) echo $emperrores["FECHACONTRATACION"];?>" required/><br />
 	</div>
 	
 	<div class="linea">
 	<label class="textoMod">Capital Social</label></br>	
-	<input class="largo" id="CAPITALSOCIAL" name="CAPITALSOCIAL" type="text" value="" required/><br />
+	<input class="largo" id="CAPITALSOCIAL" name="CAPITALSOCIAL" type="text" value="<?php if (isset($errores)) echo $emperrores["CAPITALSOCIAL"];?>" required/><br />
 	</div>
 	
 	<div class="linea">
 	<label class="textoMod">Dias de vacaciones</label></br>	
-	<input class="largo" id="DIASVACACIONES" name="DIASVACACIONES" type="text" value="" required/><br/>
+	<input class="largo" id="DIASVACACIONES" name="DIASVACACIONES" type="text" value="<?php if (isset($errores)) echo $emperrores["DIASVACACIONES"];?>" required/><br/>
 	</div>
 	
 	 	<div class="linea">
@@ -148,4 +166,7 @@
 </body>
 </html>
 
-<?php } ?>
+<?php 
+		
+
+} ?>
