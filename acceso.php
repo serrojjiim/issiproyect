@@ -14,6 +14,7 @@
 			$error=1;
 		
 		}else{
+		$_SESSION['user'] = $usuario;
 		$_SESSION['login'] = $usuario['DNI'];	
 		$_SESSION['nombre'] = $usuario['NOMBRE'];
 		$_SESSION['apellidos']=$usuario['APELLIDOS'];	

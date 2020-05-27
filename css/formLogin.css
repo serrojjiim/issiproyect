@@ -27,7 +27,7 @@ body {
 	width:80%;
 	margin-left: 10%;
 	top: 110%;
-	font-family: "Comic Sans MS", sans-serif;
+	font-family: Arial, sans-serif;
 	font-size: 25px;
 	border-radius: 15px;
 }
@@ -75,7 +75,7 @@ input[type=submit]{
 	background-color:#da4c6fb8;
 	color:white;
 	cursor:pointer;
-	font-family: "Comic Sans MS", Arial, sans-serif;
+	font-family: Arial, sans-serif;
 }
 
 ::placeholder{
@@ -98,7 +98,7 @@ input:focus{
 
 #dni, #pass, #passC{
 	text-align: center;
-	font-family: "Comic Sans MS", Arial, sans-serif;
+	font-family: Arial, sans-serif;
 	font-size: inherit;
 }
 

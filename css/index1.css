@@ -1,0 +1,21 @@
+body {
+	background-color: #dfdfdf7d;
+}
+
+div.index11 {
+	margin-left: 15px;
+	margin-right: 15px;
+	 font: 15px Arial, sans-serif;
+	margin-bottom: 60px;
+	margin-top: 40px;
+}
+
+div.index12 {
+	margin-left: 15px;
+	margin-right: 15px;
+	 font: 15px Arial, sans-serif;
+}
+
+div.lineadatos{
+	height: 50px;
+}
