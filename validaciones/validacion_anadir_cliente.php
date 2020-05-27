@@ -2,7 +2,7 @@
 	session_start();	
 	require_once("../gestionas/gestionBD.php");
 	
-			$clienteS = $_SESSION["cliente"];
+			$clienteS = $_SESSION["ncliente"];
 	
 			$cliente["OID_CLI"] = $clienteS["OID_CLI"];
 			$cliente["CIF"] = $clienteS["CIF"];
@@ -19,15 +19,16 @@
 	$errores = validarDatosUsuario($conexion, $cliente);
 	cerrarConexionBD($conexion);
 	
+	
 		
 	// Si se han detectado errores
 	if (count($errores)>0) {
 		// Guardo en la sesión los mensajes de error y volvemos al formulario
 		$_SESSION["errores"] = $errores;
-		Header("Location: ../modificar/modificarCliente.php");
-	} else
+		Header("Location: ../modificar/nuevoCliente.php");
+	} 
 		// Si todo va bien, vamos a la página de acción (inserción del usuario en la base de datos)
-		Header('Location: ../accions/accion_modificar_cliente.php');
+		//Header('Location: ../accions/accion_nuevo_cliente.php');
 		
 function validarDatosUsuario($conexion, $cliente){
 	$errores=array();

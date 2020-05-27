@@ -7,7 +7,7 @@
 	if (isset($_SESSION["cliente"])) {
 		$cliente = $_SESSION["cliente"];
 
-
+	
 ?>
 
 
@@ -35,17 +35,32 @@
 	</div>";
 		
 		
-	}  
+	}
 	?>
 	
 	
 	
-	<?php } ?>
+	<?php } 
+	if(isset($_SESSION["errores"])){
+		$errores = $_SESSION["errores"];
+		unset($_SESSION["errores"]);
+	}
+	if (isset($errores) && count($errores)>0) { 
+	    	echo "<div id=\"div_errores\" class=\"error\">";
+			echo "<h4> Errores en el formulario:</h4>";
+    		foreach($errores as $error){
+    			echo $error;
+			} 
+    		echo "</div>";
+  		}
+	?>
+	
 	<div class="divMod">
 	
 	<form method="post" action="../controladores/controlador_clientes.php">
 	
 		<input id="OID_CLI" name="OID_CLI" type="hidden"  value="<?php echo $cliente['OID_CLI'] ?>"/>
+		<input id="OCULTO" name="OCULTO" type="hidden"  value="<?php echo $cliente['OCULTO'] ?>"/>
 
 	
 	<div class="linea">
@@ -56,7 +71,7 @@
 	<div class="linea2">
 	<div class="dividido">
 	<label class="textoMod">Cif</label></br>		
-	<input class="corto" pattern="^[a-zA-Z]{1}[0-9]{7}[a-zA-Z]{1}" id="CIF" name="CIF" type="text" value="<?php echo $cliente['CIF'];?>"/><br />
+	<input class="corto"  pattern="[a-zA-Z]{1}[0-9]{7}[a-zA-Z]{1}" id="CIF" name="CIF" type="text" value="<?php echo $cliente['CIF'];?>"/><br />
 	</div>
 	
 	<div class="dividido">
