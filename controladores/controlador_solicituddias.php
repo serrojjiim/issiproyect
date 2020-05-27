@@ -9,7 +9,7 @@
 		
 		$_SESSION["solicitud"] = $solicitud;
 			
-		if (isset($_REQUEST["PEDIR"])) Header("Location: ../accions/accion_solicituddias.php"); 
+		if (isset($_REQUEST["PEDIR"])) Header("Location: ../validaciones/validacion_solicituddias.php"); 
 		
 	}
 	else 

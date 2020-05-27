@@ -4,9 +4,17 @@
 		echo "</p>No tienes permisos para acceder a esta página</p>";
 		
 	}else{
+		
     require_once("../gestionas/gestionBD.php");
     require_once("../consultaPaginada.php");
 	unset($_SESSION["paginacion"]);
+	
+		if (isset($_SESSION["errores"])){
+		$errores = $_SESSION["errores"];
+		$petierror = $_SESSION["peticionerror"];
+		unset($_SESSION["errores"]);
+
+	}
 	
 	if (isset($_SESSION["paginacion"])) $paginacion = $_SESSION["paginacion"];
 	$pagina_seleccionada = isset($_GET["PAG_NUM"])? (int)$_GET["PAG_NUM"]: (isset($paginacion)? (int)$paginacion["PAG_NUM"]: 1);
@@ -26,6 +34,7 @@
 	$total_paginas = (int) ($total_registros / $pag_tam);
 
 	if ($total_registros % $pag_tam > 0) $total_paginas++;
+	
 	if ($pagina_seleccionada > $total_paginas) $pagina_seleccionada = $total_paginas;
 
 	$paginacion["PAG_NUM"] = $pagina_seleccionada;
@@ -53,7 +62,18 @@
 <body>
 	<?php
 		include_once ("header.php"); ?>
-
+	<?php 
+	
+		if (isset($errores) && count($errores)>0) { 
+	    	echo "<div id=\"div_errores\" class=\"error2\">";
+			echo "<h4> Se han encontrado errores en el formulario:</h4>";
+    		foreach($errores as $error){
+    			echo $error;
+			} 
+    		echo "</div>";
+  		}
+	?>
+	
 	<div class="global">
 		<div class="solicitudes">
 			<div class="titulotabla">
@@ -119,11 +139,11 @@
 			<input id="DNI" name="DNI" type="hidden" value="<?php echo $_SESSION["dni"]; ?>"/>
 			<div class="linea">
 				
-				<input class="diasapedir" id="DIASAPEDIR" name="DIASAPEDIR" type="text" placeholder="INTRODUZCA EL NÚMERO DE DÍAS" value=""/>
+				<input class="diasapedir"  pattern="[0-9]+" id="DIASAPEDIR" name="DIASAPEDIR" type="text" placeholder="INTRODUZCA EL NÚMERO DE DÍAS" value="<?php if(isset($petierror)) echo $petierror["DIASAPEDIR"]?>"/>
 			</div>
 			<div class="linea">
 				
-				<textarea class="areamotivo" name="MOTIVO" form="FORMULARIOPETICIONDIAS" placeholder="Redacte el motivo de la solicitud (Máximo 400 caracteres)" cols="30" rows="10" maxlength="400"></textarea>
+				<textarea class="areamotivo" name="MOTIVO" form="FORMULARIOPETICIONDIAS" placeholder="Redacte el motivo de la solicitud (Máximo 400 caracteres)" cols="30" rows="10" maxlength="400"><?php if(isset($petierror)) echo $petierror["MOTIVO"]?></textarea>
 			</div>
 			<div class="lineab">
 			<button id="PEDIR" name="PEDIR" type="submit" class="send">

@@ -62,7 +62,7 @@
 <main>
 	
 	<div class="titulotabla">
-	 	<div><p class="titulo">Listado de los proveedores</p></div>
+	 	<div><p class="titulo">PROVEEDORES</p></div>
 	 </div>
 	 
 	<div class="selectpag">

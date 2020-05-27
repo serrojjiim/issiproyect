@@ -21,7 +21,7 @@
 		
 		$_SESSION["empleado"] = $empleado;
 			
-		if (isset($_REQUEST["guardar"])) Header("Location: ../accions/accion_modificar_empleado.php"); 
+		if (isset($_REQUEST["guardar"])) Header("Location: ../validaciones/validacion_modificar_empleado.php"); 
 		else if(isset($_REQUEST['patras'])) Header("Location: ../muestra/muestraEmpleados.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM);
 	}
 	else 

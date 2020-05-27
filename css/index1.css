@@ -14,8 +14,27 @@ div.index12 {
 	margin-left: 15px;
 	margin-right: 15px;
 	 font: 15px Arial, sans-serif;
+	 	border: 2px solid #aa173a;
+  	border-radius: 8px;
+  		background-color: #ffffffd9;
 }
 
+
 div.lineadatos{
+	margin-left:25px;
 	height: 50px;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+h3.lineadatos1{
+	margin-left:25px;
+	height: 50px;
+	margin-top:20px;
+	margin-bottom:10px;
+}
+
+div.dato{
+	margin-right: 15px;
+	border-bottom: 1px solid #aa173a;
 }
