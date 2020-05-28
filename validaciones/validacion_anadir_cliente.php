@@ -20,7 +20,6 @@
 	cerrarConexionBD($conexion);
 	
 	
-		
 	// Si se han detectado errores
 	if (count($errores)>0) {
 		// Guardo en la sesión los mensajes de error y volvemos al formulario
@@ -32,14 +31,14 @@
 		
 function validarDatosUsuario($conexion, $cliente){
 	$errores=array();
-	// Validación del NIF
+	// Validación del CIF
 	if($cliente["CIF"]=="") 
 		$errores[] = "<p>El CIF no puede estar vacío</p>";
 	else if(!preg_match("/^[a-zA-Z]{1}[0-9]{7}[a-zA-Z]{1}$/", $cliente["CIF"])){
-		$errores[] = "<p>El CIF debe contener 7 números y dos letra mayúscula: " . $cliente["CIF"] . "</p>";
+		$errores[] = "<p>El CIF debe contener 7 números y dos letras mayúsculas: " . $cliente["CIF"] . "</p>";
 	}
 
-	// Validación del Nombre			
+	// Validación del nombre			
 	if($cliente["NOMBRE"]=="") 
 		$errores[] = "<p>El nombre no puede estar vacío</p>";
 	
@@ -51,7 +50,6 @@ function validarDatosUsuario($conexion, $cliente){
 	}
 		
 	//Validación de la dirección
-	
 	if($cliente["DIRECCION"]==""){
 		$errores[] = "<p>La dirección no puede estar vacío</p>";	
 	}

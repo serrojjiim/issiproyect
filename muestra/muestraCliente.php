@@ -91,33 +91,35 @@
 		<?php } ?>
 		</div>
 		
-		
-		<!-- <div class="popupFiltro">
+		<?php if($_SESSION['cargo']!="CAMIONERO") {?>
+		<div class="popup">
 			<span class="popuptext" id="filtroCIF">
 				<input type="text" class="filtro" id="input1" placeholder="Filtrar por CIF..." title="Escribe un CIF">
 			</span>
 		</div>
-		<div class="popupFiltro">
+		<?php } ?>
+		<div class="popup">
 			<span class="popuptext" id="filtroNombre">
 				<input type="text" class="filtro" id="input2" placeholder="Filtrar por nombre..." title="Escribe un nombre">
 			</span>
 		</div>
-		<div class="popupFiltro">
+		<div class="popup">
 			<span class="popuptext" id="filtroDireccion">
 				<input type="text" class="filtro" id="input3" placeholder="Filtrar por direccion..." title="Escribe un direccion">
 			</span>
 		</div>
-		<div class="popupFiltro">
+		<div class="popup">
 			<span class="popuptext" id="filtroTelefono">
 				<input type="text" class="filtro" id="input4" placeholder="Filtrar por telefono..." title="Escribe un telefono">
 			</span>
 		</div>
-		<div class="popupFiltro">
+		<?php if($_SESSION['cargo']!="CAMIONERO") {?>
+		<div class="popup">
 			<span class="popuptext" id="filtroEmail">
 				<input type="text" class="filtro" id="input5" placeholder="Filtrar por email..." title="Escribe un email">
 			</span>
-		</div> -->
-	
+		</div>
+		<?php } ?>
 	
 	
 	<div class ="tabla">
@@ -126,15 +128,21 @@
 	 	
 		<tr id="cabecera">
 			<?php if($_SESSION['cargo']=="CAMIONERO"){ ?>
-			<th class="primera">Nombre <!-- <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(1)"> --></th>
-    		<th>Dirección <!-- <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(2)"> --></th>
-    		<th class="ultima">Teléfono <!-- <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(3)"> --></th>
+			<th class="primera">Nombre <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(0)"></th>
+    		<th>Dirección <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popupUltimo(1)"> </th>
+    		<th class="ultima">Teléfono  <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popupPrimero(2)"></th>
+    		<th class="boton" style="width: 56px;"><button id="borrarFiltros" name="editar" type="submit" class="vistacliente" onclick="limpiarFiltros()">
+				<img src="../img/limpiarFiltros.png" class="limpiar_filtro" alt="Limpiar filtros" height="30" width="30">
+			</button></th>
 			<?php  }else{ ?>
-    		<th class="primera">CIF <!-- <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(0)"> --></th>
-    		<th>Nombre <!-- <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(1)"> --></th>
-    		<th>Dirección <!-- <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(2)"> --></th>
-    		<th>Teléfono <!-- <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(3)"> --></th>
-    		<th class="ultima">Email 	</th>
+    		<th class="primera">CIF <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popupPrimero(0)"></th>
+    		<th>Nombre <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(1)"> </th>
+    		<th>Dirección <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(2)"> </th>
+    		<th>Teléfono <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(3)"></th>
+    		<th class="ultima">Email <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popupUltimo(4)"></th>
+    		<th class="boton"><button id="borrarFiltros" name="editar" type="submit" class="vistacliente" onclick="limpiarFiltros()">
+			<img src="../img/limpiarFiltros.png" class="limpiar_filtro" alt="Limpiar filtros" height="30" width="30">
+			</button></th>
     		<?php } ?>
   		</tr>
 
@@ -313,6 +321,28 @@
 
 </main>
 <script>
+	<?php if($_SESSION['cargo']=="CAMIONERO"){ ?>
+var $filas = $('#tablaClientes tr:gt(0)');
+	$('#input2, #input3, #input4').on('input', function() {
+		var val1 = $.trim($('#input2').val()).replace(/ +/g, ' ').toLowerCase();
+		var val2 = $.trim($('#input3').val()).replace(/ +/g, ' ').toLowerCase();
+		var val3 = $.trim($('#input4').val()).replace(/ +/g, ' ').toLowerCase();
+
+		$filas.show().filter(function() {
+			var text1 = $(this).find('td:nth-child(1)').text().replace(/\s+/g, ' ').toLowerCase();
+			var text2 = $(this).find('td:nth-child(2)').text().replace(/\s+/g, ' ').toLowerCase();
+			var text3 = $(this).find('td:nth-child(3)').text().replace(/\s+/g, ' ').toLowerCase();
+			return !~text1.indexOf(val1) || !~text2.indexOf(val2) || !~text3.indexOf(val3);
+		}).hide();
+	});
+	
+	function limpiarFiltros() {
+		$('#input2').val('');
+		$('#input3').val('');
+		$('#input4').val('');
+		$('#tablaClientes tr').show();
+}
+<?php } else { ?>
 	var $filas = $('#tablaClientes tr:gt(0)');
 	$('#input1, #input2, #input3, #input4, #input5').on('input', function() {
 		var val1 = $.trim($('#input1').val()).replace(/ +/g, ' ').toLowerCase();
@@ -330,6 +360,16 @@
 			return !~text1.indexOf(val1) || !~text2.indexOf(val2) || !~text3.indexOf(val3) || !~text4.indexOf(val4) || !~text5.indexOf(val5);
 		}).hide();
 	});
+	
+	function limpiarFiltros() {
+		$('#input1').val('');
+		$('#input2').val('');
+		$('#input3').val('');
+		$('#input4').val('');
+		$('#input5').val('');
+		$('#tablaClientes tr').show();
+}
+<?php } ?>
 </script>
 </body>
 </html>
