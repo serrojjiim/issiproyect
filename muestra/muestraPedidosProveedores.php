@@ -162,10 +162,14 @@
 									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
 								</button></td>
 						
+							<?php if($fila["FECHAPAGO"]==""){?>
 								<td class ="boton"><button id="borrar" name="borrar" type="submit" class="vistacliente">
 									<img src="../img/ocultar.png" class="borrar_fila" alt="Papelera Borrar" height="34" width="34">
 								</button></td>
-								<?php } ?>
+								
+								<?php 
+							}
+									} ?>
 						</tr>
 						
 				
