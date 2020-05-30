@@ -108,7 +108,7 @@
 	
 	 	<div class="linea">
 	<label class="textoMod">Cargo</label></br>	
-	<select class="seleccion" id="CARGO" name="CARGO" required>
+	<select class="seleccion" id="CARGO" name="CARGO" required  >
      	<option value="1"<?php if($empleado['CARGO']==1) echo "selected"; ?>>Presidente</option> 
     	<option value="2"<?php if($empleado['CARGO']==2) echo "selected"; ?>>Vicepresidente</option> 
     	<option value="3"<?php if($empleado['CARGO']==3) echo "selected"; ?>>Secretario</option>
@@ -124,11 +124,10 @@
   
 	</div>
 	
-	
-	
+
 	<div class="linea">
 	<label class="textoMod">Maquina</label></br>	
-	<select  class="seleccion" id="OID_MAQ" name="OID_MAQ">
+	<select  class="seleccion" id="OID_MAQ" name="OID_MAQ"<?php if(($empleado['CARGO']!=10 and $empleado['CARGO']!=9)) echo "disabled"?>>
      	<option value="1"<?php if($empleado['OID_MAQ']==1) echo "selected"; ?>>Pintura</option> 
     	<option value="2"<?php if($empleado['OID_MAQ']==2) echo "selected"; ?>>Fresadora</option> 
     	<option value="3"<?php if($empleado['OID_MAQ']==3) echo "selected"; ?>>Serigrafiadora</option>

@@ -55,6 +55,10 @@ function validarDatosEmpleado($conexion, $nuevoEmpleado){
 		$errores[] = "<p>El telefono debe contener 9 números: " . $nuevoEmpleado["TELEFONO"]. "</p>";
 	}
 	
+	if(($nuevoEmpleado["CARGO"]!="PEON" or $nuevoEmpleado["CARGO"]!="JEFEMAQUINA") and $nuevoEmpleado["OID_MAQ"]!=NULL){
+		$errores[] = "<p>Solo los peones y jefes de máquinas puede tener máquina asignada:</p>";
+	}
+	
 	if($nuevoEmpleado["DIRECCION"]=="")
 		$errores[] = "<p>La direccion no puedea estar vacía</p>";
 	
