@@ -161,8 +161,8 @@
 									<div class="popup">
 										<a class="close" href="#">X</a>
 										<div class="dJefe" align="center">
-
-										<label class="jefMaq"><?php 
+										<label class="jefMaq" style="text-decoration:underline;">Jefe de Maquina</label></br>
+										<label class="jefMaq"> <?php 
 												$conexion=crearConexionBD();
 	
 												$jefe = getJefeMaquina2($conexion,$fila['OID_MAQ']);
@@ -175,14 +175,14 @@
 										</label>
 										</div>
 										<div class="dPeones" align="center">
-
+										<label class="peones" style="text-decoration:underline;">Empleados</label></br>
 										<label class="peones"><?php 
 												$conexion=crearConexionBD();
 	
 												$peones = getEmpleadosMaquina($conexion,$fila['OID_MAQ']);
 												cerrarConexionBD($conexion);
 
-
+											
 												foreach($peones as $peon){
 													if($peon['NOMBRE']==$jefe['NOMBRE'] and $peon['APELLIDOS']==$jefe['APELLIDOS']){
 														

@@ -1,18 +1,18 @@
 div.dJefe{
-    background-color:#aa173a;
+    background-color:#ffffffba;
     width:100%;
     heigth:100%;
 }
 
 div.dPeones{
-    background-color:#333;
+    background-color:#ffffffba;
 }
 td.nombre{
     cursor:pointer
 }
 label.jefMaq{
-    color:white;
+    color:#060606;
 }
 label.peones{
-    color:white;
+    color:#020202;
 }
