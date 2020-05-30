@@ -10,7 +10,7 @@
 
 		$_SESSION["nproveedor"]  = $nproveedor;		
 		
-		if(isset($_REQUEST['guardar'])) Header("Location: ../accions/accion_nuevo_proveedor.php");
+		if(isset($_REQUEST['guardar'])) Header("Location: ../validaciones/validacion_anadir_proveedor.php");
 		else if(isset($_REQUEST['patras'])) Header("Location: ../muestra/muestraProveedor.php");
 		else Header("Location: ../modificar/nuevoProveedor.php");
 	}
