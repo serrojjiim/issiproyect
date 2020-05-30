@@ -6,12 +6,16 @@
 
 
 	// Comprobar que hemos llegado a esta página porque se ha rellenado el formulario
-	if (isset($_SESSION["empleado"])) {
-		$empleado = $_SESSION["empleado"];
+	if (isset($_SESSION["nempleado"])) {
+		$empleado = $_SESSION["nempleado"];
 	
+	
+		
+		// Guardar la variable local con los datos del formulario en la sesión.
+		$_SESSION["formulario"] = $nuevoUsuario;		
 	}
 	else // En caso contrario, vamos al formulario
-		Header("Location: ../modificar/modificarEmpleado.php");
+		Header("Location: ../modificar/nuevoEmpleado.php");
 
 	// Validamos el formulario en servidor
 	$conexion = crearConexionBD(); 
@@ -23,10 +27,10 @@
 		// Guardo en la sesión los mensajes de error y volvemos al formulario
 		$_SESSION["errores"] = $errores;
 		$_SESSION["emplerror"] = $empleado;
-		Header('Location: ../modificar/modificarEmpleado.php');
+		Header('Location: ../modificar/nuevoEmpleado.php');
 	} else
 		// Si todo va bien, vamos a la página de acción (inserción del usuario en la base de datos)
-		Header('Location: ../accions/accion_modificar_empleado.php');
+		Header('Location: ../accions/accion_anadir_empleado.php');
 
 ///////////////////////////////////////////////////////////
 // Validación en servidor del formulario de alta de usuario
@@ -52,13 +56,9 @@ function validarDatosEmpleado($conexion, $nuevoEmpleado){
 	if($nuevoEmpleado["TELEFONO"]=="") 
 		$errores[] = "<p>El telefono no puede estar vacío</p>";
 	else if(!preg_match("/^[6-7]{1}[0-9]{8}/", $nuevoEmpleado["TELEFONO"])){
-		$errores[] = "<p>El telefono debe contener 9 números: " . $nuevoEmpleado["TELEFONO"]. "</p>";
+		$errores[] = "<p>El telefono debe contener 9 números y empezar por 6 o 7: " . $nuevoEmpleado["TELEFONO"]. "</p>";
 	}
-// 	
-	// if(($nuevoEmpleado["CARGO"]!="PEON" or $nuevoEmpleado["CARGO"]!="JEFEMAQUINA") and $nuevoEmpleado["OID_MAQ"]!=NULL){
-		// $errores[] = "<p>Solo los peones y jefes de máquinas puede tener máquina asignada:</p>";
-	// }
-// 	
+	
 	if($nuevoEmpleado["DIRECCION"]=="")
 		$errores[] = "<p>La direccion no puedea estar vacía</p>";
 	
