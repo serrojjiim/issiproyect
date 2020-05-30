@@ -4,8 +4,6 @@ table {
   width: 90%;
   margin-left:auto; 
   margin-right:auto;
-
-  
 }
 
 body{
@@ -186,14 +184,16 @@ span.current{
   background-image: url("../img/lupa.png");
   background-size: contain;
   background-repeat: no-repeat;
-  width: 30%;
+  /*width: 30%;*/
   border-radius:20px;
   font-size: 14px;
   padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
+  /*border: 1px solid #ddd;*/
   margin-bottom: 12px;
+  text-align: center;
+  background-position-x: 5px;
+  outline: none;
 }
-
 
 .filterIcon {
 	height: 15px;
@@ -210,7 +210,7 @@ span.current{
 .popup .popuptext {
   visibility: hidden;
   width: 160px;
-  background-color: #555;
+  /*background-color: #555;*/
   color: #fff;
   text-align: center;
   border-radius: 6px;

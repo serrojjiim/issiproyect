@@ -12,6 +12,8 @@
 	
 	
 	$error = actualizarMaquina($conexion,$maquina['OID_MAQ'],$_SESSION['NOMBREMAQUINA']);
+	
+	
 	if($error==1) $_SESSION['mOkEditarMaq'] = "Ok";
 		cerrarConexionBD($conexion);
 	
@@ -19,7 +21,6 @@
 	}else
 			Header("Location: ../modificar/modificarMaquina.php?PAG_NUM=" . $paginacion['PAG_NUM'] . "&PAG_TAM=" . $paginacion['PAG_TAM']);
 		
-
 	
 	
 ?>

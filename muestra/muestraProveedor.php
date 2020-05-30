@@ -47,7 +47,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="../css/muestraTabla.css" />
   <link rel="stylesheet" type="text/css" href="../css/popupocultar.css" />
-
+ <link rel="stylesheet" type="text/css" href="../css/footer.css" />
   <script type="text/javascript" src="../js/filtro.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <title>Lista de proveedores</title>
@@ -125,20 +125,20 @@
 	 	
 		<tr id="cabecera">
 			<?php if($_SESSION['cargo']=="CAMIONERO"){ ?>
-			<th class="primera">Nombre <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(1)"></th>
+			<th class="primera">Nombre <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popupPrimero(1)"></th>
     		<th>Dirección <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(2)"></th>
-    		<th class="ultima">Teléfono <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(3)"></th>
+    		<th class="ultima">Teléfono <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popupUltimo(3)"></th>
     		<th class="boton"><button id="borrarFiltros" name="editar" type="submit" class="vistacliente" onclick="limpiarFiltros()">
-				<img src="../img/limpiarFiltros.png" class="limpiar_filtro" alt="Limpiar filtros" height="40" width="40">
+				<img src="../img/limpiarFiltros.png" class="limpiar_filtro" alt="Limpiar filtros" height="30" width="30">
 			</button></th>
 			<?php  }else{ ?>
-    		<th class="primera">CIF <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(0)"></th>
+    		<th class="primera">CIF <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popupPrimero(0)"></th>
     		<th>Nombre <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(1)"></th>
     		<th>Dirección <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(2)"></th>
     		<th>Teléfono <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(3)"></th>
-    		<th class="ultima">Email <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popup(4)"></th>
+    		<th class="ultima">Email <img class="filterIcon" src="../img/filter.png" alt="Filtro" onclick="popupUltimo(4)"></th>
     		<th class="boton"><button id="borrarFiltros" name="editar" type="submit" class="vistacliente" onclick="limpiarFiltros()">
-			<img src="../img/limpiarFiltros.png" class="limpiar_filtro" alt="Limpiar filtros" height="40" width="40">
+			<img src="../img/limpiarFiltros.png" class="limpiar_filtro" alt="Limpiar filtros" height="30" width="30">
 			</button></th>
     		<?php } ?>
   		</tr>
@@ -309,7 +309,12 @@
 		</div>
 		</nav>
 		</div>
-	
+	<footer>
+		<?php
+		include_once ("footer.php");
+		?>
+	</footer>
+		
 </main>
 <script>
 	var $filas = $('#tablaProveedores tr:gt(0)');

@@ -110,11 +110,19 @@
 		<div id="popup<?php echo $fila["OID_PEDPROV"]; ?>" class="overlay" align="left">
 	<div class="popup">
 		<a class="close" href="#">&times;</a>
+				<div>
+				<p style="display: inline-block">CANTIDAD</p>
+				<p style="display: inline-block;margin-left: 20%">PRECIO</p>
+				<p style="display: inline-block;margin-left: 30%">MATERIAL</p></br>
+				</div>
 		<?php foreach($lineas as $linea) { 
 			$nombreMat = obtenerMaterial($conexion,$linea["OID_MAT"]);
 			?>
-			<p>CANTIDAD: <?php echo $linea["CANTIDAD"]; ?> PRECIO(UNITARIO):<?php echo $linea["PRECIO"]; ?> MATERIAL:<?php echo $nombreMat["NOMBRE"];?></p>
-
+ 				<div>
+				<p style="display: inline-block;margin-left:3%"><?php echo $linea["CANTIDAD"]; ?> uds</p>
+				<p style="display: inline-block;margin-left: 20%"><?php echo $linea["PRECIO"]; ?>€/ud</p>
+				<p style="display: inline-block;margin-left: 33%"><?php echo $nombreMat["NOMBRE"];?></p></br>
+				</div>
 	<?php
 	
 	 } ?>
@@ -154,10 +162,14 @@
 									<img src="../img/lapizEditar.png" class="editar_fila" alt="Lapiz Editar" height="40" width="40">
 								</button></td>
 						
+							<?php if($fila["FECHAPAGO"]==""){?>
 								<td class ="boton"><button id="borrar" name="borrar" type="submit" class="vistacliente">
 									<img src="../img/ocultar.png" class="borrar_fila" alt="Papelera Borrar" height="34" width="34">
 								</button></td>
-								<?php } ?>
+								
+								<?php 
+							}
+									} ?>
 						</tr>
 						
 				

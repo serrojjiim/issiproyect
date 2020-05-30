@@ -79,8 +79,7 @@
 		
 		?>
 		
-	 	<div><p class="titulo">Selecciona empleados para añadirlos a la máquina <?php echo $maq ?></p></div>
-	 </div>
+	 	<!-- <div><p class="titulo">Selecciona empleados para añadirlos a la máquina <?php echo $maq ?></p></div> -->	 </div>
 	
 		
 	
@@ -250,14 +249,28 @@
 	
 	<div style="display:inline-block;float:right;width: 49%;">
 		<div style="width: 80%;margin-top: 53px;"  class="divMod">
-		<?php if(isset($_SESSION['mOkEditarMaq'])){
+		<?php 
+		if(isset($_SESSION["errores"])){
+		$errores = $_SESSION["errores"];
+		unset($_SESSION["errores"]);
+		}
+		
+		if(isset($_SESSION['mOkEditarMaq'])){
 	 	unset($_SESSION['mOkEditarMaq']);
 		echo "<div>
 		<div class=\"error\" style=\"width:80%\">
 		<div class=\"tick\"><img src=\"../img/tick.png\" /></div>
 		<div class=\"errortext\" style=\"display: inline-block; align-items: center;\" ><p>¡La maquina se ha editado correctamente!</p></div>
 		</div>";
-	 } ?>
+	 } elseif (isset($errores) && count($errores)>0) {
+		 echo "<div id=\"div_errores\" class=\"error\">";
+			echo "<h4> Errores en el formulario:</h4>";
+    		foreach($errores as $error){
+    			echo $error;
+			} 
+    		echo "</div>";
+	 }
+	 ?>
 		<form method="post" action="../controladores/controlador_maquinas.php">
 		
 		<div class="linea">

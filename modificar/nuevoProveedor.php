@@ -22,6 +22,21 @@
 <main>
 	
 		 <?php 
+		 
+		  if(isset($_SESSION["errores"])){
+		$errores = $_SESSION["errores"];
+		unset($_SESSION["errores"]);
+	}
+	
+		 if (isset($errores) && count($errores)>0) { 
+	    	echo "<div id=\"div_errores\" class=\"error2\">";
+			echo "<h4> Errores en el formulario:</h4>";
+    		foreach($errores as $error){
+    			echo $error;
+			} 
+    		echo "</div>";
+  		}
+		 
 	if (isset($_SESSION["mOkAnadeProveedor"]) and $_SESSION["mOkAnadeProveedor"]=="Ok") {
 			unset($_SESSION["mOkAnadeProveedor"]);
 			

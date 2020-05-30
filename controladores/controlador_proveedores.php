@@ -18,7 +18,7 @@
 		if (isset($_REQUEST["editar"])) Header("Location: ../modificar/modificarProveedor.php");
 		else if (isset($_REQUEST["borrar"])) Header("Location: ../accions/accion_borrar_proveedor.php");
 		else if (isset($_REQUEST["activar"])) Header("Location: ../accions/accion_activar_proveedor.php");
-		else if(isset($_REQUEST["guardar"])) Header("Location: ../accions/accion_modificar_proveedor.php");
+		else if(isset($_REQUEST["guardar"])) Header("Location: ../validaciones/validacion_editar_proveedor.php");
 		else if(isset($_REQUEST["patras"])) Header("Location: ../muestra/muestraProveedor.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM);
 	}
 	else 

@@ -10,21 +10,25 @@
 	if(isset($_SESSION['pedidoprov'])){
 		$pedprov = $_SESSION['pedidoprov'];
 	
-	require_once("../gestionas/gestionBD.php");
+	require_once("../gestionas/gestionBD.php");	
 	require_once("../gestionas/gestionarPP.php");
  
 	if($pedprov['FECHAPAGO']==" ") $pedprov['FECHAPAGO']=NULL;
+
+	print_r($pedprov);
 
 	$conexion = crearConexionBD();
 	
 	$error = modificarPP($conexion,$pedprov['OID_PEDPROV'],$pedprov['FECHAPEDIDO'],$pedprov['FECHAPAGO'],$pedprov['COSTETOTAL'],$pedprov['OID_PROV'],$pedprov['OID_EMP']);
 	
 	
-	echo $error;
+	 	echo $error;
+	
+	
 	
 		if($error==1){
 		$_SESSION['mOkModPedProv'] = "Ok";
-		Header("Location: ../muestra/muestraPedidosProveedores.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM);
+		Header("Location: ../modificar/modificarPedidoProveedor.php");
 	}
 	}
 		else Header("Location: ../muestra/muestraPedidosProveedores.php?PAG_NUM=".$PAG_NUM."&PAG_TAM=".$PAG_TAM); // Se ha tratado de acceder directamente a este PHP

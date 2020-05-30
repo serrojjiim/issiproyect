@@ -6,10 +6,7 @@
 	}else{
 	if (isset($_SESSION["proveedor"])) {
 		$proveedor = $_SESSION["proveedor"];
-
-
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -25,6 +22,20 @@
 	?>
 <main>
 <?php 
+	 if(isset($_SESSION["errores"])){
+		$errores = $_SESSION["errores"];
+		unset($_SESSION["errores"]);
+	}
+	
+		 if (isset($errores) && count($errores)>0) { 
+	    	echo "<div id=\"div_errores\" class=\"error2\">";
+			echo "<h4> Errores en el formulario:</h4>";
+    		foreach($errores as $error){
+    			echo $error;
+			} 
+    		echo "</div>";
+  		}
+		 
 	if (isset($_SESSION["mensajeok"])) {
 			unset($_SESSION["mensajeok"]);
 			
@@ -33,12 +44,8 @@
 		<div class=\"tick\"><img src=\"../img/tick.png\" /></div>
 		<div class=\"errortext\" style=\"display: inline-block; align-items: center;\" ><p>¡El proveedor ha sido editado correctamente!</p></div>
 	</div>";
-		
-		
 	}  
 	?>
-	
-	
 	
 	<?php } ?>
 	<div class="divMod">
@@ -47,7 +54,6 @@
 	
 		<input id="OID_PROV" name="OID_PROV" type="hidden"  value="<?php echo $proveedor['OID_PROV'] ?>"/>
 
-	
 	<div class="linea">
 			<label for="NOMBRE" class="textoMod">Nombre</label></br>	
 			<input align="center" class="largo" id="NOMBRE" name="NOMBRE" type="text" value="<?php echo $proveedor['NOMBRE'];?>"/><br />
@@ -64,9 +70,6 @@
 	<input class="corto" pattern="^[0-9]{9}" id="TELEFONO" name="TELEFONO" type="text" value="<?php echo $proveedor['TELEFONO'];?>"/><br />
 	</div>
 	</div>
-	
-	
-	
 	
 	<div class="linea">
 	<label class="textoMod">Direccion</label></br>	
@@ -91,10 +94,6 @@
 	
    	</div>
    	</div>
-   	
-
-
-
 
 	</form>
 

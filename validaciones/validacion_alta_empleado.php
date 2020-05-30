@@ -56,7 +56,7 @@ function validarDatosEmpleado($conexion, $nuevoEmpleado){
 	if($nuevoEmpleado["TELEFONO"]=="") 
 		$errores[] = "<p>El telefono no puede estar vacío</p>";
 	else if(!preg_match("/^[6-7]{1}[0-9]{8}/", $nuevoEmpleado["TELEFONO"])){
-		$errores[] = "<p>El telefono debe contener 9 números: " . $nuevoEmpleado["TELEFONO"]. "</p>";
+		$errores[] = "<p>El telefono debe contener 9 números y empezar por 6 o 7: " . $nuevoEmpleado["TELEFONO"]. "</p>";
 	}
 	
 	if($nuevoEmpleado["DIRECCION"]=="")

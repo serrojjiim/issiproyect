@@ -37,8 +37,7 @@
 	else if(isset($_REQUEST['guardar'])){
 		$_SESSION['NOMBREMAQUINA'] =$_REQUEST['NOMBREMAQUINA'];
 		
-		
-		Header("Location: ../accions/accion_editar_maquina.php");
+		Header("Location: ../validaciones/validacion_editar_maquina.php");
 	}
 	else Header("Location: ../modificar/modificarMaquina.php");
 

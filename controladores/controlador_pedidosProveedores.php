@@ -16,7 +16,7 @@
 			
 		if (isset($_REQUEST["editar"])) Header("Location: ../modificar/modificarPedidoProveedor.php"); 
 		else if(isset($_REQUEST["borrar"])) Header("Location: ../accions/accion_borrar_pedidoproveedor.php"); 
-		else if(isset($_REQUEST["guardarMod"])) Header("Location: ../accions/accion_modificar_pedidoProveedor.php");
+		else if(isset($_REQUEST["guardarMod"])) Header("Location: ../validaciones/validacion_modificar_pedidoProveedor.php");
 	}
 	else 
 		Header("Location: ../muestra/muestraPedidosProveedores.php");
