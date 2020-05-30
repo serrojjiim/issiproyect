@@ -25,9 +25,12 @@
 		// Guardo en la sesión los mensajes de error y volvemos al formulario
 		$_SESSION["errores"] = $errores;
 		Header("Location: ../modificar/nuevoCliente.php");
-	} 
-		// Si todo va bien, vamos a la página de acción (inserción del usuario en la base de datos)
-		//Header('Location: ../accions/accion_nuevo_cliente.php');
+	} else {
+				// Si todo va bien, vamos a la página de acción (inserción del usuario en la base de datos)
+		
+		Header('Location: ../accions/accion_nuevo_cliente.php');
+	}
+		
 		
 function validarDatosUsuario($conexion, $cliente){
 	$errores=array();
