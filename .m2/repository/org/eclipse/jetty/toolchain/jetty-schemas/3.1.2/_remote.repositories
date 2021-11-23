@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Mar 06 13:02:47 CET 2020
+jetty-schemas-3.1.2.jar>central=
+jetty-schemas-3.1.2.pom>central=
+jetty-schemas-3.1.2-sources.jar>central=
